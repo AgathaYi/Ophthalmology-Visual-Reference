@@ -1,1 +1,98 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Eye Visual Reference</title><style>*{box-sizing:border-box}body{margin:0;background:#f6f8fc;color:#172033;font-family:Pretendard,"Noto Sans KR",Arial,sans-serif}.wrap{max-width:980px;margin:auto;padding:56px 24px}h1{font-size:42px;margin:0 0 8px}.sub{color:#718096;margin-bottom:32px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid #dde5f0;border-radius:20px;padding:26px;box-shadow:0 14px 38px rgba(35,52,87,.08);transition:.18s}.card:hover{transform:translateY(-2px);border-color:#91a4ff}.num{font-size:12px;font-weight:800;color:#5a73e8}.card h2{margin:8px 0;font-size:24px}.card p{margin:0;color:#718096;line-height:1.7}@media(max-width:700px){.grid{grid-template-columns:1fr}h1{font-size:34px}}</style></head><body><div class="wrap"><h1>Eye Visual Reference</h1><div class="sub">안과 해부학과 시야를 이해하기 위한 인터랙티브 시각 자료</div><div class="grid"><a class="card" href="./anatomy/"><span class="num">01</span><h2>눈의 구조</h2><p>각막·홍채·수정체·포도막·망막·황반·시신경까지 클릭해서 확인합니다.</p></a><a class="card" href="./visual-field/"><span class="num">02</span><h2>시야 ↔ 망막</h2><p>위·아래·왼쪽·오른쪽 시야와 대응되는 망막 방향을 확인합니다.</p></a></div></div></body></html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ophthalmology Visual Reference</title>
+<style>
+:root{
+ --bg0:#03101f;--bg1:#061a31;--panel:#071b33;--line:#0d4d83;
+ --text:#f7fbff;--muted:#9eb7cd;--blue:#16aaff;--cyan:#26d6ff;
+ --pink:#ff4f9a;--green:#2bd36f;--violet:#8d6cff;--orange:#ffb11f;
+ --shadow:0 18px 48px rgba(0,0,0,.28)
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Pretendard,"Noto Sans KR",Arial,sans-serif;color:var(--text);
+ background:radial-gradient(circle at 58% 8%,rgba(54,102,151,.3),transparent 34%),
+ linear-gradient(135deg,var(--bg0),var(--bg1) 60%,#061126)}
+a{text-decoration:none;color:inherit}
+.wrap{width:min(1480px,100%);margin:auto;padding:30px 22px 50px}
+.hero{padding:42px 12px 28px}
+.brand{display:flex;align-items:center;gap:14px;color:#52d8ff;font-weight:900;font-size:16px}
+.eye{width:48px;height:30px;position:relative}
+.eye:before{content:"";position:absolute;left:1px;right:1px;top:5px;height:18px;border-top:4px solid #19adff;border-radius:50%;transform:skewX(-12deg);filter:drop-shadow(0 0 8px #13a8ff)}
+.eye:after{content:"";position:absolute;width:17px;height:17px;border-radius:50%;border:4px solid #19adff;left:15px;top:6px;box-shadow:0 0 12px rgba(19,168,255,.8)}
+.hero h1{font-size:54px;line-height:1.08;margin:24px 0 12px;letter-spacing:-.04em}
+.hero h1 span{color:#49ccff}
+.hero p{max-width:800px;color:#a9bfd2;font-size:18px;line-height:1.7;margin:0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:26px 0 14px}
+.section-head h2{margin:0;font-size:24px}
+.section-head p{margin:0;color:#809cb5;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{position:relative;min-height:210px;border-radius:20px;border:1px solid #0d4d83;background:
+ linear-gradient(160deg,rgba(9,39,72,.96),rgba(5,25,47,.97));box-shadow:var(--shadow);padding:22px;overflow:hidden;transition:.2s}
+.card:before{content:"";position:absolute;width:190px;height:190px;border-radius:50%;right:-70px;top:-80px;background:var(--accent);opacity:.10;filter:blur(5px)}
+.card.active:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 22px 55px rgba(0,0,0,.33),0 0 26px color-mix(in srgb,var(--accent) 25%,transparent)}
+.icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 13%,#071a31);color:var(--accent);font-size:26px;border:1px solid color-mix(in srgb,var(--accent) 55%,#0b345a)}
+.card h3{font-size:23px;margin:18px 0 6px}
+.card .en{color:var(--accent);font-size:13px;font-weight:800}
+.card p{color:#a5bbce;font-size:14px;line-height:1.65;margin:12px 0 0}
+.go{position:absolute;right:19px;bottom:17px;font-weight:900;color:var(--accent)}
+.status{position:absolute;right:18px;top:18px;padding:5px 9px;border-radius:999px;background:#0a2644;border:1px solid #174a73;color:#84a5c1;font-size:11px;font-weight:900}
+.card.disabled{opacity:.65;cursor:default}
+.footer{margin-top:28px;padding-top:18px;border-top:1px solid rgba(92,147,192,.17);color:#6f8aa2;font-size:12px}
+@media(max-width:1000px){.grid{grid-template-columns:1fr 1fr}.hero h1{font-size:44px}}
+@media(max-width:650px){.wrap{padding:18px 12px 35px}.grid{grid-template-columns:1fr}.hero{padding:30px 4px 20px}.hero h1{font-size:36px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <section class="hero">
+  <div class="brand"><div class="eye"></div>OPHTHALMOLOGY VISUAL REFERENCE</div>
+  <h1>안과 지식을 <span>눈으로 이해하는</span><br/>시각 자료 라이브러리</h1>
+  <p>눈의 구조, 시야와 망막의 대응, 백내장, 망막 질환 등 안과에서 자주 접하는 내용을 인터랙티브 시각 자료로 정리합니다.</p>
+ </section>
+
+ <div class="section-head">
+  <div><h2>Visual Reference Library</h2></div>
+  <p>자료는 계속 추가됩니다.</p>
+ </div>
+
+ <section class="grid">
+  <a class="card active" style="--accent:var(--blue)" href="https://agathayi.github.io/Ophthalmology-Visual-Reference/anatomy/">
+   <div class="icon">◉</div><div class="en">EYE ANATOMY</div><h3>눈의 구조</h3>
+   <p>각막부터 수정체, 포도막, 유리체, 망막, 황반, 시신경까지 구조를 직접 클릭해 확인합니다.</p>
+   <div class="go">자료 열기 →</div>
+  </a>
+
+  <a class="card active" style="--accent:var(--green)" href="https://agathayi.github.io/Ophthalmology-Visual-Reference/visual-field/">
+   <div class="icon">↔</div><div class="en">VISUAL FIELD × RETINA</div><h3>시야 · 망막 대응</h3>
+   <p>상·하·좌·우 시야 증상과 실제 망막 위치의 반대 방향 대응을 시각적으로 확인합니다.</p>
+   <div class="go">자료 열기 →</div>
+  </a>
+
+  <div class="card disabled" style="--accent:var(--orange)">
+   <span class="status">준비 중</span><div class="icon">◐</div><div class="en">CATARACT</div><h3>백내장</h3>
+   <p>수정체 혼탁, 백내장 단계, 인공수정체와 수술 과정을 시각적으로 정리할 예정입니다.</p>
+  </div>
+
+  <div class="card disabled" style="--accent:var(--pink)">
+   <span class="status">준비 중</span><div class="icon">◎</div><div class="en">RETINAL DISORDERS</div><h3>망막 질환별 정리</h3>
+   <p>망막박리, ERM, 황반원공, 황반변성, RVO 등 주요 망막 질환을 비교할 예정입니다.</p>
+  </div>
+
+  <div class="card disabled" style="--accent:var(--violet)">
+   <span class="status">준비 중</span><div class="icon">⌁</div><div class="en">OPTIC NERVE & GLAUCOMA</div><h3>시신경 · 녹내장</h3>
+   <p>시신경유두, RNFL, 시야검사와 녹내장 손상의 관계를 시각적으로 정리할 예정입니다.</p>
+  </div>
+
+  <div class="card disabled" style="--accent:var(--cyan)">
+   <span class="status">준비 중</span><div class="icon">＋</div><div class="en">PROCEDURES & EXAMS</div><h3>검사 · 레이저 · 수술</h3>
+   <p>OCT, 안저검사, YAG, Barrier laser, PPV 등 검사와 시술 자료를 확장할 수 있습니다.</p>
+  </div>
+ </section>
+
+ <div class="footer">Ophthalmology Visual Reference · Educational visual guide</div>
+</div>
+</body>
+</html>
