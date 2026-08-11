@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>시야와 망막 | Eye Visual Reference</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>시야와 망막의 상하좌우 대응 | Eye Visual Reference</title>
+<style>
+:root{--bg:#f6f8fc;--panel:#fff;--line:#dce4ef;--text:#182236;--muted:#6f7b90;--blue:#4e78ff;--retina:#ff738a;--shadow:0 18px 50px rgba(28,46,83,.10)}
+*{box-sizing:border-box} body{margin:0;background:linear-gradient(#f9fbff,#f2f5fa);color:var(--text);font-family:Pretendard,"Noto Sans KR",Inter,Arial,sans-serif}
+.page{max-width:1200px;margin:auto;padding:28px}.top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.top h1{margin:0;font-size:clamp(28px,3vw,42px);letter-spacing:-.04em}.top p{margin:8px 0 0;color:var(--muted)}.home{text-decoration:none;border:1px solid var(--line);background:white;border-radius:12px;padding:10px 14px;font-size:14px}.card{background:white;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+.controls{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:20px 0}.dir{border:1px solid var(--line);background:white;padding:10px 16px;border-radius:999px;font-weight:800;cursor:pointer}.dir.active{background:var(--blue);border-color:var(--blue);color:white}.eye-toggle{display:flex;gap:6px;margin-left:12px}.eye{border:1px solid var(--line);background:#f8faff;padding:10px 13px;border-radius:999px;font-weight:800;cursor:pointer}.eye.active{background:#17233a;color:white;border-color:#17233a}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{padding:20px;min-height:500px}.panel h2{font-size:16px;margin:0 0 14px}.stage{height:385px;border:1px solid #edf1f6;border-radius:18px;background:radial-gradient(circle,#fff,#f6f9fd);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.field{width:300px;height:300px;border-radius:50%;position:relative;background:linear-gradient(135deg,#edf6ff,#fff);border:7px solid #c8d4e6;box-shadow:inset 0 0 0 1px white}.cross:before,.cross:after{content:"";position:absolute;background:#cad5e5}.cross:before{left:50%;top:6%;bottom:6%;width:1px}.cross:after{top:50%;left:6%;right:6%;height:1px}.fix{position:absolute;left:50%;top:50%;width:10px;height:10px;border-radius:50%;background:#17233a;transform:translate(-50%,-50%)}.curtain{position:absolute;background:rgba(25,34,50,.86);transition:.3s ease}.curtain.top{left:0;right:0;top:0;height:50%;border-radius:140px 140px 0 0}.curtain.bottom{left:0;right:0;bottom:0;height:50%;border-radius:0 0 140px 140px}.curtain.left{left:0;top:0;bottom:0;width:50%;border-radius:140px 0 0 140px}.curtain.right{right:0;top:0;bottom:0;width:50%;border-radius:0 140px 140px 0}.field-label{position:absolute;font-size:12px;font-weight:800;color:#718095}.field-label.t{top:22px;left:50%;transform:translateX(-50%)}.field-label.b{bottom:22px;left:50%;transform:translateX(-50%)}.field-label.l{left:20px;top:50%;transform:translateY(-50%)}.field-label.r{right:20px;top:50%;transform:translateY(-50%)}
+.eye-diagram{width:360px;height:260px;position:relative}.globe{position:absolute;left:58px;top:22px;width:250px;height:216px;border-radius:50%;background:#fff;border:14px solid #dfe7f2;box-shadow:inset 0 0 0 7px #a15f45}.retina-ring{position:absolute;left:79px;top:43px;width:208px;height:174px;border-radius:50%;border:9px solid var(--retina)}.retina-highlight{position:absolute;left:79px;top:43px;width:208px;height:174px;border-radius:50%;border:13px solid transparent;transition:.3s ease}.retina-highlight.top{border-top-color:#ff2f56}.retina-highlight.bottom{border-bottom-color:#ff2f56}.retina-highlight.left{border-left-color:#ff2f56}.retina-highlight.right{border-right-color:#ff2f56}.cornea{position:absolute;left:34px;top:68px;width:80px;height:120px;border-radius:50%;border:5px solid #6fd4ea;background:rgba(158,231,246,.35)}.lens{position:absolute;left:120px;top:82px;width:44px;height:92px;border-radius:50%;background:#ffe59a;border:3px solid #e9bd54}.nerve{position:absolute;right:4px;top:110px;width:85px;height:35px;border-radius:0 20px 20px 0;background:#f3c45c;transform:rotate(-5deg)}.retina-center{position:absolute;left:178px;top:125px;width:6px;height:6px;border-radius:50%;background:#273147}.anatomy-label{position:absolute;font-size:12px;font-weight:800;color:#6f7b90}.anatomy-label.t{top:0;left:160px}.anatomy-label.b{bottom:0;left:160px}.anatomy-label.l{left:0;top:120px}.anatomy-label.r{right:0;top:70px}
+.result{margin-top:16px;padding:15px 16px;border-radius:14px;background:#f4f7ff;border:1px solid #dfe6ff}.result strong{display:block;font-size:18px;margin-bottom:6px}.result p{margin:0;color:#59667b;line-height:1.65;font-size:14px}.rule{margin-top:18px;padding:18px 20px;text-align:center}.rule b{font-size:20px}.rule p{margin:7px 0 0;color:var(--muted);font-size:14px;line-height:1.7}.warn{margin-top:12px;color:#7c6532;font-size:12px;background:#fff9e9;border:1px solid #f1dfad;padding:12px 14px;border-radius:12px;line-height:1.6}.arrow{font-size:34px;text-align:center;color:#8190a8;margin:10px 0}.map-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}.map-table th,.map-table td{padding:9px 10px;border-top:1px solid #edf1f6;text-align:left}.map-table th{color:#6d7788;font-size:11px}.highlight-cell{font-weight:800;color:#2f55d4}
+@media(max-width:860px){.page{padding:18px 14px}.top{flex-direction:column}.grid{grid-template-columns:1fr}.panel{min-height:auto}.stage{height:360px}.eye-toggle{width:100%;justify-content:center;margin:4px 0 0}}
+</style>
 </head>
-
 <body>
-
-  <h1>시야와 망막의 대응</h1>
-
-  <p>
-    시야의 상·하·좌·우와 망막 위치의 관계를 시각적으로 확인합니다.
-  </p>
-
-  <ul>
-    <li>위쪽 시야 → 아래쪽 망막</li>
-    <li>아래쪽 시야 → 위쪽 망막</li>
-    <li>왼쪽 시야 → 오른쪽 망막</li>
-    <li>오른쪽 시야 → 왼쪽 망막</li>
-  </ul>
-
-  <p>
-    인터랙티브 시각 자료 제작 예정
-  </p>
-
-  <a href="../">← 메인으로</a>
-
-</body>
-</html>
+<div class="page">
+  <div class="top"><div><h1>시야 ↔ 망막 상하좌우 대응</h1><p>환자가 느끼는 가림 방향과 망막에서 대응되는 위치를 4방향으로 확인합니다.</p></div><a class="home" href="../">← 메인으로</a></div>
+  <div class="controls">
+    <button class="dir active" data-dir="top">↑ 위쪽 시야</button><button class="dir" data-dir="bottom">↓ 아래쪽 시야</button><button class="dir" data-dir="left">← 왼쪽 시야</button><button class="dir" data-dir="right">→ 오른쪽 시야</button>
+    <div class="eye-toggle"><button class="eye active" data-eye="OD">OD 우안</button><button class="eye" data-eye="OS">OS 좌안</button></div>
+  </div>
+  <div class="grid">
+    <section class="card panel"><h2>① 환자가 느끼는 시야</h2><div class="stage"><div class="field cross"><div id="curtain" class="curtain top"></div><div class="fix"></div><span class="field-label t">위</span><span class="field-label b">아래</span><span class="field-label l">왼쪽</span><span class="field-label r">오른쪽</span></div></div><div class="result"><strong id="fieldTitle">위쪽 시야가 가려짐</strong><p id="fieldText">환자가 “위쪽에 커튼이 보인다”, “위에서 가려진다”고 표현하는 상황을 단순화한 예시입니다.</p></div></section>
+    <section class="card panel"><h2>② 망막에서 대응되는 위치</h2><div class="stage"><div class="eye-diagram"><div class="globe"></div><div class="retina-ring"></div><div id="retinaHighlight" class="retina-highlight bottom"></div><div class="cornea"></div><div class="lens"></div><div class="nerve"></div><div class="retina-center"></div><span class="anatomy-label t">위쪽 망막</span><span class="anatomy-label b">아래쪽 망막</span><span class="anatomy-label l">앞쪽</span><span class="anatomy-label r">뒤쪽</span></div></div><div class="result"><strong id="retinaTitle">→ 아래쪽 망막과 대응</strong><p id="retinaText">눈의 광학계에서 상하가 뒤집혀 망막에 맺히므로, 위쪽 시야는 아래쪽 망막과 대응합니다.</p></div></section>
+  </div>
+  <section class="card rule"><b>암기: 시야에서 느끼는 방향 ↔ 망막 위치는 상·하·좌·우 모두 반대</b><p>위 시야↔아래 망막 · 아래 시야↔위 망막 · 왼쪽 시야↔오른쪽 망막 · 오른쪽 시야↔왼쪽 망막</p><div class="warn">망막박리 환자의 표현은 박리 범위·진행 방향·중심부 침범 등에 따라 다양할 수 있으므로, 시야 방향만으로 열공이나 박리의 정확한 위치를 확정하지 않습니다. 갑작스러운 커튼 모양 시야가림은 위치와 관계없이 긴급 안과 평가가 필요한 증상입니다.</div></section>
+  <section class="card rule" style="text-align:left"><b style="font-size:16px">좌우 방향을 OD/OS 용어로 바꾸면</b><table class="map-table"><thead><tr><th>환자 시야</th><th>망막 방향</th><th>OD 우안</th><th>OS 좌안</th></tr></thead><tbody><tr><td>왼쪽 시야</td><td>오른쪽 망막</td><td class="highlight-cell">Temporal retina</td><td class="highlight-cell">Nasal retina</td></tr><tr><td>오른쪽 시야</td><td>왼쪽 망막</td><td class="highlight-cell">Nasal retina</td><td class="highlight-cell">Temporal retina</td></tr><tr><td>위쪽 시야</td><td>아래쪽 망막</td><td>Inferior retina</td><td>Inferior retina</td></tr><tr><td>아래쪽 시야</td><td>위쪽 망막</td><td>Superior retina</td><td>Superior retina</td></tr></tbody></table></section>
+</div>
+<script>
+let direction='top', eye='OD';
+const map={
+ top:{field:'위쪽 시야가 가려짐',fieldText:'환자가 “위쪽에 커튼이 보인다”, “위에서 가려진다”고 표현하는 상황을 단순화한 예시입니다.',retina:'bottom',title:'→ 아래쪽 망막과 대응',base:'눈의 광학계에서 상하가 뒤집혀 망막에 맺히므로, 위쪽 시야는 아래쪽 망막과 대응합니다.'},
+ bottom:{field:'아래쪽 시야가 가려짐',fieldText:'환자가 “아래쪽이 가려진다”, “아래에서 커튼이 올라온다”고 표현하는 상황을 단순화한 예시입니다.',retina:'top',title:'→ 위쪽 망막과 대응',base:'아래쪽 시야는 위쪽 망막과 대응합니다.'},
+ left:{field:'왼쪽 시야가 가려짐',fieldText:'환자가 한쪽 눈에서 “왼쪽이 가려진다”고 느끼는 상황을 단순화한 예시입니다.',retina:'right',title:'→ 오른쪽 망막과 대응',base:'좌우도 반전되어 왼쪽 시야는 망막의 오른쪽 절반과 대응합니다.'},
+ right:{field:'오른쪽 시야가 가려짐',fieldText:'환자가 한쪽 눈에서 “오른쪽이 가려진다”고 느끼는 상황을 단순화한 예시입니다.',retina:'left',title:'→ 왼쪽 망막과 대응',base:'좌우도 반전되어 오른쪽 시야는 망막의 왼쪽 절반과 대응합니다.'}
+};
+function sideTerm(){if(direction==='left') return eye==='OD'?'우안에서는 Temporal retina(귀쪽 망막)입니다.':'좌안에서는 Nasal retina(코쪽 망막)입니다.';if(direction==='right') return eye==='OD'?'우안에서는 Nasal retina(코쪽 망막)입니다.':'좌안에서는 Temporal retina(귀쪽 망막)입니다.';return direction==='top'?'양안 모두 Inferior retina(아래쪽 망막)입니다.':'양안 모두 Superior retina(위쪽 망막)입니다.'}
+function render(){const d=map[direction];document.querySelectorAll('.dir').forEach(b=>b.classList.toggle('active',b.dataset.dir===direction));document.querySelectorAll('.eye').forEach(b=>b.classList.toggle('active',b.dataset.eye===eye));const c=document.getElementById('curtain');c.className='curtain '+direction;const r=document.getElementById('retinaHighlight');r.className='retina-highlight '+d.retina;document.getElementById('fieldTitle').textContent=d.field;document.getElementById('fieldText').textContent=d.fieldText;document.getElementById('retinaTitle').textContent=d.title;document.getElementById('retinaText').textContent=d.base+' '+sideTerm();}
+document.querySelectorAll('.dir').forEach(b=>b.onclick=()=>{direction=b.dataset.dir;render()});document.querySelectorAll('.eye').forEach(b=>b.onclick=()=>{eye=b.dataset.eye;render()});render();
+</script>
+</body></html>
