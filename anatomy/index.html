@@ -96,18 +96,25 @@ button{font:inherit}
   border:2px solid currentColor;background:rgba(255,255,255,.03)
 }
 .navbtn .arr{color:#19c7ff;font-size:22px}
-.navbtn[data-cat="all"]{color:#35a9ff}
-.navbtn[data-cat="anterior"]{color:#ff8b80}
-.navbtn[data-cat="uvea"]{color:#ff4f9a}
-.navbtn[data-cat="retina"]{color:#36df72}
-.navbtn[data-cat="posterior"]{color:#9d77ff}
-.navbtn[data-cat="optic"]{color:#ffb51f}
+.navbtn[data-cat]{color:#c9d8e6}
 .navbtn.active{
-  background:linear-gradient(90deg,#0877f7,#0d95f4);
-  color:white;border-color:#22b6ff;box-shadow:0 0 20px rgba(12,139,255,.22)
+  color:#fff;
+  border-color:#5f7d98;
+  background:
+    radial-gradient(ellipse at 38% 50%,rgba(255,255,255,.22) 0%,rgba(255,255,255,.10) 38%,rgba(255,255,255,.025) 66%,transparent 82%),
+    linear-gradient(90deg,#0b2947,#082139);
+  box-shadow:0 8px 24px rgba(0,0,0,.18), inset 0 0 30px rgba(255,255,255,.035);
+}
+.navbtn.active .ico{
+  color:#fff;
+  border-color:#fff;
+  background:rgba(255,255,255,.11);
+  box-shadow:0 0 14px rgba(255,255,255,.14);
 }
 .navbtn.active > span:nth-child(2){
-  text-shadow:0 0 7px currentColor,0 0 18px currentColor;
+  color:#fff;
+  font-weight:950;
+  text-shadow:none;
 }
 .mini-block{margin-top:14px;padding:13px;border:1px solid #0d4776;border-radius:15px;background:#061b34}
 .mini-block h3{font-size:15px;margin:0 0 10px}
@@ -160,16 +167,19 @@ button{font:inherit}
 .hit{
   fill:rgba(255,255,255,.001);stroke:transparent;stroke-width:1.5;cursor:pointer;
 }
-.hit:hover{fill:rgba(24,176,255,.085);stroke:transparent;filter:drop-shadow(0 0 8px rgba(31,190,255,.28))}
-.focus-dim{
-  position:absolute;inset:0;z-index:4;pointer-events:none;display:none;
+.hit:hover{fill:rgba(255,255,255,.035);stroke:transparent;filter:none}
+.focus-dim,.focus-dot{display:none!important}
+.spotlight-svg{
+  position:absolute;inset:0;width:100%;height:100%;
+  z-index:4;pointer-events:none;
 }
-.focus-dot{
-  position:absolute;width:14px;height:14px;border-radius:50%;
-  border:3px solid white;background:#16b6ff;
-  box-shadow:0 0 0 5px rgba(17,168,255,.18),0 0 18px rgba(30,193,255,.9);
-  transform:translate(-50%,-50%);z-index:7;display:none;pointer-events:none;
+#spotDim{display:none}
+#spotBoost>*{
+  fill:rgba(255,255,255,.035);
+  stroke:none;
+  mix-blend-mode:screen;
 }
+.label-glow-svg{display:none!important}
 .label-glow-svg{
   position:absolute;inset:0;width:100%;height:100%;
   z-index:7;pointer-events:none;overflow:visible;
@@ -226,23 +236,21 @@ button{font:inherit}
 }
 .retina-stage img{display:block;width:100%;height:100%;object-fit:contain}
 .retina-layer-hit{
-  position:absolute;background:transparent;border:0;cursor:pointer;border-radius:12px;z-index:5;
+  position:absolute;background:transparent;border:0;cursor:pointer;border-radius:10px;z-index:6;
 }
-.retina-layer-hit:hover{background:rgba(40,199,255,.055)}
-.retina-tissue-glow,.retina-label-glow{
-  position:absolute;display:none;pointer-events:none;z-index:4;
-  background:radial-gradient(ellipse at center,
-    rgba(255,231,108,.62) 0%,
-    rgba(69,210,255,.34) 36%,
-    rgba(39,154,255,.12) 58%,
-    transparent 78%);
+.retina-layer-hit:hover{background:rgba(255,255,255,.035)}
+.retina-focus-svg{
+  position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none;
+}
+#retinaDim{display:none}
+#retinaBoost>*{
+  fill:rgba(255,255,255,.055);
+  stroke:none;
   mix-blend-mode:screen;
-  filter:blur(5px) saturate(1.25);
 }
-.retina-tissue-glow{left:1%;width:55%}
-.retina-label-glow{left:61%;width:37%}
+.retina-tissue-glow,.retina-label-glow{display:none!important}
 .retina-bottom-orient{
-  text-align:center;color:#9edbff;font-weight:900;font-size:13px;padding:8px 0 1px;
+  text-align:center;color:#dcecff;font-weight:900;font-size:13px;padding:8px 0 1px;
 }
 .select-card{
   border:1px solid #5548bf;background:linear-gradient(180deg,rgba(28,30,92,.96),rgba(19,27,77,.97));
@@ -358,6 +366,33 @@ button{font:inherit}
             </defs>
             <g id="labelGlowGroup"></g>
           </svg>
+          <svg class="spotlight-svg" viewBox="0 0 905 720" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <mask id="spotMask">
+                <rect width="905" height="720" fill="white"/>
+                <g id="spotHoles" fill="black" stroke="black"></g>
+              </mask>
+            </defs>
+            <rect id="spotDim" width="905" height="720" fill="#010813" opacity=".50" mask="url(#spotMask)"/>
+            <g id="spotBoost"></g>
+
+            <!-- HTML correction: hide the old zonule pointer and redraw it to the actual inferior zonular fibres -->
+            <g id="zonuleCorrection" pointer-events="none">
+              <path d="M407 611 L305 511" stroke="#b74729" stroke-width="5.4" stroke-linecap="round" opacity=".96"/>
+              <path d="M305 511 L282 493" stroke="#d3d5df" stroke-width="6.2" stroke-linecap="round" opacity=".98"/>
+              <circle cx="282" cy="493" r="6" fill="#d1d4df"/>
+              <path d="M406 611 L326 557" stroke="#f5f8fb" stroke-width="1.65" fill="none"/>
+              <circle cx="326" cy="557" r="4.1" fill="#071321" stroke="#f5f8fb" stroke-width="1.6"/>
+            </g>
+
+            <!-- HTML correction: Korean label for Schlemm canal -->
+            <g id="schlemmKoreanPatch" pointer-events="none">
+              <rect x="21" y="586" width="111" height="48" rx="12" fill="#06192f" opacity=".985"/>
+              <text x="31" y="606" fill="#f7fbff" font-size="15" font-weight="850">슐렘관</text>
+              <text x="31" y="624" fill="#b9cce0" font-size="11.5">Schlemm canal</text>
+            </g>
+          </svg>
+
           <div class="memo" id="memo">
             <button class="memo-close" id="memoClose">×</button>
             <h4 id="memoTitle">설명</h4>
@@ -366,56 +401,145 @@ button{font:inherit}
 
           <svg class="hot-svg" viewBox="0 0 905 720" preserveAspectRatio="xMidYMid meet">
             <g transform="translate(5 0)">
-            <!-- broad anatomy hotspots -->
-            <ellipse class="hit" data-key="vitreous" cx="515" cy="380" rx="220" ry="245"/>
-            <ellipse class="hit" data-key="cornea" cx="155" cy="365" rx="60" ry="150"/>
-            <ellipse class="hit" data-key="anterior_chamber" cx="158" cy="360" rx="42" ry="132"/>
-            <ellipse class="hit" data-key="posterior_chamber" cx="185" cy="458" rx="34" ry="48"/>
-            <ellipse class="hit" data-key="pupil" cx="190" cy="401" rx="20" ry="42"/>
-            <ellipse class="hit" data-key="iris" cx="190" cy="401" rx="35" ry="100"/>
-            <ellipse class="hit" data-key="lens" cx="273" cy="410" rx="68" ry="135"/>
-            <ellipse class="hit" data-key="lens_capsule" cx="273" cy="410" rx="78" ry="146"/>
-            <ellipse class="hit" data-key="ciliary_body" cx="270" cy="213" rx="67" ry="62"/>
-            <ellipse class="hit" data-key="ciliary_processes" cx="262" cy="224" rx="46" ry="52"/>
-            <ellipse class="hit" data-key="ciliary_body" cx="270" cy="600" rx="68" ry="60"/>
-            <ellipse class="hit" data-key="ciliary_processes" cx="260" cy="594" rx="45" ry="48"/>
-            <ellipse class="hit" data-key="zonules" cx="338" cy="411" rx="90" ry="145"/>
-            <ellipse class="hit" data-key="trabecular_meshwork" cx="192" cy="534" rx="24" ry="28"/>
-            <ellipse class="hit" data-key="schlemm_canal" cx="190" cy="594" rx="28" ry="28"/>
-            <ellipse class="hit" data-key="conjunctiva" cx="178" cy="184" rx="45" ry="30"/>
-            <ellipse class="hit" data-key="ora_serrata" cx="468" cy="105" rx="48" ry="24"/>
-            <ellipse class="hit" data-key="sclera" cx="598" cy="130" rx="54" ry="23"/>
-            <ellipse class="hit" data-key="choroid" cx="638" cy="172" rx="52" ry="22"/>
-            <ellipse class="hit" data-key="rpe" cx="669" cy="219" rx="42" ry="18"/>
-            <ellipse class="hit" data-key="retina" cx="698" cy="261" rx="41" ry="18"/>
-            <ellipse class="hit" data-key="macula" cx="705" cy="408" rx="33" ry="43"/>
-            <ellipse class="hit" data-key="fovea" cx="706" cy="408" rx="14" ry="18"/>
-            <ellipse class="hit" data-key="optic_disc" cx="735" cy="491" rx="25" ry="26"/>
-            <ellipse class="hit" data-key="optic_nerve" cx="806" cy="582" rx="45" ry="31"/>
+              <!-- Anatomy-shaped click regions -->
+              <path class="hit anatomy-shape" data-key="cornea"
+                d="M120 215 C86 266 78 340 82 414 C86 500 110 566 148 604
+                   C162 612 179 607 193 591 C167 529 156 462 158 390
+                   C160 318 174 257 199 214 C174 198 145 198 120 215 Z"/>
 
-            <!-- baked label boxes also clickable -->
-            <rect class="hit" data-key="conjunctiva" x="17" y="82" width="92" height="48" rx="12"/>
-            <rect class="hit" data-key="cornea" x="17" y="140" width="80" height="48" rx="12"/>
-            <rect class="hit" data-key="anterior_chamber" x="17" y="206" width="111" height="67" rx="12"/>
-            <rect class="hit" data-key="pupil" x="17" y="286" width="67" height="48" rx="12"/>
-            <rect class="hit" data-key="iris" x="17" y="350" width="66" height="48" rx="12"/>
-            <rect class="hit" data-key="posterior_chamber" x="17" y="429" width="107" height="66" rx="12"/>
-            <rect class="hit" data-key="trabecular_meshwork" x="17" y="515" width="103" height="62" rx="12"/>
-            <rect class="hit" data-key="schlemm_canal" x="17" y="586" width="111" height="48" rx="12"/>
-            <rect class="hit" data-key="lens" x="126" y="651" width="74" height="47" rx="12"/>
-            <rect class="hit" data-key="lens_capsule" x="210" y="653" width="96" height="55" rx="12"/>
-            <rect class="hit" data-key="ciliary_body" x="213" y="12" width="118" height="48" rx="12"/>
-            <rect class="hit" data-key="ciliary_processes" x="159" y="67" width="104" height="58" rx="12"/>
-            <rect class="hit" data-key="ora_serrata" x="423" y="14" width="98" height="57" rx="12"/>
-            <rect class="hit" data-key="sclera" x="690" y="67" width="70" height="46" rx="12"/>
-            <rect class="hit" data-key="choroid" x="691" y="119" width="77" height="47" rx="12"/>
-            <rect class="hit" data-key="rpe" x="690" y="171" width="132" height="53" rx="12"/>
-            <rect class="hit" data-key="retina" x="690" y="229" width="77" height="49" rx="12"/>
-            <rect class="hit" data-key="macula" x="772" y="301" width="76" height="50" rx="12"/>
-            <rect class="hit" data-key="fovea" x="774" y="369" width="72" height="48" rx="12"/>
-            <rect class="hit" data-key="optic_disc" x="774" y="439" width="83" height="50" rx="12"/>
-            <rect class="hit" data-key="optic_nerve" x="708" y="649" width="87" height="49" rx="12"/>
-            <rect class="hit" data-key="zonules" x="396" y="612" width="98" height="53" rx="12"/>
+              <path class="hit anatomy-shape" data-key="conjunctiva"
+                d="M143 184 C161 157 188 142 219 145 L231 156
+                   C199 160 175 174 158 198 Z"/>
+
+              <path class="hit anatomy-shape" data-key="anterior_chamber"
+                d="M132 239 C105 303 104 494 139 565
+                   C158 580 181 557 190 510
+                   C175 472 169 431 171 387
+                   C173 332 185 284 201 252
+                   C180 236 153 232 132 239 Z"/>
+
+              <path class="hit anatomy-shape" data-key="posterior_chamber"
+                d="M184 333 C201 325 218 327 233 338 L224 360 C208 352 197 352 186 357 Z
+                   M184 454 C199 455 211 451 225 442 L236 463
+                   C219 477 201 484 184 480 Z"/>
+
+              <path class="hit anatomy-shape" data-key="pupil"
+                d="M185 359 C198 367 205 383 205 402 C205 421 199 438 185 449
+                   L177 444 C187 419 188 386 178 364 Z"/>
+
+              <path class="hit anatomy-shape" data-key="iris"
+                d="M157 319 C174 317 190 326 203 344 L196 363
+                   C184 350 171 344 158 345 Z
+                   M158 454 C172 455 184 449 197 438 L205 457
+                   C191 474 174 481 158 479 Z"/>
+
+              <ellipse class="hit anatomy-shape" data-key="lens" cx="274" cy="410" rx="70" ry="139"/>
+              <ellipse class="hit anatomy-shape stroke-shape" data-key="lens_capsule"
+                cx="274" cy="410" rx="79" ry="148" fill="none" stroke="transparent" stroke-width="13"/>
+
+              <path class="hit anatomy-shape" data-key="ciliary_body"
+                d="M218 164 C244 145 281 148 310 170
+                   C321 192 313 220 290 247
+                   C264 260 239 251 220 231 C211 207 211 181 218 164 Z
+                   M220 548 C241 532 267 528 291 538
+                   C315 555 324 583 311 609
+                   C282 635 246 636 221 616 C211 592 212 567 220 548 Z"/>
+
+              <path class="hit anatomy-shape" data-key="ciliary_processes"
+                d="M222 178 C243 158 275 163 296 188
+                   C294 214 284 238 267 258
+                   C244 258 226 245 216 224 C211 207 213 190 222 178 Z
+                   M220 565 C237 543 262 537 286 548
+                   C303 568 302 592 288 612
+                   C265 628 237 621 220 603 C213 589 213 575 220 565 Z"/>
+
+              <path class="hit anatomy-shape" data-key="zonules"
+                d="M274 253 C304 261 331 289 354 336 L335 355
+                   C319 316 299 288 271 278 Z
+                   M272 540 C300 534 319 514 335 478 L355 496
+                   C334 540 306 572 274 586 Z"/>
+
+              <path class="hit anatomy-shape" data-key="trabecular_meshwork"
+                d="M184 516 C195 510 207 513 215 522 L208 544
+                   C197 548 188 542 181 532 Z"/>
+
+              <path class="hit anatomy-shape" data-key="schlemm_canal"
+                d="M184 556 C196 550 208 552 218 561
+                   C213 574 201 581 188 577 C181 571 180 563 184 556 Z"/>
+
+              <path class="hit anatomy-shape" data-key="vitreous"
+                d="M333 163 C520 111 690 187 744 346
+                   C790 482 737 598 606 649
+                   C511 686 403 677 337 636
+                   C321 605 312 575 310 548
+                   C344 513 360 466 360 409
+                   C360 349 345 298 313 254
+                   C311 219 318 186 333 163 Z"/>
+
+              <ellipse class="hit anatomy-shape" data-key="ora_serrata" cx="474" cy="104" rx="28" ry="17"/>
+
+              <!-- globe wall layers: path follows the real posterior wall -->
+              <path class="hit anatomy-shape stroke-shape" data-key="sclera"
+                d="M352 112 C520 81 685 138 752 310
+                   C817 477 752 612 591 674
+                   C504 708 409 706 344 682"
+                fill="none" stroke="transparent" stroke-width="28"/>
+
+              <path class="hit anatomy-shape stroke-shape" data-key="choroid"
+                d="M365 127 C526 101 673 155 733 317
+                   C790 472 731 594 583 650
+                   C503 680 418 678 355 658"
+                fill="none" stroke="transparent" stroke-width="18"/>
+
+              <path class="hit anatomy-shape stroke-shape" data-key="rpe"
+                d="M373 138 C529 115 666 169 719 322
+                   C770 466 715 582 576 635
+                   C500 663 425 660 365 642"
+                fill="none" stroke="transparent" stroke-width="7"/>
+
+              <path class="hit anatomy-shape stroke-shape" data-key="retina"
+                d="M381 144 C531 123 656 176 705 327
+                   C752 462 700 570 569 621
+                   C498 648 432 645 373 630"
+                fill="none" stroke="transparent" stroke-width="11"/>
+
+              <path class="hit anatomy-shape" data-key="macula"
+                d="M679 364 C696 350 717 350 732 366
+                   C739 384 738 423 728 444
+                   C714 458 692 456 680 443
+                   C671 422 671 384 679 364 Z"/>
+
+              <ellipse class="hit anatomy-shape" data-key="fovea" cx="707" cy="408" rx="13" ry="18"/>
+              <ellipse class="hit anatomy-shape" data-key="optic_disc" cx="739" cy="489" rx="27" ry="31"/>
+
+              <path class="hit anatomy-shape" data-key="optic_nerve"
+                d="M746 502 C790 525 835 548 876 575
+                   L861 625 C820 602 782 578 742 552 Z"/>
+
+              <!-- Baked label areas: clickable and also used in spotlight mask -->
+              <rect class="hit label-hit" data-key="conjunctiva" x="17" y="82" width="92" height="48" rx="12"/>
+              <rect class="hit label-hit" data-key="cornea" x="17" y="140" width="80" height="48" rx="12"/>
+              <rect class="hit label-hit" data-key="anterior_chamber" x="17" y="206" width="111" height="67" rx="12"/>
+              <rect class="hit label-hit" data-key="pupil" x="17" y="286" width="67" height="48" rx="12"/>
+              <rect class="hit label-hit" data-key="iris" x="17" y="350" width="66" height="48" rx="12"/>
+              <rect class="hit label-hit" data-key="posterior_chamber" x="17" y="429" width="107" height="66" rx="12"/>
+              <rect class="hit label-hit" data-key="trabecular_meshwork" x="17" y="515" width="103" height="62" rx="12"/>
+              <rect class="hit label-hit" data-key="schlemm_canal" x="17" y="586" width="111" height="48" rx="12"/>
+              <rect class="hit label-hit" data-key="lens" x="126" y="651" width="74" height="47" rx="12"/>
+              <rect class="hit label-hit" data-key="lens_capsule" x="210" y="653" width="96" height="55" rx="12"/>
+              <rect class="hit label-hit" data-key="ciliary_body" x="213" y="12" width="118" height="48" rx="12"/>
+              <rect class="hit label-hit" data-key="ciliary_processes" x="159" y="67" width="104" height="58" rx="12"/>
+              <rect class="hit label-hit" data-key="ora_serrata" x="423" y="14" width="98" height="57" rx="12"/>
+              <rect class="hit label-hit" data-key="sclera" x="690" y="67" width="70" height="46" rx="12"/>
+              <rect class="hit label-hit" data-key="choroid" x="691" y="119" width="77" height="47" rx="12"/>
+              <rect class="hit label-hit" data-key="rpe" x="690" y="171" width="132" height="53" rx="12"/>
+              <rect class="hit label-hit" data-key="retina" x="690" y="229" width="77" height="49" rx="12"/>
+              <rect class="hit label-hit" data-key="macula" x="772" y="301" width="76" height="50" rx="12"/>
+              <rect class="hit label-hit" data-key="fovea" x="774" y="369" width="72" height="48" rx="12"/>
+              <rect class="hit label-hit" data-key="optic_disc" x="774" y="439" width="83" height="50" rx="12"/>
+              <rect class="hit label-hit" data-key="optic_nerve" x="708" y="649" width="87" height="49" rx="12"/>
+              <rect class="hit label-hit" data-key="zonules" x="396" y="612" width="98" height="53" rx="12"/>
+              <rect class="hit label-hit" data-key="vitreous" x="440" y="286" width="148" height="58" rx="12"/>
             </g>
           </svg>
 
@@ -451,7 +575,7 @@ button{font:inherit}
         <div class="info-card">
           <h3>💡 핵심 포인트</h3>
           <div class="point-row" data-point="light"><div class="point-num">1</div><p>빛은 각막과 수정체를 지나 황반/중심와에 초점을 맞춥니다.</p></div>
-          <div class="point-row" data-point="aqueous"><div class="point-num">2</div><p>방수는 섬모돌기에서 생성되어 후방 → 동공 → 전방 → 섬유주 → Schlemm관으로 이동합니다.</p></div>
+          <div class="point-row" data-point="aqueous"><div class="point-num">2</div><p>방수는 섬모돌기에서 생성되어 후방 → 동공 → 전방 → 섬유주 → 슐렘관으로 이동합니다.</p></div>
           <div class="point-row" data-point="retina"><div class="point-num">3</div><p>망막은 망막색소상피(RPE) 안쪽에 위치하며 시각 신호를 시신경으로 전달합니다.</p></div>
         </div>
 
@@ -463,7 +587,7 @@ button{font:inherit}
             <button data-key="pupil">동공</button><span class="arrow">→</span>
             <button data-key="anterior_chamber">전방</button><span class="arrow">→</span>
             <button data-key="trabecular_meshwork">섬유주</button><span class="arrow">→</span>
-            <button data-key="schlemm_canal">Schlemm관</button>
+            <button data-key="schlemm_canal">슐렘관</button>
           </div>
         </div>
       </section>
@@ -474,6 +598,16 @@ button{font:inherit}
         <div class="retina-head"><h3>◉ 망막 · 황반 확대</h3><button class="closex" id="closeRetina">×</button></div>
         <div class="retina-stage" id="retinaStage">
           <img src="./assets/retina-layers-fixed.png" alt="망막·황반 단층 확대 고정본"/>
+          <svg class="retina-focus-svg" viewBox="0 0 375 547" preserveAspectRatio="none">
+            <defs>
+              <mask id="retinaMask">
+                <rect width="375" height="547" fill="white"/>
+                <g id="retinaHoles" fill="black"></g>
+              </mask>
+            </defs>
+            <rect id="retinaDim" width="375" height="547" fill="#010813" opacity=".46" mask="url(#retinaMask)"/>
+            <g id="retinaBoost"></g>
+          </svg>
           <div class="retina-tissue-glow" id="retinaTissueGlow"></div>
           <div class="retina-label-glow" id="retinaLabelGlow"></div>
 
@@ -533,7 +667,7 @@ const DATA={
   ciliary_processes:{n:"섬모돌기",e:"Ciliary processes",loc:"섬모체 안쪽에서 수정체 방향으로 돌출된 주름 모양 구조입니다.",fn:"방수를 생성하고 모양체소대가 기시하는 부위를 제공합니다.",pt:"방수는 섬모돌기에서 생성된 뒤 후방으로 이동합니다.",rel:["ciliary_body","posterior_chamber","zonules"]},
   zonules:{n:"모양체소대",e:"Zonules",loc:"섬모체/섬모돌기에서 수정체 적도부의 수정체낭으로 이어지는 미세 섬유입니다.",fn:"수정체를 지지하고 조절 시 섬모근의 힘을 수정체에 전달합니다.",pt:"수정체 중심이 아니라 적도부에 부착됩니다.",rel:["ciliary_body","ciliary_processes","lens"]},
   trabecular_meshwork:{n:"섬유주",e:"Trabecular meshwork",loc:"각막과 홍채가 만나는 전방각에 위치합니다.",fn:"방수를 Schlemm관 쪽으로 여과·배출합니다.",pt:"안압 조절과 녹내장에서 매우 중요한 구조입니다.",rel:["anterior_chamber","schlemm_canal"]},
-  schlemm_canal:{n:"Schlemm관",e:"Schlemm canal",loc:"전방각에서 섬유주 바깥쪽에 위치하는 환형 통로입니다.",fn:"섬유주를 통과한 방수를 집수하여 정맥계 쪽으로 배출합니다.",pt:"전통적 방수 유출로의 핵심 구조입니다.",rel:["trabecular_meshwork","anterior_chamber"]},
+  schlemm_canal:{n:"슐렘관",e:"Schlemm canal",loc:"전방각에서 섬유주 바깥쪽에 위치하는 환형 통로입니다.",fn:"섬유주를 통과한 방수를 집수하여 정맥계 쪽으로 배출합니다.",pt:"전통적 방수 유출로의 핵심 구조입니다.",rel:["trabecular_meshwork","anterior_chamber"]},
   vitreous:{n:"유리체 / 유리체강",e:"Vitreous / Vitreous cavity",loc:"수정체 뒤에서 망막 앞까지 후안부 대부분을 차지합니다.",fn:"투명한 젤인 유리체가 빛 통과와 안구 형태 유지에 기여합니다.",pt:"유리체는 내용물, 유리체강은 그 공간을 뜻합니다.",rel:["lens","retina","optic_disc"]},
   ora_serrata:{n:"거상연",e:"Ora serrata",loc:"감각망막이 앞쪽에서 끝나고 섬모체 상피로 이어지는 경계입니다.",fn:"주변부 망막의 전방 해부학적 경계를 이룹니다.",pt:"망막은 거상연에서 앞쪽으로 끝납니다.",rel:["retina","ciliary_body"]},
   sclera:{n:"공막",e:"Sclera",loc:"안구의 가장 바깥층을 이루는 질긴 흰색 섬유막입니다.",fn:"안구 형태를 유지하고 내부 구조를 보호합니다.",pt:"앞쪽에서 각막과 이어집니다.",rel:["cornea","choroid"]},
@@ -547,16 +681,16 @@ const DATA={
 };
 
 const LAYERS={
- rnfl:{n:"신경섬유층",e:"Retinal nerve fiber layer",loc:"망막의 유리체쪽 표면 가까이 위치합니다.",fn:"신경절세포의 축삭이 시신경유두 쪽으로 모입니다.",pt:"녹내장 OCT에서 매우 중요한 층입니다.",tTop:1.5,tH:9.2,lTop:7.7,lH:5.8},
- gcl:{n:"신경절세포층",e:"Ganglion cell layer",loc:"신경섬유층 바로 바깥쪽에 위치합니다.",fn:"망막의 출력 뉴런인 신경절세포의 세포체가 위치합니다.",pt:"축삭은 신경섬유층을 지나 시신경을 형성합니다.",tTop:10.4,tH:9.3,lTop:15.4,lH:5.3},
- ipl:{n:"내망상층",e:"Inner plexiform layer",loc:"신경절세포층과 내핵층 사이입니다.",fn:"양극세포·무축삭세포·신경절세포 사이 시냅스가 형성됩니다.",pt:"내측 망막의 대표적 시냅스층입니다.",tTop:19.7,tH:5.6,lTop:22.7,lH:5.5},
- inl:{n:"내핵층",e:"Inner nuclear layer",loc:"내망상층과 외망상층 사이입니다.",fn:"양극세포·수평세포·무축삭세포·Müller 세포의 핵이 위치합니다.",pt:"여러 중간 뉴런의 세포체가 모여 있습니다.",tTop:25.0,tH:11.2,lTop:30.2,lH:5.3},
- opl:{n:"외망상층",e:"Outer plexiform layer",loc:"내핵층과 외핵층 사이입니다.",fn:"광수용체와 양극세포/수평세포의 시냅스가 형성됩니다.",pt:"광수용체 신호가 2차 뉴런으로 전달됩니다.",tTop:36.2,tH:5.5,lTop:37.5,lH:5.5},
- onl:{n:"외핵층",e:"Outer nuclear layer",loc:"외망상층 바깥쪽, 광수용체층 안쪽입니다.",fn:"막대세포와 원추세포의 세포체가 위치합니다.",pt:"광수용체 핵이 밀집한 층입니다.",tTop:41.7,tH:7.2,lTop:44.8,lH:5.7},
- photoreceptors:{n:"광수용체층",e:"Photoreceptor layer",loc:"외핵층과 RPE 사이에 위치합니다.",fn:"막대세포와 원추세포가 빛을 전기 신호로 변환합니다.",pt:"원추세포는 색·고해상도 시력, 막대세포는 어두운 환경 시력에 중요합니다.",tTop:48.8,tH:22.1,lTop:52.1,lH:9.3},
- rpe_layer:{n:"망막색소상피",e:"Retinal pigment epithelium (RPE)",loc:"광수용체층 바깥쪽, Bruch막 안쪽입니다.",fn:"빛 흡수와 광수용체 대사·보호에 관여합니다.",pt:"망막과 맥락막 사이의 핵심 경계입니다.",tTop:70.9,tH:6.1,lTop:63.3,lH:7.1},
- bruch:{n:"Bruch막",e:"Bruch's membrane",loc:"RPE와 맥락막 모세혈관층 사이의 얇은 막입니다.",fn:"RPE와 맥락막 사이의 지지·교환 경계를 이룹니다.",pt:"망막 신경층 자체보다는 외측 지지구조로 이해하면 쉽습니다.",tTop:77.0,tH:6.4,lTop:72.2,lH:7.0},
- choroid_layer:{n:"맥락막",e:"Choroid",loc:"Bruch막 바깥쪽, 공막 안쪽에 위치합니다.",fn:"외측 망막과 RPE에 혈액과 산소를 공급합니다.",pt:"확대도에서 아래쪽이 공막쪽(바깥쪽)입니다.",tTop:83.4,tH:16.0,lTop:81.5,lH:7.2}
+ rnfl:{n:"신경섬유층",e:"Retinal nerve fiber layer",loc:"망막의 유리체쪽 표면 가까이 위치합니다.",fn:"신경절세포의 축삭이 시신경유두 쪽으로 모입니다.",pt:"녹내장 OCT에서 매우 중요한 층입니다.",tY:30,tHpx:39,lY:37,lHpx:31},
+ gcl:{n:"신경절세포층",e:"Ganglion cell layer",loc:"신경섬유층 바로 바깥쪽에 위치합니다.",fn:"망막의 출력 뉴런인 신경절세포의 세포체가 위치합니다.",pt:"축삭은 신경섬유층을 지나 시신경을 형성합니다.",tY:68,tHpx:50,lY:73,lHpx:31},
+ ipl:{n:"내망상층",e:"Inner plexiform layer",loc:"신경절세포층과 내핵층 사이입니다.",fn:"양극세포·무축삭세포·신경절세포 사이 시냅스가 형성됩니다.",pt:"내측 망막의 대표적 시냅스층입니다.",tY:118,tHpx:34,lY:113,lHpx:31},
+ inl:{n:"내핵층",e:"Inner nuclear layer",loc:"내망상층과 외망상층 사이입니다.",fn:"양극세포·수평세포·무축삭세포·Müller 세포의 핵이 위치합니다.",pt:"여러 중간 뉴런의 세포체가 모여 있습니다.",tY:151,tHpx:48,lY:153,lHpx:31},
+ opl:{n:"외망상층",e:"Outer plexiform layer",loc:"내핵층과 외핵층 사이입니다.",fn:"광수용체와 양극세포/수평세포의 시냅스가 형성됩니다.",pt:"광수용체 신호가 2차 뉴런으로 전달됩니다.",tY:198,tHpx:29,lY:193,lHpx:31},
+ onl:{n:"외핵층",e:"Outer nuclear layer",loc:"외망상층 바깥쪽, 광수용체층 안쪽입니다.",fn:"막대세포와 원추세포의 세포체가 위치합니다.",pt:"광수용체 핵이 밀집한 층입니다.",tY:226,tHpx:43,lY:233,lHpx:31},
+ photoreceptors:{n:"광수용체층",e:"Photoreceptor layer",loc:"외핵층과 RPE 사이에 위치합니다.",fn:"막대세포와 원추세포가 빛을 전기 신호로 변환합니다.",pt:"원추세포는 색·고해상도 시력, 막대세포는 어두운 환경 시력에 중요합니다.",tY:268,tHpx:119,lY:278,lHpx:58},
+ rpe_layer:{n:"망막색소상피",e:"Retinal pigment epithelium (RPE)",loc:"광수용체층 바깥쪽, Bruch막 안쪽입니다.",fn:"빛 흡수와 광수용체 대사·보호에 관여합니다.",pt:"망막과 맥락막 사이의 핵심 경계입니다.",tY:386,tHpx:40,lY:347,lHpx:38},
+ bruch:{n:"Bruch막",e:"Bruch's membrane",loc:"RPE와 맥락막 모세혈관층 사이의 얇은 막입니다.",fn:"RPE와 맥락막 사이의 지지·교환 경계를 이룹니다.",pt:"망막 신경층 자체보다는 외측 지지구조로 이해하면 쉽습니다.",tY:426,tHpx:25,lY:394,lHpx:36},
+ choroid_layer:{n:"맥락막",e:"Choroid",loc:"Bruch막 바깥쪽, 공막 안쪽에 위치합니다.",fn:"외측 망막과 RPE에 혈액과 산소를 공급합니다.",pt:"확대도에서 아래쪽이 공막쪽(바깥쪽)입니다.",tY:451,tHpx:96,lY:445,lHpx:36}
 };
 
 const CAT={
@@ -566,6 +700,13 @@ const CAT={
  retina:["retina","rpe","macula","fovea","ora_serrata"],
  posterior:["vitreous","retina","rpe","choroid","sclera"],
  optic:["optic_disc","optic_nerve"]
+};
+const CAT_INFO={
+ anterior:{n:"전안부",e:"Anterior segment",loc:"각막부터 홍채·동공·수정체, 전방/후방과 방수 유출로를 포함하는 눈의 앞쪽 구조입니다.",fn:"빛의 굴절·조절과 방수 순환에 중요한 구조들이 모여 있습니다.",pt:"각막, 전방·후방, 홍채·동공, 수정체, 모양체소대, 섬유주와 슐렘관을 함께 볼 수 있습니다."},
+ uvea:{n:"포도막",e:"Uvea",loc:"공막 안쪽의 혈관성 중간층으로 홍채, 섬모체(모양체), 맥락막이 연속해서 이루어집니다.",fn:"빛 조절, 방수 생성, 조절 기능, 망막 외측 혈류 공급에 관여합니다.",pt:"포도막 = 홍채 + 섬모체(섬모돌기 포함) + 맥락막입니다."},
+ retina:{n:"망막 · 황반",e:"Retina & macula",loc:"안구 내벽의 신경망막과 그 중심부 황반/중심와를 함께 봅니다.",fn:"빛을 신경 신호로 바꾸고 정밀한 중심시력을 담당합니다.",pt:"망막 탭을 선택하면 우측에서 망막 단층을 층별로 확인할 수 있습니다."},
+ posterior:{n:"후안부",e:"Posterior segment",loc:"수정체 뒤쪽의 유리체강과 망막·RPE·맥락막·공막의 후안부 벽 구조를 포함합니다.",fn:"망막까지 빛을 전달하고 안구 형태 및 후극부 시각 기능을 유지합니다.",pt:"유리체와 후안부 벽의 층 관계를 함께 확인할 수 있습니다."},
+ optic:{n:"시신경",e:"Optic nerve",loc:"시신경유두와 그 뒤로 이어지는 시신경을 포함합니다.",fn:"망막에서 만들어진 시각 신호를 뇌로 전달합니다.",pt:"시신경유두는 망막신경섬유가 모여 시신경으로 나가는 출구입니다."}
 };
 const FOCUS={
  cornea:[155,365,95],conjunctiva:[178,184,60],anterior_chamber:[158,360,90],posterior_chamber:[185,458,58],
@@ -600,9 +741,6 @@ const eyeStage=document.getElementById("eyeStage");
 const focusDim=document.getElementById("focusDim"),focusDot=document.getElementById("focusDot");
 const lightGroup=document.getElementById("lightGroup"),aqueousGroup=document.getElementById("aqueousGroup"),retinaLink=document.getElementById("retinaLink");
 const retinaCard=document.getElementById("retinaCard");
-const retinaTissueGlow=document.getElementById("retinaTissueGlow");
-const retinaLabelGlow=document.getElementById("retinaLabelGlow");
-const labelGlowGroup=document.getElementById("labelGlowGroup");
 
 let selected=null, rays=false, aqueous=false, currentCat="all";
 
@@ -622,43 +760,82 @@ function setAqueous(on){
 function openRetina(on=true){
  retinaCard.classList.toggle("show",on);
  retinaLink.style.display=on?"block":"none";
- if(!on){
-   retinaTissueGlow.style.display="none";
-   retinaLabelGlow.style.display="none";
- }
+ if(!on) clearRetinaLayerFocus();
 }
 function closeMemo(){document.getElementById("memo").classList.remove("show")}
 function setNavActive(cat){
  currentCat=cat||"all";
  document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.cat===currentCat));
 }
-function clearLabelGlow(){labelGlowGroup.innerHTML=""}
-function showLabelGlow(key){
- clearLabelGlow();
- const box=LABEL_BOXES[key]; if(!box)return;
- const [x,y,w,h]=box;
- const color=CAT_COLOR[KEY_CAT[key]||"all"];
+
+const spotDim=document.getElementById("spotDim");
+const spotHoles=document.getElementById("spotHoles");
+const spotBoost=document.getElementById("spotBoost");
+const retinaDim=document.getElementById("retinaDim");
+const retinaHoles=document.getElementById("retinaHoles");
+const retinaBoost=document.getElementById("retinaBoost");
+
+function cloneSpotElement(el, target, mode){
+ const c=el.cloneNode(true);
+ c.removeAttribute("class");c.removeAttribute("data-key");c.style.pointerEvents="none";
+ if(mode==="hole"){
+   c.setAttribute("fill","black");
+   c.setAttribute("stroke","black");
+   if(el.classList.contains("stroke-shape")){
+     c.setAttribute("fill","none");
+     const sw=parseFloat(el.getAttribute("stroke-width")||"10");
+     c.setAttribute("stroke-width",sw);
+   }else{
+     c.setAttribute("stroke","none");
+   }
+ }else{
+   if(el.classList.contains("stroke-shape")){
+     c.setAttribute("fill","none");
+     c.setAttribute("stroke","white");
+     c.setAttribute("stroke-opacity",".035");
+     c.setAttribute("stroke-width",el.getAttribute("stroke-width")||"10");
+   }else{
+     c.setAttribute("fill","white");
+     c.setAttribute("fill-opacity",".035");
+     c.setAttribute("stroke","none");
+   }
+ }
+ target.appendChild(c);
+}
+function clearSpotlight(){
+ spotDim.style.display="none";spotHoles.innerHTML="";spotBoost.innerHTML="";
+}
+function spotlightKeys(keys){
+ spotHoles.innerHTML="";spotBoost.innerHTML="";
+ const list=[...new Set(keys)];
+ list.forEach(key=>{
+   document.querySelectorAll(`.anatomy-shape[data-key="${key}"],.label-hit[data-key="${key}"]`).forEach(el=>{
+     cloneSpotElement(el,spotHoles,"hole");
+     cloneSpotElement(el,spotBoost,"boost");
+   });
+ });
+ spotDim.style.display=list.length?"block":"none";
+}
+
+function clearRetinaLayerFocus(){
+ retinaDim.style.display="none";retinaHoles.innerHTML="";retinaBoost.innerHTML="";
+}
+function retinaLayerSpotlight(d){
+ retinaHoles.innerHTML="";retinaBoost.innerHTML="";
  const ns="http://www.w3.org/2000/svg";
- const soft=document.createElementNS(ns,"rect");
- soft.setAttribute("x",x-5);soft.setAttribute("y",y-5);soft.setAttribute("width",w+10);soft.setAttribute("height",h+10);soft.setAttribute("rx",Math.min(16,h/2));
- soft.setAttribute("fill",color);soft.setAttribute("opacity",".42");soft.setAttribute("class","label-glow-soft");
- const inner=document.createElementNS(ns,"rect");
- inner.setAttribute("x",x);inner.setAttribute("y",y);inner.setAttribute("width",w);inner.setAttribute("height",h);inner.setAttribute("rx",Math.min(14,h/2));
- inner.setAttribute("fill",color);inner.setAttribute("opacity",".12");
- labelGlowGroup.appendChild(soft);labelGlowGroup.appendChild(inner);
+ const tissue=document.createElementNS(ns,"rect");
+ tissue.setAttribute("x","0");tissue.setAttribute("y",String(d.tY));
+ tissue.setAttribute("width","213");tissue.setAttribute("height",String(d.tHpx));tissue.setAttribute("rx","7");
+ const label=document.createElementNS(ns,"rect");
+ label.setAttribute("x","226");label.setAttribute("y",String(d.lY));
+ label.setAttribute("width","145");label.setAttribute("height",String(d.lHpx));label.setAttribute("rx","12");
+ [tissue,label].forEach(el=>{
+   const h=el.cloneNode(true);h.setAttribute("fill","black");retinaHoles.appendChild(h);
+   const b=el.cloneNode(true);b.setAttribute("fill","white");b.setAttribute("fill-opacity",".055");retinaBoost.appendChild(b);
+ });
+ retinaDim.style.display="block";
 }
-function focus(key){
- const f=FOCUS[key]; if(!f)return;
- const [rawX,y,r]=f;
- const x=rawX+5;
- const xp=x/905*100,yp=y/720*100;
- focusDim.style.display="block";
- focusDim.style.background=`radial-gradient(circle ${r}px at ${xp}% ${yp}%, transparent 0 ${Math.max(22,r*.62)}px, rgba(1,10,22,.16) ${Math.max(40,r*.8)}px, rgba(1,10,22,.54) ${Math.max(78,r*1.4)}px)`;
- focusDot.style.display="block";focusDot.style.left=xp+"%";focusDot.style.top=yp+"%";
-}
-function clearFocus(){
- focusDim.style.display="none";focusDot.style.display="none";selected=null;
-}
+
 function renderRelated(keys=[]){
  const box=document.getElementById("related");box.innerHTML="";
  keys.forEach(k=>{
@@ -668,9 +845,7 @@ function renderRelated(keys=[]){
 }
 function selectStructure(key){
  const d=DATA[key]; if(!d)return;
- closeMemo();
- retinaTissueGlow.style.display="none";
- retinaLabelGlow.style.display="none";
+ closeMemo();clearRetinaLayerFocus();
  selected=key;
  setNavActive(KEY_CAT[key]||"all");
  document.getElementById("selTitle").textContent=d.n;
@@ -679,71 +854,51 @@ function selectStructure(key){
  document.getElementById("selFunction").textContent=d.fn;
  document.getElementById("selPoint").textContent=d.pt;
  renderRelated(d.rel);
- focus(key);
- showLabelGlow(key);
+ spotlightKeys([key]);
 
- // Retina enlargement opens only from the Retina category or by clicking Retina itself.
+ // Retina enlargement opens only from the Retina category or direct Retina click.
  if(key==="retina") openRetina(true);
  else openRetina(false);
 }
 function selectLayer(key){
  const d=LAYERS[key]; if(!d)return;
- closeMemo();
- setNavActive("retina");
+ closeMemo();setNavActive("retina");
  document.getElementById("selTitle").textContent=d.n;
  document.getElementById("selEn").textContent=d.e;
  document.getElementById("selLocation").textContent=d.loc;
  document.getElementById("selFunction").textContent=d.fn;
  document.getElementById("selPoint").textContent=d.pt;
- renderRelated(["retina","rpe","macula"].filter(k=>DATA[k]));
-
- retinaTissueGlow.style.display="block";
- retinaLabelGlow.style.display="block";
- retinaTissueGlow.style.top=d.tTop+"%";
- retinaTissueGlow.style.height=d.tH+"%";
- retinaLabelGlow.style.top=d.lTop+"%";
- retinaLabelGlow.style.height=d.lH+"%";
-
+ renderRelated(["retina","rpe","macula"]);
+ spotlightKeys(["retina","macula"]);
+ retinaLayerSpotlight(d);
  openRetina(true);
- focus("macula");
- showLabelGlow("retina");
 }
 function setCategory(cat){
- closeMemo();
- setNavActive(cat);
- retinaTissueGlow.style.display="none";
- retinaLabelGlow.style.display="none";
- clearFocus();
- clearLabelGlow();
-
- if(cat==="retina"){
-   openRetina(true);
-   selectStructure("retina");
-   setNavActive("retina");
- }else if(cat==="anterior"){
-   openRetina(false);selectStructure("cornea");setNavActive("anterior");
- }else if(cat==="uvea"){
-   openRetina(false);selectStructure("iris");setNavActive("uvea");
- }else if(cat==="posterior"){
-   openRetina(false);selectStructure("vitreous");setNavActive("posterior");
- }else if(cat==="optic"){
-   openRetina(false);selectStructure("optic_disc");setNavActive("optic");
- }else{
-   openRetina(false);
-   setNavActive("all");
+ closeMemo();clearRetinaLayerFocus();setNavActive(cat);selected=null;
+ if(cat==="all"){
+   openRetina(false);clearSpotlight();
    document.getElementById("selTitle").textContent="눈의 구조";
    document.getElementById("selEn").textContent="Eye Anatomy";
    document.getElementById("selLocation").textContent="눈의 앞쪽부터 뒤쪽까지 주요 구조를 확인할 수 있습니다.";
    document.getElementById("selFunction").textContent="빛의 굴절·조절·감지와 시각 신호 전달에 관여합니다.";
    document.getElementById("selPoint").textContent="구조나 라벨을 클릭하면 해당 부위 설명으로 전환됩니다.";
-   renderRelated([]);
+   renderRelated([]);return;
  }
+ const d=CAT_INFO[cat];
+ const keys=CAT[cat]||[];
+ document.getElementById("selTitle").textContent=d.n;
+ document.getElementById("selEn").textContent=d.e;
+ document.getElementById("selLocation").textContent=d.loc;
+ document.getElementById("selFunction").textContent=d.fn;
+ document.getElementById("selPoint").textContent=d.pt;
+ renderRelated(keys);
+ spotlightKeys(keys);
+ if(cat==="retina") openRetina(true);
+ else openRetina(false);
 }
 function resetAll(){
- setRays(false);setAqueous(false);
- retinaTissueGlow.style.display="none";retinaLabelGlow.style.display="none";
- closeMemo();clearLabelGlow();
- setCategory("all");clearFocus();
+ setRays(false);setAqueous(false);closeMemo();clearRetinaLayerFocus();
+ setCategory("all");clearSpotlight();
 }
 document.querySelectorAll(".hit").forEach(el=>el.addEventListener("click",e=>{e.stopPropagation();selectStructure(el.dataset.key)}));
 document.querySelectorAll(".navbtn").forEach(b=>b.addEventListener("click",()=>setCategory(b.dataset.cat)));
@@ -753,7 +908,7 @@ document.querySelectorAll(".point-row").forEach(row=>row.addEventListener("click
  const p=row.dataset.point;
  const memo=document.getElementById("memo"),title=document.getElementById("memoTitle"),text=document.getElementById("memoText");
  if(p==="light"){setRays(!rays);title.textContent="빛의 초점";text.textContent="각막과 수정체가 빛을 굴절시켜 중심와 방향으로 초점을 형성합니다.";selectStructure("fovea");}
- if(p==="aqueous"){setAqueous(!aqueous);title.textContent="방수의 흐름";text.textContent="섬모돌기에서 생성된 방수는 후방 → 동공 → 전방 → 섬유주 → Schlemm관으로 이동합니다.";selectStructure("anterior_chamber");}
+ if(p==="aqueous"){setAqueous(!aqueous);title.textContent="방수의 흐름";text.textContent="섬모돌기에서 생성된 방수는 후방 → 동공 → 전방 → 섬유주 → 슐렘관으로 이동합니다.";selectStructure("anterior_chamber");}
  if(p==="retina"){openRetina(true);title.textContent="망막과 RPE";text.textContent="신경망막은 RPE 안쪽에 밀착하며 시각 신호를 시신경유두 방향으로 전달합니다.";selectStructure("retina");}
  memo.classList.add("show");
 }));
@@ -764,10 +919,10 @@ document.getElementById("aqueousBtn").onclick=()=>setAqueous(!aqueous);
 document.getElementById("aqSwitch").onclick=()=>setAqueous(!aqueous);
 document.getElementById("resetTop").onclick=resetAll;
 document.getElementById("resetSide").onclick=resetAll;
-document.getElementById("closeRetina").onclick=()=>{openRetina(false);retinaTissueGlow.style.display="none";retinaLabelGlow.style.display="none"};
+document.getElementById("closeRetina").onclick=()=>{openRetina(false);clearRetinaLayerFocus()};
 eyeStage.addEventListener("click",e=>{
  if(e.target===eyeStage || e.target.tagName==="IMG"){
-   clearFocus();clearLabelGlow();closeMemo();
+   closeMemo();clearSpotlight();clearRetinaLayerFocus();
    if(currentCat!=="retina") openRetina(false);
  }
 });
