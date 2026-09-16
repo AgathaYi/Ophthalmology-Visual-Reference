@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>눈의 구조 | Ophthalmology Visual Reference</title>
 
     <style>
@@ -68,13 +68,16 @@
             font-size: 14px;
         }
 
-        .top-actions, .related, .flow {
+        .top-actions,
+        .related,
+        .flow {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
         }
 
-        .topbtn, .chip {
+        .topbtn,
+        .chip {
             border: 1px solid #205d8b;
             background: #071d36;
             color: #e0f2ff;
@@ -84,7 +87,9 @@
             font-weight: 800;
         }
 
-            .topbtn:hover, .topbtn.on, .chip:hover {
+            .topbtn:hover,
+            .topbtn.on,
+            .chip:hover {
                 background: #0c4b78;
                 border-color: #43c5ff;
                 color: #fff;
@@ -97,14 +102,16 @@
             align-items: start;
         }
 
-        .panel, .eye-card {
+        .panel,
+        .eye-card {
             background: linear-gradient(180deg,rgba(7,29,54,.98),rgba(4,20,39,.98));
             border: 1px solid var(--line);
             border-radius: 18px;
             box-shadow: var(--shadow);
         }
 
-        .sidebar, .rightcol {
+        .sidebar,
+        .rightcol {
             position: sticky;
             top: 10px;
         }
@@ -199,13 +206,13 @@
             cursor: pointer;
         }
 
-            .switch:before {
+            .switch::before {
                 content: "";
                 position: absolute;
                 width: 22px;
                 height: 22px;
                 border-radius: 50%;
-                background: white;
+                background: #fff;
                 left: 4px;
                 top: 3px;
                 transition: .18s;
@@ -215,7 +222,7 @@
                 background: #0b89ff
             }
 
-                .switch.on:before {
+                .switch.on::before {
                     left: 26px
                 }
 
@@ -254,7 +261,8 @@
             background: #020b16;
         }
 
-            .eye-stage > img, .retina-stage > img {
+            .eye-stage > img,
+            .retina-stage > img {
                 display: block;
                 width: 100%;
                 height: 100%;
@@ -289,7 +297,8 @@
             pointer-events: none;
         }
 
-        .hit-target, .label-target {
+        .hit-target,
+        .label-target {
             cursor: pointer;
             outline: none;
         }
@@ -320,7 +329,7 @@
             .light-ray.c {
                 stroke-width: 2.4;
                 opacity: .7;
-                stroke-dasharray: 10 7
+                stroke-dasharray: 10 7;
             }
 
         .bottom-grid {
@@ -528,7 +537,7 @@
             }
 
             .retina-card {
-                grid-row: 1 / span 1
+                grid-row: 1
             }
 
             .select-card {
@@ -547,7 +556,7 @@
 
             .headline h1 small {
                 display: block;
-                margin: 6px 0 0
+                margin: 6px 0 0;
             }
 
             .top-actions {
@@ -653,7 +662,6 @@
 
                     <div class="switchline">
                         <span>빛 경로 표시</span>
-
                         <button class="switch"
                                 id="raySwitch"
                                 type="button"
@@ -665,11 +673,9 @@
 
                 <div class="mini-block">
                     <h3>사용 방법</h3>
-
                     <div class="howto">
                         실제 구조와 이미지 속 한글·영문 라벨 모두 선택할 수 있습니다.
-                        망막, 망막색소상피, 황반 또는 중심와를 선택하면
-                        망막 층 패널이 열립니다.
+                        망막, 망막색소상피, 황반 또는 중심와를 선택하면 망막 층 패널이 열립니다.
                     </div>
                 </div>
 
@@ -738,23 +744,19 @@
                 <div class="bottom-grid">
                     <section class="info-card">
                         <h3>빛의 경로</h3>
-
                         <p>
                             빛은 각막을 지나 홍채 중앙의 동공 개구부로 들어오고,
                             수정체와 유리체를 통과해 중심와 방향에 초점을 맺습니다.
                         </p>
-
                         <div class="flow" id="lightFlow"></div>
                     </section>
 
                     <section class="info-card">
                         <h3>후안부 벽의 층서</h3>
-
                         <p>
-                            안구 바깥쪽에서 유리체 쪽으로
-                            공막 → 맥락막 → 망막색소상피 → 신경망막 순서입니다.
+                            안구 바깥쪽에서 유리체 쪽으로 공막 → 맥락막 →
+                            망막색소상피 → 신경망막 순서입니다.
                         </p>
-
                         <div class="flow" id="wallFlow"></div>
                     </section>
                 </div>
@@ -766,7 +768,6 @@
                          aria-label="망막 층 확대">
                     <div class="retina-head">
                         <h3>망막 층 확대</h3>
-
                         <button class="closex"
                                 id="closeRetina"
                                 type="button"
@@ -1379,54 +1380,62 @@ function svgNode(tag,attrs={}){
 
 function drawSelectionMarker(
           group,
-          rect,
+          rectOrRects,
           canvasWidth,
           canvasHeight,
           radius
 ){
           group.replaceChildren();
 
-          if(!rect){
+          const rects=(
+            Array.isArray(rectOrRects)
+              ? rectOrRects
+              : [rectOrRects]
+          ).filter(Boolean);
+
+          if(!rects.length){
             group.setAttribute("display","none");
             return;
           }
 
-          const centerX=Math.min(
-            rect.x+rect.w+4,
-            canvasWidth-radius-4
-          );
+          rects.forEach(rect=>{
+            const centerX=Math.min(
+              rect.x+rect.w+4,
+              canvasWidth-radius-4
+            );
 
-          const centerY=Math.max(
-            radius+4,
-            Math.min(
-              rect.y+rect.h/2,
-              canvasHeight-radius-4
-            )
-          );
+            const centerY=Math.max(
+              radius+4,
+              Math.min(
+                rect.y+rect.h/2,
+                canvasHeight-radius-4
+              )
+            );
 
-          const redCircle=svgNode("circle",{
-            cx:centerX,
-            cy:centerY,
-            r:radius,
-            fill:"#e5252a",
-            stroke:"#ffffff",
-            "stroke-width":4
+            group.append(
+              svgNode("circle",{
+                cx:centerX,
+                cy:centerY,
+                r:radius,
+                fill:"#e5252a",
+                stroke:"#fff",
+                "stroke-width":4
+              }),
+
+              svgNode("path",{
+                d:
+                  `M ${centerX-radius*.48} ${centerY} `+
+                  `L ${centerX-radius*.12} ${centerY+radius*.34} `+
+                  `L ${centerX+radius*.55} ${centerY-radius*.42}`,
+                fill:"none",
+                stroke:"#fff",
+                "stroke-width":radius*.25,
+                "stroke-linecap":"round",
+                "stroke-linejoin":"round"
+              })
+            );
           });
 
-          const whiteCheck=svgNode("path",{
-            d:[
-              `M ${centerX-radius*.48} ${centerY}`,
-              `L ${centerX-radius*.12} ${centerY+radius*.34}`,
-              `L ${centerX+radius*.55} ${centerY-radius*.42}`
-            ].join(" "),
-            fill:"none",
-            stroke:"#ffffff",
-            "stroke-width":radius*.25,
-            "stroke-linecap":"round",
-            "stroke-linejoin":"round"
-          });
-
-          group.append(redCircle,whiteCheck);
           group.setAttribute("display","block");
 }
 
@@ -1489,7 +1498,10 @@ const retinaSelectionMarker=document.getElementById("retinaSelectionMarker");
 const anatomyTargets=svgNode("g");
 const labelTargets=svgNode("g");
 
-mainHotSvg.append(anatomyTargets,labelTargets);
+mainHotSvg.append(
+          anatomyTargets,
+          labelTargets
+);
 
 Object.entries(STRUCTURES).forEach(([key,data])=>{
           const anatomyGroup=svgNode("g",{
@@ -1498,10 +1510,14 @@ Object.entries(STRUCTURES).forEach(([key,data])=>{
 
           anatomyGroup.dataset.key=key;
 
-          drawGeometry(anatomyGroup,data.hit,{
-            fill:"rgba(255,255,255,.001)",
-            stroke:"rgba(255,255,255,.001)"
-          });
+          drawGeometry(
+            anatomyGroup,
+            data.hit,
+            {
+              fill:"rgba(255,255,255,.001)",
+              stroke:"rgba(255,255,255,.001)"
+            }
+          );
 
           bindAccessible(
             anatomyGroup,
@@ -1540,34 +1556,43 @@ Object.entries(STRUCTURES).forEach(([key,data])=>{
 
 function renderMainDebug(){
           mainDebugSvg.replaceChildren();
-          mainDebugSvg.style.display=DEBUG_HITBOX?"block":"none";
+          mainDebugSvg.style.display=
+            DEBUG_HITBOX ? "block" : "none";
 
           if(!DEBUG_HITBOX){
             return;
           }
 
           Object.entries(STRUCTURES).forEach(([key,data])=>{
-            const hit=svgNode("g",{
+            const hitGroup=svgNode("g",{
               "data-debug":`${key}-hit`
             });
 
-            drawGeometry(hit,data.hit,{
-              fill:"rgba(255,0,180,.12)",
-              stroke:"#ff42c6"
-            });
+            drawGeometry(
+              hitGroup,
+              data.hit,
+              {
+                fill:"rgba(255,0,180,.12)",
+                stroke:"#ff42c6"
+              }
+            );
 
-            mainDebugSvg.appendChild(hit);
+            mainDebugSvg.appendChild(hitGroup);
 
-            const precise=svgNode("g",{
+            const preciseGroup=svgNode("g",{
               "data-debug":`${key}-precise`
             });
 
-            drawGeometry(precise,data.precise,{
-              fill:"rgba(0,210,255,.12)",
-              stroke:"#28dcff"
-            });
+            drawGeometry(
+              preciseGroup,
+              data.precise,
+              {
+                fill:"rgba(0,210,255,.12)",
+                stroke:"#28dcff"
+              }
+            );
 
-            mainDebugSvg.appendChild(precise);
+            mainDebugSvg.appendChild(preciseGroup);
 
             mainDebugSvg.appendChild(
               svgNode("rect",{
@@ -1651,7 +1676,9 @@ Object.entries(RETINA_LAYERS).forEach(([key,data])=>{
 
 function renderRetinaDebug(){
           retinaDebugSvg.replaceChildren();
-          retinaDebugSvg.style.display=DEBUG_HITBOX?"block":"none";
+
+          retinaDebugSvg.style.display=
+            DEBUG_HITBOX ? "block" : "none";
 
           if(!DEBUG_HITBOX){
             return;
@@ -1825,9 +1852,18 @@ function setCategory(key){
           setNav(key);
           renderDetails(data,data.keys);
 
+          const categoryLabelRects=
+            key==="all"
+              ? []
+              : data.keys
+                  .map(structureKey=>{
+                    return STRUCTURES[structureKey]?.labelRect;
+                  })
+                  .filter(Boolean);
+
           drawSelectionMarker(
             mainSelectionMarker,
-            null,
+            categoryLabelRects,
             1448,
             1086,
             16
@@ -1850,17 +1886,21 @@ function setRays(enabled){
           rays=Boolean(enabled);
 
           document.getElementById("lightGroup").style.display=
-            rays?"block":"none";
+            rays ? "block" : "none";
 
           const topButton=document.getElementById("rayBtn");
           const switchButton=document.getElementById("raySwitch");
 
           topButton.textContent=
-            rays?"빛 경로 OFF":"빛 경로 ON";
+            rays ? "빛 경로 OFF" : "빛 경로 ON";
 
           topButton.classList.toggle("on",rays);
           switchButton.classList.toggle("on",rays);
-          switchButton.setAttribute("aria-checked",String(rays));
+
+          switchButton.setAttribute(
+            "aria-checked",
+            String(rays)
+          );
 }
 
 function resetAll(){
@@ -1874,8 +1914,10 @@ function renderFlow(id,keys){
           keys.forEach((key,index)=>{
             if(index){
               const arrow=document.createElement("span");
+
               arrow.className="arrow";
               arrow.textContent="→";
+
               box.appendChild(arrow);
             }
 
@@ -1917,15 +1959,21 @@ document.getElementById("resetSide").addEventListener(
           resetAll
 );
 
-document.getElementById("closeRetina").addEventListener("click",()=>{
-          openRetina(false);
-});
-
-document.getElementById("eyeStage").addEventListener("click",event=>{
-          if(!event.target.closest("[data-key]")){
-            setCategory("all");
+document.getElementById("closeRetina").addEventListener(
+          "click",
+          ()=>{
+            openRetina(false);
           }
-});
+);
+
+document.getElementById("eyeStage").addEventListener(
+          "click",
+          event=>{
+            if(!event.target.closest("[data-key]")){
+              setCategory("all");
+            }
+          }
+);
 
 renderFlow(
           "lightFlow",
