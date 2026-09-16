@@ -4,21 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>눈의 구조 | Ophthalmology Visual Reference</title>
+
     <style>
         :root {
             color-scheme: dark;
             --bg: #020b17;
             --bg2: #06182d;
             --panel: #071b33;
-            --panel2: #0a2342;
             --line: #145382;
             --text: #f6fbff;
             --muted: #a9bfd3;
-            --blue: #18adff;
-            --cyan: #53dcff;
             --yellow: #ffd24a;
-            --violet: #a88aff;
-            --shadow: 0 18px 48px rgba(0,0,0,.28)
+            --shadow: 0 18px 48px rgba(0,0,0,.28);
         }
 
         * {
@@ -28,9 +25,9 @@
         html, body {
             margin: 0;
             min-height: 100%;
-            background: radial-gradient(circle at 58% 8%,#123454 0,transparent 34%),linear-gradient(135deg,var(--bg),var(--bg2) 58%,#050f21);
+            background: radial-gradient(circle at 58% 8%,#123454 0,transparent 34%), linear-gradient(135deg,var(--bg),var(--bg2) 58%,#050f21);
             color: var(--text);
-            font-family: Pretendard,"Noto Sans KR",Arial,sans-serif
+            font-family: Pretendard,"Noto Sans KR",Arial,sans-serif;
         }
 
         button {
@@ -40,7 +37,7 @@
         .app {
             width: min(1920px,100%);
             margin: auto;
-            padding: 14px
+            padding: 14px;
         }
 
         .topbar {
@@ -48,33 +45,33 @@
             grid-template-columns: minmax(0,1fr) auto;
             gap: 18px;
             align-items: center;
-            padding: 8px 2px 14px
+            padding: 8px 2px 14px;
         }
 
         .headline h1 {
             margin: 0;
             font-size: clamp(28px,2.4vw,42px);
             line-height: 1.1;
-            letter-spacing: -.03em
+            letter-spacing: -.03em;
         }
 
             .headline h1 small {
                 font-size: .46em;
                 color: #bfd0df;
                 font-weight: 550;
-                margin-left: 10px
+                margin-left: 10px;
             }
 
         .headline p {
             margin: 8px 0 0;
             color: var(--muted);
-            font-size: 14px
+            font-size: 14px;
         }
 
         .top-actions, .related, .flow {
             display: flex;
             gap: 8px;
-            flex-wrap: wrap
+            flex-wrap: wrap;
         }
 
         .topbtn, .chip {
@@ -84,32 +81,32 @@
             border-radius: 999px;
             padding: 9px 13px;
             cursor: pointer;
-            font-weight: 800
+            font-weight: 800;
         }
 
             .topbtn:hover, .topbtn.on, .chip:hover {
                 background: #0c4b78;
                 border-color: #43c5ff;
-                color: #fff
+                color: #fff;
             }
 
         .layout {
             display: grid;
             grid-template-columns: 220px minmax(720px,1fr) 360px;
             gap: 16px;
-            align-items: start
+            align-items: start;
         }
 
         .panel, .eye-card {
             background: linear-gradient(180deg,rgba(7,29,54,.98),rgba(4,20,39,.98));
             border: 1px solid var(--line);
             border-radius: 18px;
-            box-shadow: var(--shadow)
+            box-shadow: var(--shadow);
         }
 
         .sidebar, .rightcol {
             position: sticky;
-            top: 10px
+            top: 10px;
         }
 
         .sidebar {
@@ -119,12 +116,12 @@
         .panel-title {
             font-size: 18px;
             font-weight: 950;
-            margin: 2px 4px 12px
+            margin: 2px 4px 12px;
         }
 
         .navstack {
             display: grid;
-            gap: 8px
+            gap: 8px;
         }
 
         .navbtn {
@@ -140,7 +137,7 @@
             border-radius: 14px;
             text-align: left;
             cursor: pointer;
-            font-weight: 850
+            font-weight: 850;
         }
 
             .navbtn .ico {
@@ -149,19 +146,19 @@
                 border: 2px solid currentColor;
                 border-radius: 50%;
                 display: grid;
-                place-items: center
+                place-items: center;
             }
 
             .navbtn .arr {
                 color: #28c8ff;
-                font-size: 21px
+                font-size: 21px;
             }
 
             .navbtn.active {
                 border-color: #59cfff;
                 background: linear-gradient(90deg,#0c426d,#09233d);
                 color: #fff;
-                box-shadow: inset 0 0 22px rgba(70,201,255,.08)
+                box-shadow: inset 0 0 22px rgba(70,201,255,.08);
             }
 
         .mini-block {
@@ -169,18 +166,18 @@
             padding: 12px;
             border: 1px solid #114b78;
             border-radius: 14px;
-            background: #061a32
+            background: #061a32;
         }
 
             .mini-block h3 {
                 margin: 0 0 9px;
-                font-size: 15px
+                font-size: 15px;
             }
 
         .howto {
             color: #bfd1e0;
             font-size: 13px;
-            line-height: 1.65
+            line-height: 1.65;
         }
 
         .switchline {
@@ -189,7 +186,7 @@
             justify-content: space-between;
             gap: 10px;
             color: #d3e3f0;
-            font-size: 14px
+            font-size: 14px;
         }
 
         .switch {
@@ -199,7 +196,7 @@
             border-radius: 999px;
             background: #285d88;
             position: relative;
-            cursor: pointer
+            cursor: pointer;
         }
 
             .switch:before {
@@ -211,7 +208,7 @@
                 background: white;
                 left: 4px;
                 top: 3px;
-                transition: .18s
+                transition: .18s;
             }
 
             .switch.on {
@@ -225,7 +222,7 @@
         .side-actions {
             display: grid;
             gap: 8px;
-            margin-top: 13px
+            margin-top: 13px;
         }
 
         .sideact {
@@ -237,7 +234,7 @@
             text-align: center;
             text-decoration: none;
             cursor: pointer;
-            font-weight: 800
+            font-weight: 800;
         }
 
         .center {
@@ -246,7 +243,7 @@
 
         .eye-card {
             overflow: hidden;
-            background: #020b16
+            background: #020b16;
         }
 
         .eye-stage {
@@ -254,7 +251,7 @@
             width: 100%;
             aspect-ratio: 1448 / 1086;
             overflow: hidden;
-            background: #020b16
+            background: #020b16;
         }
 
             .eye-stage > img, .retina-stage > img {
@@ -263,46 +260,52 @@
                 height: 100%;
                 object-fit: contain;
                 user-select: none;
-                -webkit-user-drag: none
+                -webkit-user-drag: none;
             }
 
         .stage-svg {
             position: absolute;
             inset: 0;
             width: 100%;
-            height: 100%
+            height: 100%;
         }
 
         .light-svg {
             z-index: 2;
-            pointer-events: none
+            pointer-events: none;
         }
 
         .hot-svg {
             z-index: 3
         }
 
-        .debug-svg {
+        .selection-svg {
             z-index: 4;
-            pointer-events: none
+            pointer-events: none;
+        }
+
+        .debug-svg {
+            z-index: 5;
+            pointer-events: none;
         }
 
         .hit-target, .label-target {
             cursor: pointer;
-            outline: none
+            outline: none;
         }
 
-            .hit-target:focus-visible > *, .label-target:focus-visible > * {
+            .hit-target:focus-visible > *,
+            .label-target:focus-visible > * {
                 stroke: #fff !important;
                 stroke-width: 5 !important;
-                filter: drop-shadow(0 0 5px #25bcff)
+                filter: drop-shadow(0 0 5px #25bcff);
             }
 
         .light-ray {
             fill: none;
             stroke: #ffe169;
             stroke-linecap: round;
-            filter: drop-shadow(0 0 4px rgba(255,218,75,.72))
+            filter: drop-shadow(0 0 4px rgba(255,218,75,.72));
         }
 
             .light-ray.a {
@@ -324,7 +327,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin-top: 12px
+            margin-top: 12px;
         }
 
         .info-card {
@@ -332,20 +335,20 @@
             border-radius: 16px;
             background: linear-gradient(180deg,#073469,#072b50);
             box-shadow: var(--shadow);
-            padding: 14px 15px
+            padding: 14px 15px;
         }
 
             .info-card h3 {
                 margin: 0 0 9px;
                 color: #66dbff;
-                font-size: 17px
+                font-size: 17px;
             }
 
             .info-card p {
                 margin: 0 0 10px;
                 color: #e5f3fc;
                 font-size: 13px;
-                line-height: 1.6
+                line-height: 1.6;
             }
 
         .flow {
@@ -354,17 +357,17 @@
 
             .flow .arrow {
                 color: #53d8ff;
-                font-weight: 950
+                font-weight: 950;
             }
 
             .flow button {
                 padding: 6px 9px;
-                font-size: 12px
+                font-size: 12px;
             }
 
         .rightcol {
             display: grid;
-            gap: 12px
+            gap: 12px;
         }
 
         .retina-card {
@@ -373,7 +376,7 @@
             border-radius: 18px;
             background: linear-gradient(180deg,#061d36,#041629);
             box-shadow: var(--shadow);
-            border: 1px solid #15517e
+            border: 1px solid #15517e;
         }
 
             .retina-card.show {
@@ -384,13 +387,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2px 3px 8px
+            padding: 2px 3px 8px;
         }
 
             .retina-head h3 {
                 margin: 0;
                 font-size: 18px;
-                color: #bce3ff
+                color: #bce3ff;
             }
 
         .closex {
@@ -398,7 +401,7 @@
             background: transparent;
             color: #9bd8ff;
             font-size: 25px;
-            cursor: pointer
+            cursor: pointer;
         }
 
         .retina-stage {
@@ -407,16 +410,21 @@
             aspect-ratio: 375 / 547;
             overflow: hidden;
             border-radius: 10px;
-            background: #03172b
+            background: #03172b;
         }
 
         .retina-hot-svg {
             z-index: 2
         }
 
-        .retina-debug-svg {
+        .retina-selection-svg {
             z-index: 3;
-            pointer-events: none
+            pointer-events: none;
+        }
+
+        .retina-debug-svg {
+            z-index: 4;
+            pointer-events: none;
         }
 
         .orient {
@@ -424,7 +432,7 @@
             color: #dcecff;
             font-weight: 850;
             font-size: 12px;
-            padding: 8px 0 2px
+            padding: 8px 0 2px;
         }
 
         .select-card {
@@ -432,52 +440,52 @@
             background: linear-gradient(180deg,rgba(31,34,101,.98),rgba(18,27,74,.98));
             border-radius: 18px;
             box-shadow: var(--shadow);
-            padding: 14px
+            padding: 14px;
         }
 
         .select-head {
             color: #c4adff;
             font-weight: 950;
             font-size: 17px;
-            margin-bottom: 9px
+            margin-bottom: 9px;
         }
 
         .sel-title {
             font-size: 22px;
-            font-weight: 950
+            font-weight: 950;
         }
 
         .sel-en {
             font-size: 13px;
             color: #b2c5d6;
-            margin-top: 3px
+            margin-top: 3px;
         }
 
         .sel-grid {
             display: grid;
             gap: 9px;
-            margin-top: 12px
+            margin-top: 12px;
         }
 
         .sel-block {
             border: 1px solid #37438e;
             background: rgba(2,16,43,.48);
             border-radius: 12px;
-            padding: 10px
+            padding: 10px;
         }
 
             .sel-block b {
                 display: block;
                 color: var(--yellow);
                 font-size: 13px;
-                margin-bottom: 4px
+                margin-bottom: 4px;
             }
 
             .sel-block p {
                 margin: 0;
                 color: #e7eff8;
                 font-size: 13px;
-                line-height: 1.55
+                line-height: 1.55;
             }
 
         .related button {
@@ -487,12 +495,12 @@
             border-radius: 999px;
             padding: 6px 9px;
             cursor: pointer;
-            font-size: 12px
+            font-size: 12px;
         }
 
         @media(max-width:1450px) {
             .layout {
-                grid-template-columns: 190px minmax(680px,1fr) 320px
+                grid-template-columns: 190px minmax(680px,1fr) 320px;
             }
         }
 
@@ -508,7 +516,7 @@
             .sidebar {
                 display: grid;
                 grid-template-columns: 1.4fr 1fr 1fr;
-                gap: 12px
+                gap: 12px;
             }
 
             .mini-block, .side-actions {
@@ -516,7 +524,7 @@
             }
 
             .rightcol {
-                grid-template-columns: minmax(280px,.75fr) 1.25fr
+                grid-template-columns: minmax(280px,.75fr) 1.25fr;
             }
 
             .retina-card {
@@ -603,35 +611,49 @@
 
                     <div class="navstack">
                         <button class="navbtn active" data-category="all" type="button">
-                            <span class="ico">◎</span><span>전체 보기</span><span class="arr">›</span>
+                            <span class="ico">◎</span>
+                            <span>전체 보기</span>
+                            <span class="arr">›</span>
                         </button>
 
                         <button class="navbtn" data-category="anterior" type="button">
-                            <span class="ico">◉</span><span>전안부</span><span class="arr">›</span>
+                            <span class="ico">◉</span>
+                            <span>전안부</span>
+                            <span class="arr">›</span>
                         </button>
 
                         <button class="navbtn" data-category="uvea" type="button">
-                            <span class="ico">◉</span><span>포도막</span><span class="arr">›</span>
+                            <span class="ico">◉</span>
+                            <span>포도막</span>
+                            <span class="arr">›</span>
                         </button>
 
                         <button class="navbtn" data-category="retina" type="button">
-                            <span class="ico">◉</span><span>망막 · 황반</span><span class="arr">›</span>
+                            <span class="ico">◉</span>
+                            <span>망막 · 황반</span>
+                            <span class="arr">›</span>
                         </button>
 
                         <button class="navbtn" data-category="posterior" type="button">
-                            <span class="ico">◉</span><span>후안부</span><span class="arr">›</span>
+                            <span class="ico">◉</span>
+                            <span>후안부</span>
+                            <span class="arr">›</span>
                         </button>
 
                         <button class="navbtn" data-category="optic" type="button">
-                            <span class="ico">◉</span><span>시신경</span><span class="arr">›</span>
+                            <span class="ico">◉</span>
+                            <span>시신경</span>
+                            <span class="arr">›</span>
                         </button>
                     </div>
                 </div>
 
                 <div class="mini-block">
                     <h3>표시 옵션</h3>
+
                     <div class="switchline">
                         <span>빛 경로 표시</span>
+
                         <button class="switch"
                                 id="raySwitch"
                                 type="button"
@@ -643,9 +665,11 @@
 
                 <div class="mini-block">
                     <h3>사용 방법</h3>
+
                     <div class="howto">
                         실제 구조와 이미지 속 한글·영문 라벨 모두 선택할 수 있습니다.
-                        망막, 망막색소상피, 황반 또는 중심와를 선택하면 망막 층 패널이 열립니다.
+                        망막, 망막색소상피, 황반 또는 중심와를 선택하면
+                        망막 층 패널이 열립니다.
                     </div>
                 </div>
 
@@ -653,7 +677,9 @@
                     <a class="sideact"
                        href="https://agathayi.github.io/Ophthalmology-Visual-Reference/">⌂ 홈으로</a>
 
-                    <button class="sideact" id="resetSide" type="button">↻ 초기화</button>
+                    <button class="sideact" id="resetSide" type="button">
+                        ↻ 초기화
+                    </button>
                 </div>
             </aside>
 
@@ -679,7 +705,11 @@
                                 <path class="light-ray b"
                                       d="M72 592 L176 567 Q244 542 321 525 Q396 517 464 516 Q720 515 1009 510"></path>
 
-                                <circle cx="1009" cy="510" r="8" fill="#fff3a3" opacity=".94"></circle>
+                                <circle cx="1009"
+                                        cy="510"
+                                        r="8"
+                                        fill="#fff3a3"
+                                        opacity=".94"></circle>
                             </g>
                         </svg>
 
@@ -688,6 +718,14 @@
                              viewBox="0 0 1448 1086"
                              preserveAspectRatio="xMidYMid meet"
                              aria-label="눈 구조 클릭 영역"></svg>
+
+                        <svg id="mainSelectionSvg"
+                             class="stage-svg selection-svg"
+                             viewBox="0 0 1448 1086"
+                             preserveAspectRatio="xMidYMid meet"
+                             aria-hidden="true">
+                            <g id="mainSelectionMarker" display="none"></g>
+                        </svg>
 
                         <svg id="mainDebugSvg"
                              class="stage-svg debug-svg"
@@ -700,28 +738,35 @@
                 <div class="bottom-grid">
                     <section class="info-card">
                         <h3>빛의 경로</h3>
+
                         <p>
                             빛은 각막을 지나 홍채 중앙의 동공 개구부로 들어오고,
                             수정체와 유리체를 통과해 중심와 방향에 초점을 맺습니다.
                         </p>
+
                         <div class="flow" id="lightFlow"></div>
                     </section>
 
                     <section class="info-card">
                         <h3>후안부 벽의 층서</h3>
+
                         <p>
                             안구 바깥쪽에서 유리체 쪽으로
                             공막 → 맥락막 → 망막색소상피 → 신경망막 순서입니다.
                         </p>
+
                         <div class="flow" id="wallFlow"></div>
                     </section>
                 </div>
             </main>
 
             <aside class="rightcol">
-                <section class="retina-card" id="retinaCard" aria-label="망막 층 확대">
+                <section class="retina-card"
+                         id="retinaCard"
+                         aria-label="망막 층 확대">
                     <div class="retina-head">
                         <h3>망막 층 확대</h3>
+
                         <button class="closex"
                                 id="closeRetina"
                                 type="button"
@@ -741,6 +786,14 @@
                              viewBox="0 0 375 547"
                              preserveAspectRatio="xMidYMid meet"
                              aria-label="망막 층 클릭 영역"></svg>
+
+                        <svg id="retinaSelectionSvg"
+                             class="stage-svg retina-selection-svg"
+                             viewBox="0 0 375 547"
+                             preserveAspectRatio="xMidYMid meet"
+                             aria-hidden="true">
+                            <g id="retinaSelectionMarker" display="none"></g>
+                        </svg>
 
                         <svg id="retinaDebugSvg"
                              class="stage-svg retina-debug-svg"
@@ -762,17 +815,23 @@
                     <div class="sel-grid">
                         <div class="sel-block">
                             <b>위치</b>
-                            <p id="selLocation">눈의 앞쪽부터 뒤쪽까지 주요 구조를 확인할 수 있습니다.</p>
+                            <p id="selLocation">
+                                눈의 앞쪽부터 뒤쪽까지 주요 구조를 확인할 수 있습니다.
+                            </p>
                         </div>
 
                         <div class="sel-block">
                             <b>기능</b>
-                            <p id="selFunction">굴절, 조절, 광감지와 시각 신호 전달에 관여합니다.</p>
+                            <p id="selFunction">
+                                굴절, 조절, 광감지와 시각 신호 전달에 관여합니다.
+                            </p>
                         </div>
 
                         <div class="sel-block">
                             <b>핵심</b>
-                            <p id="selPoint">실제 구조 또는 이미지에 인쇄된 라벨을 선택해 보세요.</p>
+                            <p id="selPoint">
+                                실제 구조 또는 이미지에 인쇄된 라벨을 선택해 보세요.
+                            </p>
                         </div>
 
                         <div class="sel-block">
@@ -792,345 +851,345 @@ const DEBUG_HITBOX = false;
 const SVG_NS = "http://www.w3.org/2000/svg";
 
 const area = d => ({
-          kind: "area",
-          tag: "path",
+          kind:"area",
+          tag:"path",
           d
 });
 
-const ellipse = (cx, cy, rx, ry) => ({
-          kind: "area",
-          tag: "ellipse",
+const ellipse = (cx,cy,rx,ry) => ({
+          kind:"area",
+          tag:"ellipse",
           cx,
           cy,
           rx,
           ry
 });
 
-const stroke = (d, width) => ({
-          kind: "stroke",
-          tag: "path",
+const stroke = (d,width) => ({
+          kind:"stroke",
+          tag:"path",
           d,
           width
 });
 
 const STRUCTURES = {
-          conjunctiva: {
-            n: "결막",
-            e: "Conjunctiva",
-            category: "anterior",
-            loc: "각막을 제외한 전방 공막의 노출면을 덮는 얇고 투명한 점막입니다.",
-            fn: "안구 표면을 윤활하고 외부 자극으로부터 보호하는 데 기여합니다.",
-            pt: "결막은 각막 자체를 덮지 않으며 윤부에서 각막상피와 이어집니다.",
-            related: ["cornea", "sclera"],
-            focus: {x:390, y:157},
-            labelRect: {x:55, y:89, w:148, h:66},
-            precise: [
+          conjunctiva:{
+            n:"결막",
+            e:"Conjunctiva",
+            category:"anterior",
+            loc:"각막을 제외한 전방 공막의 노출면을 덮는 얇고 투명한 점막입니다.",
+            fn:"안구 표면을 윤활하고 외부 자극으로부터 보호하는 데 기여합니다.",
+            pt:"결막은 각막 자체를 덮지 않으며 윤부에서 각막상피와 이어집니다.",
+            related:["cornea","sclera"],
+            focus:{x:390,y:157},
+            labelRect:{x:55,y:89,w:148,h:66},
+            precise:[
               area("M286 232 C320 199 354 171 392 147 C433 121 476 106 516 98 L522 118 C477 128 439 144 401 167 C361 192 329 219 300 248 Z M298 810 C337 853 386 889 451 919 L462 900 C404 873 360 839 325 799 Z")
             ],
-            hit: [
+            hit:[
               area("M268 242 C306 200 350 166 390 139 C433 111 481 94 529 88 L540 128 C490 137 449 153 410 176 C368 202 333 230 303 263 Z M282 808 C326 866 383 908 458 941 L478 894 C414 866 371 833 337 789 Z")
             ]
           },
 
-          cornea: {
-            n: "각막",
-            e: "Cornea",
-            category: "anterior",
-            loc: "안구 전방의 투명한 돔 형태 구조로 공막과 윤부에서 이어집니다.",
-            fn: "눈에 들어오는 빛을 크게 굴절시키고 내부 조직을 보호합니다.",
-            pt: "투명성을 유지하면서 안구의 가장 앞쪽 광학면을 형성합니다.",
-            related: ["conjunctiva", "pupil", "lens", "sclera"],
-            focus: {x:244, y:292},
-            labelRect: {x:35, y:205, w:134, h:66},
-            precise: [
+          cornea:{
+            n:"각막",
+            e:"Cornea",
+            category:"anterior",
+            loc:"안구 전방의 투명한 돔 형태 구조로 공막과 윤부에서 이어집니다.",
+            fn:"눈에 들어오는 빛을 크게 굴절시키고 내부 조직을 보호합니다.",
+            pt:"투명성을 유지하면서 안구의 가장 앞쪽 광학면을 형성합니다.",
+            related:["conjunctiva","pupil","lens","sclera"],
+            focus:{x:244,y:292},
+            labelRect:{x:35,y:205,w:134,h:66},
+            precise:[
               area("M288 207 C218 217 164 303 147 454 C128 624 175 759 282 815 C309 829 337 818 359 788 C312 706 287 614 284 520 C280 416 302 320 351 244 C337 220 315 205 288 207 Z")
             ],
-            hit: [
+            hit:[
               area("M280 194 C199 209 145 304 132 453 C116 635 166 783 278 836 C317 851 352 829 378 793 C326 703 304 611 301 519 C298 418 320 326 370 246 C349 211 318 190 280 194 Z")
             ]
           },
 
-          iris: {
-            n: "홍채",
-            e: "Iris",
-            category: "uvea",
-            loc: "각막 뒤, 수정체 앞에 놓인 색소성 포도막 조직입니다.",
-            fn: "동공의 크기를 바꾸어 눈으로 들어오는 빛의 양을 조절합니다.",
-            pt: "홍채 중앙의 빈 개구부가 동공이며 홍채 자체와 구분됩니다.",
-            related: ["pupil", "ciliary_body", "lens"],
-            focus: {x:325, y:409},
-            labelRect: {x:31, y:330, w:114, h:66},
-            precise: [
+          iris:{
+            n:"홍채",
+            e:"Iris",
+            category:"uvea",
+            loc:"각막 뒤, 수정체 앞에 놓인 색소성 포도막 조직입니다.",
+            fn:"동공의 크기를 바꾸어 눈으로 들어오는 빛의 양을 조절합니다.",
+            pt:"홍채 중앙의 빈 개구부가 동공이며 홍채 자체와 구분됩니다.",
+            related:["pupil","ciliary_body","lens"],
+            focus:{x:325,y:409},
+            labelRect:{x:31,y:330,w:114,h:66},
+            precise:[
               area("M301 254 C331 252 360 272 379 307 C390 343 386 395 362 438 C346 447 330 445 316 437 C336 384 335 322 301 277 Z M315 593 C335 584 351 583 366 592 C390 635 392 690 379 738 C360 781 334 810 304 817 C337 752 340 660 315 593 Z")
             ],
-            hit: [
+            hit:[
               area("M289 244 C329 239 367 264 390 302 C405 348 400 405 372 452 C349 463 325 460 302 445 C325 388 324 323 289 282 Z M301 582 C328 569 355 570 377 584 C404 633 407 695 390 748 C367 794 332 826 291 835 C325 755 330 659 301 582 Z")
             ]
           },
 
-          pupil: {
-            n: "동공",
-            e: "Pupil",
-            category: "anterior",
-            loc: "홍채 중앙에 형성된 개구부로, 각막 뒤와 수정체 앞에 위치합니다.",
-            fn: "홍채 움직임에 따라 지름이 변해 들어오는 빛의 양을 조절합니다.",
-            pt: "동공은 검은 고형 조직이 아니라 빛이 통과하는 구멍입니다.",
-            related: ["iris", "cornea", "lens"],
-            focus: {x:324, y:514},
-            labelRect: {x:30, y:466, w:107, h:67},
-            precise: [
+          pupil:{
+            n:"동공",
+            e:"Pupil",
+            category:"anterior",
+            loc:"홍채 중앙에 형성된 개구부로, 각막 뒤와 수정체 앞에 위치합니다.",
+            fn:"홍채 움직임에 따라 지름이 변해 들어오는 빛의 양을 조절합니다.",
+            pt:"동공은 검은 고형 조직이 아니라 빛이 통과하는 구멍입니다.",
+            related:["iris","cornea","lens"],
+            focus:{x:324,y:514},
+            labelRect:{x:30,y:466,w:107,h:67},
+            precise:[
               area("M316 438 C342 445 361 474 362 515 C362 555 344 582 316 591 C302 568 296 543 296 515 C296 486 302 461 316 438 Z")
             ],
-            hit: [
+            hit:[
               area("M306 426 C346 434 374 468 375 515 C375 563 347 596 307 603 C287 574 280 546 280 515 C280 483 288 453 306 426 Z")
             ]
           },
 
-          lens_capsule: {
-            n: "수정체낭",
-            e: "Lens capsule",
-            category: "anterior",
-            loc: "수정체 표면에 밀착해 전체를 감싸는 얇고 투명한 기저막입니다.",
-            fn: "수정체 섬유를 둘러싸고 모양체소대의 장력을 수정체에 전달합니다.",
-            pt: "수정체 실질과 구분되는 얇은 외피입니다.",
-            related: ["lens", "zonules", "ciliary_body"],
-            focus: {x:429, y:582},
-            labelRect: {x:27, y:583, w:146, h:68},
-            precise: [
-              stroke("M462 313 C405 341 376 420 376 521 C376 623 406 703 462 732 C519 703 548 623 548 521 C548 419 519 341 462 313 Z", 5)
+          lens_capsule:{
+            n:"수정체낭",
+            e:"Lens capsule",
+            category:"anterior",
+            loc:"수정체 표면에 밀착해 전체를 감싸는 얇고 투명한 기저막입니다.",
+            fn:"수정체 섬유를 둘러싸고 모양체소대의 장력을 수정체에 전달합니다.",
+            pt:"수정체 실질과 구분되는 얇은 외피입니다.",
+            related:["lens","zonules","ciliary_body"],
+            focus:{x:429,y:582},
+            labelRect:{x:27,y:583,w:146,h:68},
+            precise:[
+              stroke("M462 313 C405 341 376 420 376 521 C376 623 406 703 462 732 C519 703 548 623 548 521 C548 419 519 341 462 313 Z",5)
             ],
-            hit: [
-              stroke("M462 313 C405 341 376 420 376 521 C376 623 406 703 462 732 C519 703 548 623 548 521 C548 419 519 341 462 313 Z", 18)
+            hit:[
+              stroke("M462 313 C405 341 376 420 376 521 C376 623 406 703 462 732 C519 703 548 623 548 521 C548 419 519 341 462 313 Z",18)
             ]
           },
 
-          lens: {
-            n: "수정체",
-            e: "Lens",
-            category: "anterior",
-            loc: "홍채와 동공 뒤에 놓인 투명한 양볼록 구조입니다.",
-            fn: "모양을 바꾸며 빛을 굴절시켜 망막에 초점이 맺히도록 돕습니다.",
-            pt: "앞뒤가 볼록한 구조이며 소대섬유는 수정체 적도부의 낭에 연결됩니다.",
-            related: ["lens_capsule", "zonules", "pupil"],
-            focus: {x:463, y:623},
-            labelRect: {x:30, y:684, w:126, h:67},
-            precise: [
+          lens:{
+            n:"수정체",
+            e:"Lens",
+            category:"anterior",
+            loc:"홍채와 동공 뒤에 놓인 투명한 양볼록 구조입니다.",
+            fn:"모양을 바꾸며 빛을 굴절시켜 망막에 초점이 맺히도록 돕습니다.",
+            pt:"앞뒤가 볼록한 구조이며 소대섬유는 수정체 적도부의 낭에 연결됩니다.",
+            related:["lens_capsule","zonules","pupil"],
+            focus:{x:463,y:623},
+            labelRect:{x:30,y:684,w:126,h:67},
+            precise:[
               area("M462 318 C409 346 382 423 382 521 C382 619 409 696 462 727 C515 696 542 619 542 521 C542 423 515 346 462 318 Z")
             ],
-            hit: [
+            hit:[
               area("M462 306 C398 337 366 418 366 521 C366 626 398 707 462 740 C527 707 558 626 558 521 C558 418 527 337 462 306 Z")
             ]
           },
 
-          zonules: {
-            n: "모양체소대",
-            e: "Zonules",
-            category: "anterior",
-            loc: "섬모체 영역에서 수정체 적도부의 수정체낭으로 뻗는 미세 섬유입니다.",
-            fn: "수정체를 매달아 지지하고 섬모근의 장력 변화를 수정체에 전달합니다.",
-            pt: "섬유는 수정체 중심이 아니라 적도부와 그 주변 낭에 연결됩니다.",
-            related: ["ciliary_body", "lens_capsule", "lens"],
-            focus: {x:429, y:747},
-            labelRect: {x:29, y:786, w:153, h:67},
-            precise: [
-              stroke("M410 286 L390 342 M425 278 L402 338 M441 272 L416 337 M458 268 L432 340 M475 266 L446 344 M411 760 L391 704 M428 769 L403 708 M445 777 L418 706 M462 784 L434 704 M478 788 L447 699", 3)
+          zonules:{
+            n:"모양체소대",
+            e:"Zonules",
+            category:"anterior",
+            loc:"섬모체 영역에서 수정체 적도부의 수정체낭으로 뻗는 미세 섬유입니다.",
+            fn:"수정체를 매달아 지지하고 섬모근의 장력 변화를 수정체에 전달합니다.",
+            pt:"섬유는 수정체 중심이 아니라 적도부와 그 주변 낭에 연결됩니다.",
+            related:["ciliary_body","lens_capsule","lens"],
+            focus:{x:429,y:747},
+            labelRect:{x:29,y:786,w:153,h:67},
+            precise:[
+              stroke("M410 286 L390 342 M425 278 L402 338 M441 272 L416 337 M458 268 L432 340 M475 266 L446 344 M411 760 L391 704 M428 769 L403 708 M445 777 L418 706 M462 784 L434 704 M478 788 L447 699",3)
             ],
-            hit: [
-              stroke("M404 282 L386 349 M422 272 L397 345 M441 266 L411 344 M461 260 L427 347 M482 258 L441 351 M405 765 L386 697 M425 776 L398 701 M445 785 L412 700 M466 793 L428 696 M487 797 L440 691", 14)
+            hit:[
+              stroke("M404 282 L386 349 M422 272 L397 345 M441 266 L411 344 M461 260 L427 347 M482 258 L441 351 M405 765 L386 697 M425 776 L398 701 M445 785 L412 700 M466 793 L428 696 M487 797 L440 691",14)
             ]
           },
 
-          ciliary_body: {
-            n: "섬모체(모양체)",
-            e: "Ciliary body",
-            category: "uvea",
-            loc: "홍채 뿌리 뒤에 위치하며 뒤쪽의 맥락막과 이어지는 포도막 구조입니다.",
-            fn: "수정체 조절에 필요한 힘을 만들고 소대섬유의 기시부를 제공합니다.",
-            pt: "홍채와 맥락막 사이를 잇는 연속된 포도막의 일부입니다.",
-            related: ["iris", "zonules", "choroid"],
-            focus: {x:444, y:826},
-            labelRect: {x:29, y:884, w:189, h:67},
-            precise: [
+          ciliary_body:{
+            n:"섬모체(모양체)",
+            e:"Ciliary body",
+            category:"uvea",
+            loc:"홍채 뿌리 뒤에 위치하며 뒤쪽의 맥락막과 이어지는 포도막 구조입니다.",
+            fn:"수정체 조절에 필요한 힘을 만들고 소대섬유의 기시부를 제공합니다.",
+            pt:"홍채와 맥락막 사이를 잇는 연속된 포도막의 일부입니다.",
+            related:["iris","zonules","choroid"],
+            focus:{x:444,y:826},
+            labelRect:{x:29,y:884,w:189,h:67},
+            precise:[
               area("M374 189 C401 155 456 133 515 145 C535 170 531 210 508 246 C487 281 456 306 418 323 C387 308 369 281 367 245 C366 224 368 204 374 189 Z M374 846 C390 808 414 779 450 760 C484 772 514 797 529 831 C535 870 522 904 497 929 C444 937 399 915 374 880 C368 870 368 858 374 846 Z")
             ],
-            hit: [
+            hit:[
               area("M359 181 C395 140 455 118 526 130 C554 165 550 214 522 256 C499 293 468 320 423 340 C380 326 353 292 352 248 C350 222 352 198 359 181 Z M359 839 C378 799 407 766 447 744 C491 755 528 786 544 825 C553 873 536 916 505 944 C443 954 388 929 359 888 C350 870 350 853 359 839 Z")
             ]
           },
 
-          sclera: {
-            n: "공막",
-            e: "Sclera",
-            category: "posterior",
-            loc: "안구의 가장 바깥을 이루는 질긴 흰색 섬유막입니다.",
-            fn: "안구 형태를 유지하고 내부 구조를 기계적으로 보호합니다.",
-            pt: "앞쪽에서는 투명한 각막과 윤부에서 이어집니다.",
-            related: ["cornea", "conjunctiva", "choroid"],
-            focus: {x:972, y:98},
-            labelRect: {x:1200, y:24, w:120, h:64},
-            precise: [
-              stroke("M505 83 C682 9 906 25 1059 139 C1157 212 1215 344 1227 482", 28),
-              stroke("M1219 679 C1185 825 1082 951 929 1011 C757 1078 594 1029 489 941", 28)
+          sclera:{
+            n:"공막",
+            e:"Sclera",
+            category:"posterior",
+            loc:"안구의 가장 바깥을 이루는 질긴 흰색 섬유막입니다.",
+            fn:"안구 형태를 유지하고 내부 구조를 기계적으로 보호합니다.",
+            pt:"앞쪽에서는 투명한 각막과 윤부에서 이어집니다.",
+            related:["cornea","conjunctiva","choroid"],
+            focus:{x:972,y:98},
+            labelRect:{x:1200,y:24,w:120,h:64},
+            precise:[
+              stroke("M505 83 C682 9 906 25 1059 139 C1157 212 1215 344 1227 482",28),
+              stroke("M1219 679 C1185 825 1082 951 929 1011 C757 1078 594 1029 489 941",28)
             ],
-            hit: [
-              stroke("M493 70 C681 -8 915 12 1072 128 C1178 207 1239 343 1249 487", 48),
-              stroke("M1241 677 C1204 837 1094 971 939 1033 C751 1104 573 1049 476 953", 48)
+            hit:[
+              stroke("M493 70 C681 -8 915 12 1072 128 C1178 207 1239 343 1249 487",48),
+              stroke("M1241 677 C1204 837 1094 971 939 1033 C751 1104 573 1049 476 953",48)
             ]
           },
 
-          choroid: {
-            n: "맥락막",
-            e: "Choroid",
-            category: "uvea",
-            loc: "공막 안쪽과 망막색소상피 바깥쪽 사이에 놓인 혈관성 포도막입니다.",
-            fn: "외측 망막과 망막색소상피에 산소와 영양을 공급합니다.",
-            pt: "후방 벽에서 공막 → 맥락막 → 망막색소상피 순으로 이어집니다.",
-            related: ["sclera", "rpe", "ciliary_body"],
-            focus: {x:999, y:157},
-            labelRect: {x:1200, y:99, w:164, h:64},
-            precise: [
-              stroke("M520 111 C693 45 892 62 1037 166 C1132 235 1187 353 1200 483", 17),
-              stroke("M1193 681 C1158 808 1063 922 914 980 C754 1041 604 995 508 918", 17)
+          choroid:{
+            n:"맥락막",
+            e:"Choroid",
+            category:"uvea",
+            loc:"공막 안쪽과 망막색소상피 바깥쪽 사이에 놓인 혈관성 포도막입니다.",
+            fn:"외측 망막과 망막색소상피에 산소와 영양을 공급합니다.",
+            pt:"후방 벽에서 공막 → 맥락막 → 망막색소상피 순으로 이어집니다.",
+            related:["sclera","rpe","ciliary_body"],
+            focus:{x:999,y:157},
+            labelRect:{x:1200,y:99,w:164,h:64},
+            precise:[
+              stroke("M520 111 C693 45 892 62 1037 166 C1132 235 1187 353 1200 483",17),
+              stroke("M1193 681 C1158 808 1063 922 914 980 C754 1041 604 995 508 918",17)
             ],
-            hit: [
-              stroke("M513 101 C691 30 902 48 1049 154 C1151 227 1207 352 1219 486", 30),
-              stroke("M1212 680 C1174 823 1072 941 923 999 C750 1063 590 1014 495 929", 30)
+            hit:[
+              stroke("M513 101 C691 30 902 48 1049 154 C1151 227 1207 352 1219 486",30),
+              stroke("M1212 680 C1174 823 1072 941 923 999 C750 1063 590 1014 495 929",30)
             ]
           },
 
-          rpe: {
-            n: "망막색소상피",
-            e: "Retinal pigment epithelium (RPE)",
-            category: "retina",
-            loc: "신경망막의 바깥쪽과 맥락막의 안쪽 사이에 위치한 단층 색소상피입니다.",
-            fn: "광수용체 대사 지원, 외절 처리, 빛 흡수와 장벽 기능을 담당합니다.",
-            pt: "안쪽의 신경망막과 바깥쪽의 Bruch막·맥락막 사이 경계입니다.",
-            related: ["retina", "choroid", "macula"],
-            focus: {x:1032, y:203},
-            labelRect: {x:1200, y:174, w:231, h:64},
-            precise: [
-              stroke("M529 131 C696 70 882 88 1019 185 C1108 249 1160 357 1175 484", 7),
-              stroke("M1168 680 C1133 794 1045 896 901 951 C749 1009 614 968 523 897", 7)
+          rpe:{
+            n:"망막색소상피",
+            e:"Retinal pigment epithelium (RPE)",
+            category:"retina",
+            loc:"신경망막의 바깥쪽과 맥락막의 안쪽 사이에 위치한 단층 색소상피입니다.",
+            fn:"광수용체 대사 지원, 외절 처리, 빛 흡수와 장벽 기능을 담당합니다.",
+            pt:"안쪽의 신경망막과 바깥쪽의 Bruch막·맥락막 사이 경계입니다.",
+            related:["retina","choroid","macula"],
+            focus:{x:1032,y:203},
+            labelRect:{x:1200,y:174,w:231,h:64},
+            precise:[
+              stroke("M529 131 C696 70 882 88 1019 185 C1108 249 1160 357 1175 484",7),
+              stroke("M1168 680 C1133 794 1045 896 901 951 C749 1009 614 968 523 897",7)
             ],
-            hit: [
-              stroke("M525 126 C695 61 888 79 1025 176 C1120 243 1174 354 1189 486", 15),
-              stroke("M1182 680 C1146 805 1051 909 907 965 C746 1024 604 982 514 905", 15)
+            hit:[
+              stroke("M525 126 C695 61 888 79 1025 176 C1120 243 1174 354 1189 486",15),
+              stroke("M1182 680 C1146 805 1051 909 907 965 C746 1024 604 982 514 905",15)
             ]
           },
 
-          retina: {
-            n: "망막",
-            e: "Retina",
-            category: "retina",
-            loc: "유리체 바깥쪽에서 안구 내벽을 따라 망막색소상피 안쪽에 밀착한 신경조직입니다.",
-            fn: "빛을 신경 신호로 바꾸고 망막 회로를 거쳐 시신경 방향으로 전달합니다.",
-            pt: "후방 벽의 가장 안쪽 신경층이며 망막색소상피보다 유리체 쪽에 있습니다.",
-            related: ["rpe", "macula", "optic_disc", "vitreous"],
-            focus: {x:1077, y:274},
-            labelRect: {x:1200, y:253, w:136, h:65},
-            precise: [
-              stroke("M536 145 C698 87 873 106 1003 198 C1087 258 1137 361 1152 485", 11),
-              stroke("M1145 680 C1110 783 1028 875 891 928 C748 982 623 946 535 880", 11)
+          retina:{
+            n:"망막",
+            e:"Retina",
+            category:"retina",
+            loc:"유리체 바깥쪽에서 안구 내벽을 따라 망막색소상피 안쪽에 밀착한 신경조직입니다.",
+            fn:"빛을 신경 신호로 바꾸고 망막 회로를 거쳐 시신경 방향으로 전달합니다.",
+            pt:"후방 벽의 가장 안쪽 신경층이며 망막색소상피보다 유리체 쪽에 있습니다.",
+            related:["rpe","macula","optic_disc","vitreous"],
+            focus:{x:1077,y:274},
+            labelRect:{x:1200,y:253,w:136,h:65},
+            precise:[
+              stroke("M536 145 C698 87 873 106 1003 198 C1087 258 1137 361 1152 485",11),
+              stroke("M1145 680 C1110 783 1028 875 891 928 C748 982 623 946 535 880",11)
             ],
-            hit: [
-              stroke("M531 139 C697 78 880 96 1010 189 C1100 252 1151 358 1167 487", 21),
-              stroke("M1160 680 C1124 795 1034 889 898 942 C745 997 613 959 526 889", 21)
+            hit:[
+              stroke("M531 139 C697 78 880 96 1010 189 C1100 252 1151 358 1167 487",21),
+              stroke("M1160 680 C1124 795 1034 889 898 942 C745 997 613 959 526 889",21)
             ]
           },
 
-          macula: {
-            n: "황반",
-            e: "Macula",
-            category: "retina",
-            loc: "후극 망막에서 시신경유두의 이측에 있는 특수화된 망막 영역입니다.",
-            fn: "읽기, 얼굴 인식과 색 구별에 필요한 정밀한 중심시력을 담당합니다.",
-            pt: "별도 구체가 아니라 후극 신경망막의 한 영역이며 중심에 중심와가 있습니다.",
-            related: ["fovea", "retina", "rpe"],
-            focus: {x:1024, y:447},
-            labelRect: {x:1245, y:336, w:133, h:64},
-            precise: [ellipse(1009, 510, 82, 86)],
-            hit: [ellipse(1009, 510, 99, 104)]
+          macula:{
+            n:"황반",
+            e:"Macula",
+            category:"retina",
+            loc:"후극 망막에서 시신경유두의 이측에 있는 특수화된 망막 영역입니다.",
+            fn:"읽기, 얼굴 인식과 색 구별에 필요한 정밀한 중심시력을 담당합니다.",
+            pt:"별도 구체가 아니라 후극 신경망막의 한 영역이며 중심에 중심와가 있습니다.",
+            related:["fovea","retina","rpe"],
+            focus:{x:1024,y:447},
+            labelRect:{x:1245,y:336,w:133,h:64},
+            precise:[ellipse(1009,510,82,86)],
+            hit:[ellipse(1009,510,99,104)]
           },
 
-          fovea: {
-            n: "중심와",
-            e: "Fovea",
-            category: "retina",
-            loc: "황반의 중심에 있는 작은 함몰부입니다.",
-            fn: "원추세포가 매우 밀집해 가장 높은 공간 해상도의 중심시력을 제공합니다.",
-            pt: "시각축의 목표 지점이며 시신경유두와는 서로 다른 위치입니다.",
-            related: ["macula", "retina", "lens"],
-            focus: {x:1009, y:510},
-            labelRect: {x:1245, y:411, w:133, h:65},
-            precise: [ellipse(1009, 510, 24, 31)],
-            hit: [ellipse(1009, 510, 38, 44)]
+          fovea:{
+            n:"중심와",
+            e:"Fovea",
+            category:"retina",
+            loc:"황반의 중심에 있는 작은 함몰부입니다.",
+            fn:"원추세포가 매우 밀집해 가장 높은 공간 해상도의 중심시력을 제공합니다.",
+            pt:"시각축의 목표 지점이며 시신경유두와는 서로 다른 위치입니다.",
+            related:["macula","retina","lens"],
+            focus:{x:1009,y:510},
+            labelRect:{x:1245,y:411,w:133,h:65},
+            precise:[ellipse(1009,510,24,31)],
+            hit:[ellipse(1009,510,38,44)]
           },
 
-          optic_disc: {
-            n: "시신경유두",
-            e: "Optic disc",
-            category: "optic",
-            loc: "망막신경절세포 축삭이 모여 안구를 빠져나가는 시신경 머리입니다.",
-            fn: "망막 신경섬유와 중심망막혈관이 드나드는 통로 역할을 합니다.",
-            pt: "광수용체가 없어 생리적 맹점에 해당하며 중심와와 구분됩니다.",
-            related: ["optic_nerve", "retina"],
-            focus: {x:1098, y:585},
-            labelRect: {x:1244, y:524, w:158, h:65},
-            precise: [ellipse(1098, 585, 31, 25)],
-            hit: [ellipse(1098, 585, 47, 39)]
+          optic_disc:{
+            n:"시신경유두",
+            e:"Optic disc",
+            category:"optic",
+            loc:"망막신경절세포 축삭이 모여 안구를 빠져나가는 시신경 머리입니다.",
+            fn:"망막 신경섬유와 중심망막혈관이 드나드는 통로 역할을 합니다.",
+            pt:"광수용체가 없어 생리적 맹점에 해당하며 중심와와 구분됩니다.",
+            related:["optic_nerve","retina"],
+            focus:{x:1098,y:585},
+            labelRect:{x:1244,y:524,w:158,h:65},
+            precise:[ellipse(1098,585,31,25)],
+            hit:[ellipse(1098,585,47,39)]
           },
 
-          optic_nerve: {
-            n: "시신경",
-            e: "Optic nerve",
-            category: "optic",
-            loc: "시신경유두에서 시작해 안구 뒤쪽과 뇌의 시각 경로로 이어집니다.",
-            fn: "망막신경절세포 축삭이 만든 시각 신호를 뇌로 전달합니다.",
-            pt: "시신경유두에서 후방으로 연속되는 축삭 다발입니다.",
-            related: ["optic_disc", "retina"],
-            focus: {x:1314, y:652},
-            labelRect: {x:1271, y:769, w:139, h:68},
-            precise: [
+          optic_nerve:{
+            n:"시신경",
+            e:"Optic nerve",
+            category:"optic",
+            loc:"시신경유두에서 시작해 안구 뒤쪽과 뇌의 시각 경로로 이어집니다.",
+            fn:"망막신경절세포 축삭이 만든 시각 신호를 뇌로 전달합니다.",
+            pt:"시신경유두에서 후방으로 연속되는 축삭 다발입니다.",
+            related:["optic_disc","retina"],
+            focus:{x:1314,y:652},
+            labelRect:{x:1271,y:769,w:139,h:68},
+            precise:[
               area("M1124 551 C1210 530 1326 529 1448 537 L1448 742 C1329 718 1218 700 1120 664 C1151 637 1155 585 1124 551 Z")
             ],
-            hit: [
+            hit:[
               area("M1112 535 C1215 510 1334 512 1448 518 L1448 761 C1322 739 1207 719 1105 676 C1140 638 1144 582 1112 535 Z")
             ]
           },
 
-          vitreous: {
-            n: "유리체",
-            e: "Vitreous",
-            category: "posterior",
-            loc: "수정체 뒤에서 망막 앞까지 후안부의 큰 공간을 채우는 투명한 젤입니다.",
-            fn: "빛을 망막까지 통과시키고 안구 형태 유지에 기여합니다.",
-            pt: "수정체와 망막 사이의 대부분을 차지하며 고형 주황 조직이 아닙니다.",
-            related: ["lens", "retina", "optic_disc"],
-            focus: {x:758, y:556},
-            labelRect: {x:705, y:524, w:115, h:65},
-            precise: [
+          vitreous:{
+            n:"유리체",
+            e:"Vitreous",
+            category:"posterior",
+            loc:"수정체 뒤에서 망막 앞까지 후안부의 큰 공간을 채우는 투명한 젤입니다.",
+            fn:"빛을 망막까지 통과시키고 안구 형태 유지에 기여합니다.",
+            pt:"수정체와 망막 사이의 대부분을 차지하며 고형 주황 조직이 아닙니다.",
+            related:["lens","retina","optic_disc"],
+            focus:{x:758,y:556},
+            labelRect:{x:705,y:524,w:115,h:65},
+            precise:[
               area("M548 170 C702 105 873 123 995 210 C1081 271 1128 365 1138 477 C1146 566 1121 696 1057 785 C985 886 850 936 713 923 C620 914 558 878 526 844 C553 746 569 637 568 521 C567 397 558 270 548 170 Z")
             ],
-            hit: [
+            hit:[
               area("M535 153 C706 82 888 103 1012 194 C1106 262 1157 363 1168 477 C1179 588 1148 714 1076 806 C996 910 855 963 705 948 C603 938 531 897 500 854 C535 747 548 634 546 521 C545 397 536 265 535 153 Z")
             ]
           }
 };
 
 const CATEGORIES = {
-          all: {
-            n: "눈의 구조",
-            e: "Eye Anatomy",
-            keys: Object.keys(STRUCTURES),
-            loc: "눈의 앞쪽부터 뒤쪽까지 이미지에 표시된 17개 주요 구조입니다.",
-            fn: "굴절, 초점 조절, 광감지와 시각 신호 전달을 함께 이룹니다.",
-            pt: "구조 또는 인쇄된 라벨을 선택하면 해당 구조의 설명을 확인할 수 있습니다."
+          all:{
+            n:"눈의 구조",
+            e:"Eye Anatomy",
+            keys:Object.keys(STRUCTURES),
+            loc:"눈의 앞쪽부터 뒤쪽까지 이미지에 표시된 17개 주요 구조입니다.",
+            fn:"굴절, 초점 조절, 광감지와 시각 신호 전달을 함께 이룹니다.",
+            pt:"구조 또는 인쇄된 라벨을 선택하면 해당 구조의 설명을 확인할 수 있습니다."
           },
 
-          anterior: {
-            n: "전안부",
-            e: "Anterior segment",
-            keys: [
+          anterior:{
+            n:"전안부",
+            e:"Anterior segment",
+            keys:[
               "conjunctiva",
               "cornea",
               "iris",
@@ -1140,508 +1199,591 @@ const CATEGORIES = {
               "zonules",
               "ciliary_body"
             ],
-            loc: "눈 앞쪽의 표면, 홍채와 수정체 및 지지 구조를 함께 봅니다.",
-            fn: "빛을 받아들이고 굴절·조절하며 안구 표면을 보호합니다.",
-            pt: "동공은 홍채 중앙의 개구부이고 수정체는 그 뒤에 위치합니다."
+            loc:"눈 앞쪽의 표면, 홍채와 수정체 및 지지 구조를 함께 봅니다.",
+            fn:"빛을 받아들이고 굴절·조절하며 안구 표면을 보호합니다.",
+            pt:"동공은 홍채 중앙의 개구부이고 수정체는 그 뒤에 위치합니다."
           },
 
-          uvea: {
-            n: "포도막",
-            e: "Uvea",
-            keys: ["iris", "ciliary_body", "choroid"],
-            loc: "홍채, 섬모체와 맥락막이 앞에서 뒤로 이어지는 혈관성 중간층입니다.",
-            fn: "빛의 양과 수정체 조절에 관여하고 외측 망막에 혈류를 공급합니다.",
-            pt: "포도막은 서로 분리된 구체가 아니라 연속된 조직 계통입니다."
+          uvea:{
+            n:"포도막",
+            e:"Uvea",
+            keys:["iris","ciliary_body","choroid"],
+            loc:"홍채, 섬모체와 맥락막이 앞에서 뒤로 이어지는 혈관성 중간층입니다.",
+            fn:"빛의 양과 수정체 조절에 관여하고 외측 망막에 혈류를 공급합니다.",
+            pt:"포도막은 서로 분리된 구체가 아니라 연속된 조직 계통입니다."
           },
 
-          retina: {
-            n: "망막 · 황반",
-            e: "Retina & macula",
-            keys: ["rpe", "retina", "macula", "fovea"],
-            loc: "안구 내벽의 신경망막과 그 바깥쪽 색소상피, 후극의 황반·중심와를 봅니다.",
-            fn: "빛을 신경 신호로 바꾸고 정밀한 중심시력을 만듭니다.",
-            pt: "이 범주를 선택하면 오른쪽에서 10개 망막 층을 확인할 수 있습니다."
+          retina:{
+            n:"망막 · 황반",
+            e:"Retina & macula",
+            keys:["rpe","retina","macula","fovea"],
+            loc:"안구 내벽의 신경망막과 그 바깥쪽 색소상피, 후극의 황반·중심와를 봅니다.",
+            fn:"빛을 신경 신호로 바꾸고 정밀한 중심시력을 만듭니다.",
+            pt:"이 범주를 선택하면 오른쪽에서 10개 망막 층을 확인할 수 있습니다."
           },
 
-          posterior: {
-            n: "후안부",
-            e: "Posterior segment",
-            keys: ["vitreous", "sclera", "choroid", "rpe", "retina", "macula", "fovea"],
-            loc: "수정체 뒤 유리체와 안구의 후방 벽을 이루는 층들입니다.",
-            fn: "빛을 감각망막까지 전달하고 안구 형태와 후극 기능을 유지합니다.",
-            pt: "바깥에서 안쪽 순서는 공막 → 맥락막 → RPE → 신경망막 → 유리체입니다."
+          posterior:{
+            n:"후안부",
+            e:"Posterior segment",
+            keys:[
+              "vitreous",
+              "sclera",
+              "choroid",
+              "rpe",
+              "retina",
+              "macula",
+              "fovea"
+            ],
+            loc:"수정체 뒤 유리체와 안구의 후방 벽을 이루는 층들입니다.",
+            fn:"빛을 감각망막까지 전달하고 안구 형태와 후극 기능을 유지합니다.",
+            pt:"바깥에서 안쪽 순서는 공막 → 맥락막 → RPE → 신경망막 → 유리체입니다."
           },
 
-          optic: {
-            n: "시신경",
-            e: "Optic nerve",
-            keys: ["optic_disc", "optic_nerve"],
-            loc: "시신경유두와 그 뒤로 이어지는 시신경 축삭 다발입니다.",
-            fn: "망막에서 만들어진 시각 신호를 뇌로 전달합니다.",
-            pt: "시신경유두와 중심와는 서로 다른 구조와 위치입니다."
+          optic:{
+            n:"시신경",
+            e:"Optic nerve",
+            keys:["optic_disc","optic_nerve"],
+            loc:"시신경유두와 그 뒤로 이어지는 시신경 축삭 다발입니다.",
+            fn:"망막에서 만들어진 시각 신호를 뇌로 전달합니다.",
+            pt:"시신경유두와 중심와는 서로 다른 구조와 위치입니다."
           }
 };
 
 const RETINA_LAYERS = {
-          rnfl: {
-            n: "신경섬유층",
-            e: "Retinal nerve fiber layer",
-            abbr: "RNFL",
-            loc: "망막의 유리체측 표면 가까이에 위치합니다.",
-            fn: "망막신경절세포의 축삭이 시신경유두 방향으로 모이는 층입니다.",
-            pt: "신경절세포의 세포체가 아니라 주로 축삭으로 이루어집니다.",
-            tissue: {x:4, y:31, w:201, h:40},
-            hit: {x:4, y:28, w:207, h:44},
-            label: {x:239, y:37, w:119, h:35}
+          rnfl:{
+            n:"신경섬유층",
+            e:"Retinal nerve fiber layer",
+            abbr:"RNFL",
+            loc:"망막의 유리체측 표면 가까이에 위치합니다.",
+            fn:"망막신경절세포의 축삭이 시신경유두 방향으로 모이는 층입니다.",
+            pt:"신경절세포의 세포체가 아니라 주로 축삭으로 이루어집니다.",
+            tissue:{x:4,y:31,w:201,h:40},
+            hit:{x:4,y:28,w:207,h:44},
+            label:{x:239,y:37,w:119,h:35}
           },
 
-          gcl: {
-            n: "신경절세포층",
-            e: "Ganglion cell layer",
-            abbr: "GCL",
-            loc: "신경섬유층의 바깥쪽에 이어집니다.",
-            fn: "망막신경절세포의 세포체가 주로 존재합니다.",
-            pt: "이 세포의 축삭은 신경섬유층을 지나 시신경을 이룹니다.",
-            tissue: {x:4, y:72, w:201, h:41},
-            hit: {x:4, y:72, w:207, h:41},
-            label: {x:239, y:78, w:119, h:35}
+          gcl:{
+            n:"신경절세포층",
+            e:"Ganglion cell layer",
+            abbr:"GCL",
+            loc:"신경섬유층의 바깥쪽에 이어집니다.",
+            fn:"망막신경절세포의 세포체가 주로 존재합니다.",
+            pt:"이 세포의 축삭은 신경섬유층을 지나 시신경을 이룹니다.",
+            tissue:{x:4,y:72,w:201,h:41},
+            hit:{x:4,y:72,w:207,h:41},
+            label:{x:239,y:78,w:119,h:35}
           },
 
-          ipl: {
-            n: "내망상층",
-            e: "Inner plexiform layer",
-            abbr: "IPL",
-            loc: "신경절세포층과 내핵층 사이에 위치합니다.",
-            fn: "양극세포, 무축삭세포와 신경절세포 사이의 시냅스가 형성됩니다.",
-            pt: "내측 망막의 대표적인 시냅스층입니다.",
-            tissue: {x:4, y:114, w:201, h:39},
-            hit: {x:4, y:114, w:207, h:39},
-            label: {x:239, y:119, w:119, h:35}
+          ipl:{
+            n:"내망상층",
+            e:"Inner plexiform layer",
+            abbr:"IPL",
+            loc:"신경절세포층과 내핵층 사이에 위치합니다.",
+            fn:"양극세포, 무축삭세포와 신경절세포 사이의 시냅스가 형성됩니다.",
+            pt:"내측 망막의 대표적인 시냅스층입니다.",
+            tissue:{x:4,y:114,w:201,h:39},
+            hit:{x:4,y:114,w:207,h:39},
+            label:{x:239,y:119,w:119,h:35}
           },
 
-          inl: {
-            n: "내핵층",
-            e: "Inner nuclear layer",
-            abbr: "INL",
-            loc: "내망상층과 외망상층 사이에 위치합니다.",
-            fn: "양극세포, 수평세포, 무축삭세포와 Müller 세포의 핵이 존재합니다.",
-            pt: "여러 중간 뉴런과 지지세포의 세포체가 모입니다.",
-            tissue: {x:4, y:154, w:201, h:40},
-            hit: {x:4, y:154, w:207, h:40},
-            label: {x:239, y:159, w:119, h:35}
+          inl:{
+            n:"내핵층",
+            e:"Inner nuclear layer",
+            abbr:"INL",
+            loc:"내망상층과 외망상층 사이에 위치합니다.",
+            fn:"양극세포, 수평세포, 무축삭세포와 Müller 세포의 핵이 존재합니다.",
+            pt:"여러 중간 뉴런과 지지세포의 세포체가 모입니다.",
+            tissue:{x:4,y:154,w:201,h:40},
+            hit:{x:4,y:154,w:207,h:40},
+            label:{x:239,y:159,w:119,h:35}
           },
 
-          opl: {
-            n: "외망상층",
-            e: "Outer plexiform layer",
-            abbr: "OPL",
-            loc: "내핵층과 외핵층 사이에 위치합니다.",
-            fn: "광수용체와 양극세포·수평세포 사이의 시냅스가 형성됩니다.",
-            pt: "광수용체 신호가 2차 뉴런으로 전달되는 층입니다.",
-            tissue: {x:4, y:195, w:201, h:35},
-            hit: {x:4, y:195, w:207, h:35},
-            label: {x:239, y:199, w:119, h:35}
+          opl:{
+            n:"외망상층",
+            e:"Outer plexiform layer",
+            abbr:"OPL",
+            loc:"내핵층과 외핵층 사이에 위치합니다.",
+            fn:"광수용체와 양극세포·수평세포 사이의 시냅스가 형성됩니다.",
+            pt:"광수용체 신호가 2차 뉴런으로 전달되는 층입니다.",
+            tissue:{x:4,y:195,w:201,h:35},
+            hit:{x:4,y:195,w:207,h:35},
+            label:{x:239,y:199,w:119,h:35}
           },
 
-          onl: {
-            n: "외핵층",
-            e: "Outer nuclear layer",
-            abbr: "ONL",
-            loc: "외망상층의 바깥쪽과 광수용체층의 안쪽 사이입니다.",
-            fn: "막대세포와 원추세포 광수용체의 세포체가 위치합니다.",
-            pt: "광수용체의 핵이 밀집한 층입니다.",
-            tissue: {x:4, y:231, w:201, h:39},
-            hit: {x:4, y:231, w:207, h:39},
-            label: {x:239, y:239, w:119, h:35}
+          onl:{
+            n:"외핵층",
+            e:"Outer nuclear layer",
+            abbr:"ONL",
+            loc:"외망상층의 바깥쪽과 광수용체층의 안쪽 사이입니다.",
+            fn:"막대세포와 원추세포 광수용체의 세포체가 위치합니다.",
+            pt:"광수용체의 핵이 밀집한 층입니다.",
+            tissue:{x:4,y:231,w:201,h:39},
+            hit:{x:4,y:231,w:207,h:39},
+            label:{x:239,y:239,w:119,h:35}
           },
 
-          photoreceptor: {
-            n: "광수용체층",
-            e: "Photoreceptor layer",
-            loc: "외핵층과 망막색소상피 사이에 위치합니다.",
-            fn: "막대세포와 원추세포의 내절·외절이 빛을 받아 광변환을 시작합니다.",
-            pt: "이미지에서 길게 뻗은 막대·원추세포 분절이 보이는 영역입니다.",
-            tissue: {x:4, y:271, w:201, h:113},
-            hit: {x:4, y:271, w:207, h:113},
-            label: {x:239, y:278, w:119, h:58}
+          photoreceptor:{
+            n:"광수용체층",
+            e:"Photoreceptor layer",
+            loc:"외핵층과 망막색소상피 사이에 위치합니다.",
+            fn:"막대세포와 원추세포의 내절·외절이 빛을 받아 광변환을 시작합니다.",
+            pt:"이미지에서 길게 뻗은 막대·원추세포 분절이 보이는 영역입니다.",
+            tissue:{x:4,y:271,w:201,h:113},
+            hit:{x:4,y:271,w:207,h:113},
+            label:{x:239,y:278,w:119,h:58}
           },
 
-          rpe: {
-            n: "망막색소상피",
-            e: "Retinal pigment epithelium (RPE)",
-            loc: "광수용체 외절에 인접하며 Bruch막의 안쪽에 놓입니다.",
-            fn: "외절 처리, 대사 지원, 빛 흡수와 외측 혈액-망막 장벽 기능을 담당합니다.",
-            pt: "단층 색소상피이며 광수용체층과 맥락막 사이에 있습니다.",
-            tissue: {x:4, y:385, w:201, h:52},
-            hit: {x:4, y:385, w:207, h:52},
-            label: {x:239, y:347, w:119, h:42}
+          rpe:{
+            n:"망막색소상피",
+            e:"Retinal pigment epithelium (RPE)",
+            loc:"광수용체 외절에 인접하며 Bruch막의 안쪽에 놓입니다.",
+            fn:"외절 처리, 대사 지원, 빛 흡수와 외측 혈액-망막 장벽 기능을 담당합니다.",
+            pt:"단층 색소상피이며 광수용체층과 맥락막 사이에 있습니다.",
+            tissue:{x:4,y:385,w:201,h:52},
+            hit:{x:4,y:385,w:207,h:52},
+            label:{x:239,y:347,w:119,h:42}
           },
 
-          bruch: {
-            n: "브루크막",
-            e: "Bruch's membrane",
-            loc: "망막색소상피와 맥락막 사이에 놓인 얇은 세포외 지지막입니다.",
-            fn: "RPE와 맥락막 사이에서 구조적 지지와 물질 교환 경계를 제공합니다.",
-            pt: "RPE 바깥쪽, 맥락막 안쪽에 위치합니다.",
-            tissue: {x:4, y:438, w:201, h:29},
-            hit: {x:4, y:438, w:207, h:29},
-            label: {x:239, y:397, w:119, h:35}
+          bruch:{
+            n:"브루크막",
+            e:"Bruch's membrane",
+            loc:"망막색소상피와 맥락막 사이에 놓인 얇은 세포외 지지막입니다.",
+            fn:"RPE와 맥락막 사이에서 구조적 지지와 물질 교환 경계를 제공합니다.",
+            pt:"RPE 바깥쪽, 맥락막 안쪽에 위치합니다.",
+            tissue:{x:4,y:438,w:201,h:29},
+            hit:{x:4,y:438,w:207,h:29},
+            label:{x:239,y:397,w:119,h:35}
           },
 
-          choroid: {
-            n: "맥락막",
-            e: "Choroid",
-            loc: "Bruch막의 바깥쪽에 위치하는 혈관성 조직입니다.",
-            fn: "망막색소상피와 외측 망막에 산소와 영양을 공급합니다.",
-            pt: "확대 이미지의 가장 아래쪽, 즉 안구벽 바깥쪽 방향입니다.",
-            tissue: {x:4, y:468, w:201, h:79},
-            hit: {x:4, y:468, w:207, h:79},
-            label: {x:239, y:443, w:119, h:35}
+          choroid:{
+            n:"맥락막",
+            e:"Choroid",
+            loc:"Bruch막의 바깥쪽에 위치하는 혈관성 조직입니다.",
+            fn:"망막색소상피와 외측 망막에 산소와 영양을 공급합니다.",
+            pt:"확대 이미지의 가장 아래쪽, 즉 안구벽 바깥쪽 방향입니다.",
+            tissue:{x:4,y:468,w:201,h:79},
+            hit:{x:4,y:468,w:207,h:79},
+            label:{x:239,y:443,w:119,h:35}
           }
 };
 
-function svgNode(tag, attrs = {}) {
-          const node = document.createElementNS(SVG_NS, tag);
+function svgNode(tag,attrs={}){
+          const node=document.createElementNS(SVG_NS,tag);
 
-          Object.entries(attrs).forEach(([key, value]) => {
-            node.setAttribute(key, String(value));
+          Object.entries(attrs).forEach(([key,value])=>{
+            node.setAttribute(key,String(value));
           });
 
           return node;
 }
 
-function drawGeometry(parent, geometry, style = {}) {
-          geometry.forEach(item => {
-            const attrs = {};
+function drawSelectionMarker(
+          group,
+          rect,
+          canvasWidth,
+          canvasHeight,
+          radius
+){
+          group.replaceChildren();
 
-            Object.entries(item).forEach(([key, value]) => {
-              if (!["kind", "tag", "width"].includes(key)) {
-                attrs[key] = value;
+          if(!rect){
+            group.setAttribute("display","none");
+            return;
+          }
+
+          const centerX=Math.min(
+            rect.x+rect.w+4,
+            canvasWidth-radius-4
+          );
+
+          const centerY=Math.max(
+            radius+4,
+            Math.min(
+              rect.y+rect.h/2,
+              canvasHeight-radius-4
+            )
+          );
+
+          const redCircle=svgNode("circle",{
+            cx:centerX,
+            cy:centerY,
+            r:radius,
+            fill:"#e5252a",
+            stroke:"#ffffff",
+            "stroke-width":4
+          });
+
+          const whiteCheck=svgNode("path",{
+            d:[
+              `M ${centerX-radius*.48} ${centerY}`,
+              `L ${centerX-radius*.12} ${centerY+radius*.34}`,
+              `L ${centerX+radius*.55} ${centerY-radius*.42}`
+            ].join(" "),
+            fill:"none",
+            stroke:"#ffffff",
+            "stroke-width":radius*.25,
+            "stroke-linecap":"round",
+            "stroke-linejoin":"round"
+          });
+
+          group.append(redCircle,whiteCheck);
+          group.setAttribute("display","block");
+}
+
+function drawGeometry(parent,geometry,style={}){
+          geometry.forEach(item=>{
+            const attrs={};
+
+            Object.entries(item).forEach(([key,value])=>{
+              if(!["kind","tag","width"].includes(key)){
+                attrs[key]=value;
               }
             });
 
-            if (item.kind === "stroke") {
-              attrs.fill = "none";
-              attrs.stroke = style.stroke || style.fill || "transparent";
-              attrs["stroke-width"] = style.width || item.width;
-              attrs["stroke-linecap"] = "round";
-              attrs["stroke-linejoin"] = "round";
-            } else {
-              attrs.fill = style.fill || "transparent";
-              attrs.stroke = style.stroke || "transparent";
+            if(item.kind==="stroke"){
+              attrs.fill="none";
+              attrs.stroke=style.stroke||style.fill||"transparent";
+              attrs["stroke-width"]=style.width||item.width;
+              attrs["stroke-linecap"]="round";
+              attrs["stroke-linejoin"]="round";
+            }else{
+              attrs.fill=style.fill||"transparent";
+              attrs.stroke=style.stroke||"transparent";
 
-              if (style.width) {
-                attrs["stroke-width"] = style.width;
+              if(style.width){
+                attrs["stroke-width"]=style.width;
               }
             }
 
-            if (style.opacity !== undefined) {
-              attrs.opacity = style.opacity;
+            if(style.opacity!==undefined){
+              attrs.opacity=style.opacity;
             }
 
-            parent.appendChild(svgNode(item.tag, attrs));
+            parent.appendChild(svgNode(item.tag,attrs));
           });
 }
 
-function bindAccessible(group, label, callback) {
-          group.setAttribute("role", "button");
-          group.setAttribute("tabindex", "0");
-          group.setAttribute("aria-label", label);
+function bindAccessible(group,label,callback){
+          group.setAttribute("role","button");
+          group.setAttribute("tabindex","0");
+          group.setAttribute("aria-label",label);
 
-          group.addEventListener("click", event => {
+          group.addEventListener("click",event=>{
             event.stopPropagation();
             callback();
           });
 
-          group.addEventListener("keydown", event => {
-            if (event.key === "Enter" || event.key === " ") {
+          group.addEventListener("keydown",event=>{
+            if(event.key==="Enter"||event.key===" "){
               event.preventDefault();
               callback();
             }
           });
 }
 
-const mainHotSvg = document.getElementById("mainHotSvg");
-const mainDebugSvg = document.getElementById("mainDebugSvg");
+const mainHotSvg=document.getElementById("mainHotSvg");
+const mainDebugSvg=document.getElementById("mainDebugSvg");
+const mainSelectionMarker=document.getElementById("mainSelectionMarker");
+const retinaSelectionMarker=document.getElementById("retinaSelectionMarker");
 
-const anatomyTargets = svgNode("g");
-const labelTargets = svgNode("g");
+const anatomyTargets=svgNode("g");
+const labelTargets=svgNode("g");
 
-mainHotSvg.append(anatomyTargets, labelTargets);
+mainHotSvg.append(anatomyTargets,labelTargets);
 
-Object.entries(STRUCTURES).forEach(([key, data]) => {
-          const anatomyGroup = svgNode("g", {
-            class: "hit-target"
+Object.entries(STRUCTURES).forEach(([key,data])=>{
+          const anatomyGroup=svgNode("g",{
+            class:"hit-target"
           });
 
-          anatomyGroup.dataset.key = key;
+          anatomyGroup.dataset.key=key;
 
-          drawGeometry(anatomyGroup, data.hit, {
-            fill: "rgba(255,255,255,.001)",
-            stroke: "rgba(255,255,255,.001)"
+          drawGeometry(anatomyGroup,data.hit,{
+            fill:"rgba(255,255,255,.001)",
+            stroke:"rgba(255,255,255,.001)"
           });
 
           bindAccessible(
             anatomyGroup,
             `${data.n} ${data.e}`,
-            () => selectStructure(key)
+            ()=>selectStructure(key)
           );
 
           anatomyTargets.appendChild(anatomyGroup);
 
-          const labelGroup = svgNode("g", {
-            class: "label-target"
+          const labelGroup=svgNode("g",{
+            class:"label-target"
           });
 
-          labelGroup.dataset.key = key;
+          labelGroup.dataset.key=key;
 
           labelGroup.appendChild(
-            svgNode("rect", {
-              x: data.labelRect.x,
-              y: data.labelRect.y,
-              width: data.labelRect.w,
-              height: data.labelRect.h,
-              rx: 12,
-              fill: "rgba(255,255,255,.001)",
-              stroke: "transparent"
+            svgNode("rect",{
+              x:data.labelRect.x,
+              y:data.labelRect.y,
+              width:data.labelRect.w,
+              height:data.labelRect.h,
+              rx:12,
+              fill:"rgba(255,255,255,.001)",
+              stroke:"transparent"
             })
           );
 
           bindAccessible(
             labelGroup,
             `${data.n} ${data.e} 라벨`,
-            () => selectStructure(key)
+            ()=>selectStructure(key)
           );
 
           labelTargets.appendChild(labelGroup);
 });
 
-function renderMainDebug() {
+function renderMainDebug(){
           mainDebugSvg.replaceChildren();
-          mainDebugSvg.style.display = DEBUG_HITBOX ? "block" : "none";
+          mainDebugSvg.style.display=DEBUG_HITBOX?"block":"none";
 
-          if (!DEBUG_HITBOX) {
+          if(!DEBUG_HITBOX){
             return;
           }
 
-          Object.entries(STRUCTURES).forEach(([key, data]) => {
-            const hit = svgNode("g", {
-              "data-debug": `${key}-hit`
+          Object.entries(STRUCTURES).forEach(([key,data])=>{
+            const hit=svgNode("g",{
+              "data-debug":`${key}-hit`
             });
 
-            drawGeometry(hit, data.hit, {
-              fill: "rgba(255,0,180,.12)",
-              stroke: "#ff42c6"
+            drawGeometry(hit,data.hit,{
+              fill:"rgba(255,0,180,.12)",
+              stroke:"#ff42c6"
             });
 
             mainDebugSvg.appendChild(hit);
 
-            const precise = svgNode("g", {
-              "data-debug": `${key}-precise`
+            const precise=svgNode("g",{
+              "data-debug":`${key}-precise`
             });
 
-            drawGeometry(precise, data.precise, {
-              fill: "rgba(0,210,255,.12)",
-              stroke: "#28dcff"
+            drawGeometry(precise,data.precise,{
+              fill:"rgba(0,210,255,.12)",
+              stroke:"#28dcff"
             });
 
             mainDebugSvg.appendChild(precise);
 
             mainDebugSvg.appendChild(
-              svgNode("rect", {
-                x: data.labelRect.x,
-                y: data.labelRect.y,
-                width: data.labelRect.w,
-                height: data.labelRect.h,
-                rx: 12,
-                fill: "none",
-                stroke: "#57ff76",
-                "stroke-width": 3
+              svgNode("rect",{
+                x:data.labelRect.x,
+                y:data.labelRect.y,
+                width:data.labelRect.w,
+                height:data.labelRect.h,
+                rx:12,
+                fill:"none",
+                stroke:"#57ff76",
+                "stroke-width":3
               })
             );
 
             mainDebugSvg.appendChild(
-              svgNode("circle", {
-                cx: data.focus.x,
-                cy: data.focus.y,
-                r: 7,
-                fill: "#ffe748",
-                stroke: "#111",
-                "stroke-width": 2
+              svgNode("circle",{
+                cx:data.focus.x,
+                cy:data.focus.y,
+                r:7,
+                fill:"#ffe748",
+                stroke:"#111",
+                "stroke-width":2
               })
             );
           });
 }
 
-const retinaHotSvg = document.getElementById("retinaHotSvg");
-const retinaDebugSvg = document.getElementById("retinaDebugSvg");
+const retinaHotSvg=document.getElementById("retinaHotSvg");
+const retinaDebugSvg=document.getElementById("retinaDebugSvg");
 
-Object.entries(RETINA_LAYERS).forEach(([key, data]) => {
-          const tissueGroup = svgNode("g", {
-            class: "hit-target"
+Object.entries(RETINA_LAYERS).forEach(([key,data])=>{
+          const tissueGroup=svgNode("g",{
+            class:"hit-target"
           });
 
-          tissueGroup.dataset.layer = key;
+          tissueGroup.dataset.layer=key;
 
           tissueGroup.appendChild(
-            svgNode("rect", {
-              x: data.hit.x,
-              y: data.hit.y,
-              width: data.hit.w,
-              height: data.hit.h,
-              fill: "rgba(255,255,255,.001)"
+            svgNode("rect",{
+              x:data.hit.x,
+              y:data.hit.y,
+              width:data.hit.w,
+              height:data.hit.h,
+              fill:"rgba(255,255,255,.001)"
             })
           );
 
           bindAccessible(
             tissueGroup,
             `${data.n} ${data.e}`,
-            () => selectRetinaLayer(key)
+            ()=>selectRetinaLayer(key)
           );
 
           retinaHotSvg.appendChild(tissueGroup);
 
-          const labelGroup = svgNode("g", {
-            class: "label-target"
+          const labelGroup=svgNode("g",{
+            class:"label-target"
           });
 
-          labelGroup.dataset.layer = key;
+          labelGroup.dataset.layer=key;
 
           labelGroup.appendChild(
-            svgNode("rect", {
-              x: data.label.x,
-              y: data.label.y,
-              width: data.label.w,
-              height: data.label.h,
-              rx: 12,
-              fill: "rgba(255,255,255,.001)"
+            svgNode("rect",{
+              x:data.label.x,
+              y:data.label.y,
+              width:data.label.w,
+              height:data.label.h,
+              rx:12,
+              fill:"rgba(255,255,255,.001)"
             })
           );
 
           bindAccessible(
             labelGroup,
             `${data.n} ${data.e} 라벨`,
-            () => selectRetinaLayer(key)
+            ()=>selectRetinaLayer(key)
           );
 
           retinaHotSvg.appendChild(labelGroup);
 });
 
-function renderRetinaDebug() {
+function renderRetinaDebug(){
           retinaDebugSvg.replaceChildren();
-          retinaDebugSvg.style.display = DEBUG_HITBOX ? "block" : "none";
+          retinaDebugSvg.style.display=DEBUG_HITBOX?"block":"none";
 
-          if (!DEBUG_HITBOX) {
+          if(!DEBUG_HITBOX){
             return;
           }
 
-          Object.entries(RETINA_LAYERS).forEach(([key, data]) => {
+          Object.entries(RETINA_LAYERS).forEach(([key,data])=>{
             retinaDebugSvg.appendChild(
-              svgNode("rect", {
-                x: data.hit.x,
-                y: data.hit.y,
-                width: data.hit.w,
-                height: data.hit.h,
-                fill: "rgba(255,0,180,.10)",
-                stroke: "#ff42c6",
-                "stroke-width": 1.5,
-                "data-debug": `${key}-hit`
+              svgNode("rect",{
+                x:data.hit.x,
+                y:data.hit.y,
+                width:data.hit.w,
+                height:data.hit.h,
+                fill:"rgba(255,0,180,.10)",
+                stroke:"#ff42c6",
+                "stroke-width":1.5,
+                "data-debug":`${key}-hit`
               })
             );
 
             retinaDebugSvg.appendChild(
-              svgNode("rect", {
-                x: data.tissue.x,
-                y: data.tissue.y,
-                width: data.tissue.w,
-                height: data.tissue.h,
-                fill: "rgba(0,210,255,.10)",
-                stroke: "#28dcff",
-                "stroke-width": 1.5,
-                "data-debug": `${key}-precise`
+              svgNode("rect",{
+                x:data.tissue.x,
+                y:data.tissue.y,
+                width:data.tissue.w,
+                height:data.tissue.h,
+                fill:"rgba(0,210,255,.10)",
+                stroke:"#28dcff",
+                "stroke-width":1.5,
+                "data-debug":`${key}-precise`
               })
             );
 
             retinaDebugSvg.appendChild(
-              svgNode("rect", {
-                x: data.label.x,
-                y: data.label.y,
-                width: data.label.w,
-                height: data.label.h,
-                rx: 12,
-                fill: "none",
-                stroke: "#57ff76",
-                "stroke-width": 1.5
+              svgNode("rect",{
+                x:data.label.x,
+                y:data.label.y,
+                width:data.label.w,
+                height:data.label.h,
+                rx:12,
+                fill:"none",
+                stroke:"#57ff76",
+                "stroke-width":1.5
               })
             );
           });
 }
 
-const retinaCard = document.getElementById("retinaCard");
+const retinaCard=document.getElementById("retinaCard");
 
-const layerPanelKeys = new Set([
+const layerPanelKeys=new Set([
           "retina",
           "rpe",
           "macula",
           "fovea"
 ]);
 
-function openRetina(open = true) {
-          retinaCard.classList.toggle("show", open);
+function openRetina(open=true){
+          retinaCard.classList.toggle("show",open);
 }
 
-function setNav(category) {
-          document.querySelectorAll(".navbtn").forEach(button => {
+function setNav(category){
+          document.querySelectorAll(".navbtn").forEach(button=>{
             button.classList.toggle(
               "active",
-              button.dataset.category === category
+              button.dataset.category===category
             );
           });
 }
 
-function renderDetails(data, related = []) {
-          document.getElementById("selTitle").textContent = data.n;
-          document.getElementById("selEn").textContent = data.e;
-          document.getElementById("selLocation").textContent = data.loc;
-          document.getElementById("selFunction").textContent = data.fn;
-          document.getElementById("selPoint").textContent = data.pt;
+function renderDetails(data,related=[]){
+          document.getElementById("selTitle").textContent=data.n;
+          document.getElementById("selEn").textContent=data.e;
+          document.getElementById("selLocation").textContent=data.loc;
+          document.getElementById("selFunction").textContent=data.fn;
+          document.getElementById("selPoint").textContent=data.pt;
 
-          const relatedBox = document.getElementById("related");
+          const relatedBox=document.getElementById("related");
           relatedBox.replaceChildren();
 
           related
-            .filter(key => STRUCTURES[key])
-            .forEach(key => {
-              const button = document.createElement("button");
+            .filter(key=>STRUCTURES[key])
+            .forEach(key=>{
+              const button=document.createElement("button");
 
-              button.type = "button";
-              button.textContent = STRUCTURES[key].n;
-              button.addEventListener("click", () => selectStructure(key));
+              button.type="button";
+              button.textContent=STRUCTURES[key].n;
+
+              button.addEventListener("click",()=>{
+                selectStructure(key);
+              });
 
               relatedBox.appendChild(button);
             });
 
-          if (!relatedBox.children.length) {
-            relatedBox.textContent = "—";
+          if(!relatedBox.children.length){
+            relatedBox.textContent="—";
           }
 }
 
-function selectStructure(key) {
-          const data = STRUCTURES[key];
+function selectStructure(key){
+          const data=STRUCTURES[key];
 
-          if (!data) {
+          if(!data){
             return;
           }
 
           setNav(data.category);
-          renderDetails(data, data.related);
+          renderDetails(data,data.related);
+
+          drawSelectionMarker(
+            mainSelectionMarker,
+            data.labelRect,
+            1448,
+            1086,
+            16
+          );
+
+          drawSelectionMarker(
+            retinaSelectionMarker,
+            null,
+            375,
+            547,
+            9
+          );
+
           openRetina(layerPanelKeys.has(key));
 }
 
-function selectRetinaLayer(key) {
-          const data = RETINA_LAYERS[key];
+function selectRetinaLayer(key){
+          const data=RETINA_LAYERS[key];
 
-          if (!data) {
+          if(!data){
             return;
           }
 
@@ -1649,106 +1791,150 @@ function selectRetinaLayer(key) {
 
           renderDetails(
             data,
-            key === "rpe"
-              ? ["rpe", "retina", "choroid"]
-              : ["retina", "rpe", "macula"]
+            key==="rpe"
+              ? ["rpe","retina","choroid"]
+              : ["retina","rpe","macula"]
+          );
+
+          drawSelectionMarker(
+            mainSelectionMarker,
+            null,
+            1448,
+            1086,
+            16
+          );
+
+          drawSelectionMarker(
+            retinaSelectionMarker,
+            data.label,
+            375,
+            547,
+            9
           );
 
           openRetina(true);
 }
 
-function setCategory(key) {
-          const data = CATEGORIES[key];
+function setCategory(key){
+          const data=CATEGORIES[key];
 
-          if (!data) {
+          if(!data){
             return;
           }
 
           setNav(key);
-          renderDetails(data, data.keys);
-          openRetina(key === "retina");
+          renderDetails(data,data.keys);
+
+          drawSelectionMarker(
+            mainSelectionMarker,
+            null,
+            1448,
+            1086,
+            16
+          );
+
+          drawSelectionMarker(
+            retinaSelectionMarker,
+            null,
+            375,
+            547,
+            9
+          );
+
+          openRetina(key==="retina");
 }
 
-let rays = false;
+let rays=false;
 
-function setRays(enabled) {
-          rays = Boolean(enabled);
+function setRays(enabled){
+          rays=Boolean(enabled);
 
-          document.getElementById("lightGroup").style.display =
-            rays ? "block" : "none";
+          document.getElementById("lightGroup").style.display=
+            rays?"block":"none";
 
-          const topButton = document.getElementById("rayBtn");
-          const switchButton = document.getElementById("raySwitch");
+          const topButton=document.getElementById("rayBtn");
+          const switchButton=document.getElementById("raySwitch");
 
-          topButton.textContent = rays ? "빛 경로 OFF" : "빛 경로 ON";
-          topButton.classList.toggle("on", rays);
+          topButton.textContent=
+            rays?"빛 경로 OFF":"빛 경로 ON";
 
-          switchButton.classList.toggle("on", rays);
-          switchButton.setAttribute("aria-checked", String(rays));
+          topButton.classList.toggle("on",rays);
+          switchButton.classList.toggle("on",rays);
+          switchButton.setAttribute("aria-checked",String(rays));
 }
 
-function resetAll() {
+function resetAll(){
           setRays(false);
           setCategory("all");
 }
 
-function renderFlow(id, keys) {
-          const box = document.getElementById(id);
+function renderFlow(id,keys){
+          const box=document.getElementById(id);
 
-          keys.forEach((key, index) => {
-            if (index) {
-              const arrow = document.createElement("span");
-              arrow.className = "arrow";
-              arrow.textContent = "→";
+          keys.forEach((key,index)=>{
+            if(index){
+              const arrow=document.createElement("span");
+              arrow.className="arrow";
+              arrow.textContent="→";
               box.appendChild(arrow);
             }
 
-            const button = document.createElement("button");
+            const button=document.createElement("button");
 
-            button.className = "chip";
-            button.type = "button";
-            button.textContent = STRUCTURES[key].n;
-            button.addEventListener("click", () => selectStructure(key));
+            button.className="chip";
+            button.type="button";
+            button.textContent=STRUCTURES[key].n;
+
+            button.addEventListener("click",()=>{
+              selectStructure(key);
+            });
 
             box.appendChild(button);
           });
 }
 
-document.querySelectorAll(".navbtn").forEach(button => {
-          button.addEventListener("click", () => {
+document.querySelectorAll(".navbtn").forEach(button=>{
+          button.addEventListener("click",()=>{
             setCategory(button.dataset.category);
           });
 });
 
-document.getElementById("rayBtn").addEventListener("click", () => {
+document.getElementById("rayBtn").addEventListener("click",()=>{
           setRays(!rays);
 });
 
-document.getElementById("raySwitch").addEventListener("click", () => {
+document.getElementById("raySwitch").addEventListener("click",()=>{
           setRays(!rays);
 });
 
-document.getElementById("resetTop").addEventListener("click", resetAll);
-document.getElementById("resetSide").addEventListener("click", resetAll);
+document.getElementById("resetTop").addEventListener(
+          "click",
+          resetAll
+);
 
-document.getElementById("closeRetina").addEventListener("click", () => {
+document.getElementById("resetSide").addEventListener(
+          "click",
+          resetAll
+);
+
+document.getElementById("closeRetina").addEventListener("click",()=>{
           openRetina(false);
 });
 
-document.getElementById("eyeStage").addEventListener("click", event => {
-          if (!event.target.closest("[data-key]")) {
+document.getElementById("eyeStage").addEventListener("click",event=>{
+          if(!event.target.closest("[data-key]")){
             setCategory("all");
           }
 });
 
 renderFlow(
           "lightFlow",
-          ["cornea", "pupil", "lens", "vitreous", "fovea"]
+          ["cornea","pupil","lens","vitreous","fovea"]
 );
 
 renderFlow(
           "wallFlow",
-          ["sclera", "choroid", "rpe", "retina", "vitreous"]
+          ["sclera","choroid","rpe","retina","vitreous"]
 );
 
 renderMainDebug();
