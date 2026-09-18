@@ -1,44 +1,2589 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>시야와 망막의 상하좌우 대응 | Eye Visual Reference</title>
-<style>
-:root{--bg:#f6f8fc;--panel:#fff;--line:#dce4ef;--text:#182236;--muted:#6f7b90;--blue:#4e78ff;--retina:#ff738a;--shadow:0 18px 50px rgba(28,46,83,.10)}
-*{box-sizing:border-box} body{margin:0;background:linear-gradient(#f9fbff,#f2f5fa);color:var(--text);font-family:Pretendard,"Noto Sans KR",Inter,Arial,sans-serif}
-.page{max-width:1200px;margin:auto;padding:28px}.top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.top h1{margin:0;font-size:clamp(28px,3vw,42px);letter-spacing:-.04em}.top p{margin:8px 0 0;color:var(--muted)}.home{text-decoration:none;border:1px solid var(--line);background:white;border-radius:12px;padding:10px 14px;font-size:14px}.card{background:white;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
-.controls{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:20px 0}.dir{border:1px solid var(--line);background:white;padding:10px 16px;border-radius:999px;font-weight:800;cursor:pointer}.dir.active{background:var(--blue);border-color:var(--blue);color:white}.eye-toggle{display:flex;gap:6px;margin-left:12px}.eye{border:1px solid var(--line);background:#f8faff;padding:10px 13px;border-radius:999px;font-weight:800;cursor:pointer}.eye.active{background:#17233a;color:white;border-color:#17233a}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{padding:20px;min-height:500px}.panel h2{font-size:16px;margin:0 0 14px}.stage{height:385px;border:1px solid #edf1f6;border-radius:18px;background:radial-gradient(circle,#fff,#f6f9fd);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.field{width:300px;height:300px;border-radius:50%;position:relative;background:linear-gradient(135deg,#edf6ff,#fff);border:7px solid #c8d4e6;box-shadow:inset 0 0 0 1px white}.cross:before,.cross:after{content:"";position:absolute;background:#cad5e5}.cross:before{left:50%;top:6%;bottom:6%;width:1px}.cross:after{top:50%;left:6%;right:6%;height:1px}.fix{position:absolute;left:50%;top:50%;width:10px;height:10px;border-radius:50%;background:#17233a;transform:translate(-50%,-50%)}.curtain{position:absolute;background:rgba(25,34,50,.86);transition:.3s ease}.curtain.top{left:0;right:0;top:0;height:50%;border-radius:140px 140px 0 0}.curtain.bottom{left:0;right:0;bottom:0;height:50%;border-radius:0 0 140px 140px}.curtain.left{left:0;top:0;bottom:0;width:50%;border-radius:140px 0 0 140px}.curtain.right{right:0;top:0;bottom:0;width:50%;border-radius:0 140px 140px 0}.field-label{position:absolute;font-size:12px;font-weight:800;color:#718095}.field-label.t{top:22px;left:50%;transform:translateX(-50%)}.field-label.b{bottom:22px;left:50%;transform:translateX(-50%)}.field-label.l{left:20px;top:50%;transform:translateY(-50%)}.field-label.r{right:20px;top:50%;transform:translateY(-50%)}
-.eye-diagram{width:360px;height:260px;position:relative}.globe{position:absolute;left:58px;top:22px;width:250px;height:216px;border-radius:50%;background:#fff;border:14px solid #dfe7f2;box-shadow:inset 0 0 0 7px #a15f45}.retina-ring{position:absolute;left:79px;top:43px;width:208px;height:174px;border-radius:50%;border:9px solid var(--retina)}.retina-highlight{position:absolute;left:79px;top:43px;width:208px;height:174px;border-radius:50%;border:13px solid transparent;transition:.3s ease}.retina-highlight.top{border-top-color:#ff2f56}.retina-highlight.bottom{border-bottom-color:#ff2f56}.retina-highlight.left{border-left-color:#ff2f56}.retina-highlight.right{border-right-color:#ff2f56}.cornea{position:absolute;left:34px;top:68px;width:80px;height:120px;border-radius:50%;border:5px solid #6fd4ea;background:rgba(158,231,246,.35)}.lens{position:absolute;left:120px;top:82px;width:44px;height:92px;border-radius:50%;background:#ffe59a;border:3px solid #e9bd54}.nerve{position:absolute;right:4px;top:110px;width:85px;height:35px;border-radius:0 20px 20px 0;background:#f3c45c;transform:rotate(-5deg)}.retina-center{position:absolute;left:178px;top:125px;width:6px;height:6px;border-radius:50%;background:#273147}.anatomy-label{position:absolute;font-size:12px;font-weight:800;color:#6f7b90}.anatomy-label.t{top:0;left:160px}.anatomy-label.b{bottom:0;left:160px}.anatomy-label.l{left:0;top:120px}.anatomy-label.r{right:0;top:70px}
-.result{margin-top:16px;padding:15px 16px;border-radius:14px;background:#f4f7ff;border:1px solid #dfe6ff}.result strong{display:block;font-size:18px;margin-bottom:6px}.result p{margin:0;color:#59667b;line-height:1.65;font-size:14px}.rule{margin-top:18px;padding:18px 20px;text-align:center}.rule b{font-size:20px}.rule p{margin:7px 0 0;color:var(--muted);font-size:14px;line-height:1.7}.warn{margin-top:12px;color:#7c6532;font-size:12px;background:#fff9e9;border:1px solid #f1dfad;padding:12px 14px;border-radius:12px;line-height:1.6}.arrow{font-size:34px;text-align:center;color:#8190a8;margin:10px 0}.map-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}.map-table th,.map-table td{padding:9px 10px;border-top:1px solid #edf1f6;text-align:left}.map-table th{color:#6d7788;font-size:11px}.highlight-cell{font-weight:800;color:#2f55d4}
-@media(max-width:860px){.page{padding:18px 14px}.top{flex-direction:column}.grid{grid-template-columns:1fr}.panel{min-height:auto}.stage{height:360px}.eye-toggle{width:100%;justify-content:center;margin:4px 0 0}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="양안 시야와 망막 대응, 굴절 상태, 시력과 약시를 함께 학습하는 안과 교육용 시각 자료">
+    <title>시야 · 굴절 · 시력 | Ophthalmology Visual Reference</title>
+
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #020b17;
+            --bg2: #06182d;
+            --panel: #071b33;
+            --line: #145382;
+            --text: #f6fbff;
+            --muted: #a9bfd3;
+            --cyan: #52d6ff;
+            --yellow: #ffd24a;
+            --shadow: 0 18px 48px rgba(0,0,0,.28);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            min-height: 100%;
+            background: radial-gradient(circle at 58% 4%,#123454 0,transparent 34%), linear-gradient(135deg,var(--bg),var(--bg2) 58%,#050f21);
+            color: var(--text);
+            font-family: Pretendard,"Noto Sans KR",Inter,Arial,sans-serif;
+        }
+
+        button, a {
+            font: inherit
+        }
+
+        button {
+            color: inherit
+        }
+
+        a {
+            color: inherit
+        }
+
+        .app {
+            width: min(1560px,100%);
+            margin: auto;
+            padding: 16px;
+        }
+
+        .topbar {
+            display: grid;
+            grid-template-columns: minmax(0,1fr) auto;
+            gap: 18px;
+            align-items: center;
+            padding: 8px 2px 16px;
+        }
+
+        .headline h1 {
+            margin: 0;
+            font-size: clamp(30px,3.1vw,48px);
+            line-height: 1.08;
+            letter-spacing: -.045em;
+        }
+
+            .headline h1 small {
+                font-size: .42em;
+                color: #bfd0df;
+                font-weight: 600;
+                margin-left: 10px;
+                letter-spacing: -.02em;
+            }
+
+        .headline p {
+            margin: 9px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            border: 1px solid #205d8b;
+            background: #071d36;
+            color: #e0f2ff;
+            border-radius: 999px;
+            padding: 10px 15px;
+            font-weight: 850;
+        }
+
+            .home:hover,
+            .home:focus-visible {
+                background: #0c4b78;
+                border-color: #43c5ff;
+                outline: none;
+            }
+
+        .section-nav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(34,115,168,.74);
+            border-radius: 16px;
+            background: rgba(3,17,33,.88);
+            box-shadow: 0 12px 28px rgba(0,0,0,.2);
+            backdrop-filter: blur(14px);
+        }
+
+            .section-nav a {
+                text-decoration: none;
+                border: 1px solid #1a527c;
+                background: #071d36;
+                color: #d9ecfa;
+                border-radius: 999px;
+                padding: 9px 14px;
+                font-size: 13px;
+                font-weight: 850;
+            }
+
+                .section-nav a:hover,
+                .section-nav a:focus-visible {
+                    border-color: var(--cyan);
+                    color: #fff;
+                    outline: none;
+                }
+
+            .section-nav .legend {
+                margin-left: auto;
+                color: #9eb8cc;
+                font-size: 12px;
+                display: flex;
+                align-items: center;
+                padding: 0 8px;
+            }
+
+        .section {
+            scroll-margin-top: 82px;
+            margin-bottom: 18px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+            margin: 0 2px 10px;
+        }
+
+            .section-heading h2 {
+                margin: 0;
+                font-size: clamp(23px,2vw,32px);
+                letter-spacing: -.035em;
+            }
+
+            .section-heading p {
+                margin: 5px 0 0;
+                color: var(--muted);
+                font-size: 13px;
+                line-height: 1.55;
+            }
+
+        .eyebrow {
+            color: var(--cyan);
+            font-size: 12px;
+            font-weight: 950;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .badge {
+            border: 1px solid #2c658f;
+            background: #08223d;
+            color: #cde9fa;
+            border-radius: 999px;
+            padding: 7px 11px;
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: linear-gradient( 180deg, rgba(7,29,54,.98), rgba(4,20,39,.98) );
+            box-shadow: var(--shadow);
+        }
+
+        .field-controls,
+        .refract-controls {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+
+        .choice {
+            border: 1px solid #205d8b;
+            background: #071d36;
+            color: #dcecf8;
+            border-radius: 999px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: 900;
+            transition: .18s ease;
+        }
+
+            .choice:hover {
+                border-color: #4ac9fa;
+                transform: translateY(-1px);
+            }
+
+            .choice:focus-visible {
+                outline: 3px solid rgba(82,214,255,.35);
+                outline-offset: 2px;
+            }
+
+            .choice.active {
+                background: linear-gradient(90deg,#0c5488,#155f97);
+                border-color: #6cddff;
+                color: #fff;
+                box-shadow: 0 0 0 2px rgba(82,214,255,.12) inset;
+            }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 14px;
+        }
+
+        .lesson-card {
+            padding: 16px;
+            min-width: 0;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 950;
+        }
+
+        .step {
+            width: 28px;
+            height: 28px;
+            border-radius: 9px;
+            display: grid;
+            place-items: center;
+            background: #0e4f7e;
+            color: #fff;
+            font-size: 13px;
+        }
+
+        .visual-stage {
+            min-height: 370px;
+            display: grid;
+            place-items: center;
+            border: 1px solid #123f65;
+            border-radius: 16px;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 45%,#0d3458,#06172c 66%,#04111f);
+        }
+
+            .visual-stage svg {
+                display: block;
+                width: 100%;
+                height: auto;
+                max-height: 420px;
+            }
+
+        .field-result {
+            margin-top: 12px;
+            padding: 13px 14px;
+            border: 1px solid #1d5d8a;
+            border-radius: 14px;
+            background: #08213c;
+        }
+
+            .field-result strong {
+                display: block;
+                color: #fff;
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+
+            .field-result p {
+                margin: 0;
+                color: #c3d7e6;
+                font-size: 13px;
+                line-height: 1.65;
+            }
+
+        .retina-readout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+            margin-top: 12px;
+        }
+
+        .eye-readout {
+            padding: 11px 12px;
+            border: 1px solid #225981;
+            border-radius: 12px;
+            background: #071c34;
+        }
+
+            .eye-readout b {
+                display: block;
+                color: var(--yellow);
+                font-size: 12px;
+                margin-bottom: 4px;
+            }
+
+            .eye-readout span {
+                font-size: 14px;
+                font-weight: 900;
+            }
+
+        .hemisphere {
+            margin-top: 9px;
+            border: 1px solid #5e52a7;
+            background: linear-gradient(90deg,#191d50,#101c43);
+            color: #e4ddff;
+            border-radius: 12px;
+            padding: 10px 12px;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .key-rule {
+            margin-top: 14px;
+            padding: 16px 18px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 14px;
+            align-items: center;
+        }
+
+            .key-rule .symbol {
+                width: 48px;
+                height: 48px;
+                border-radius: 15px;
+                display: grid;
+                place-items: center;
+                background: #0d4771;
+                color: var(--cyan);
+                font-size: 26px;
+                font-weight: 950;
+            }
+
+            .key-rule b {
+                display: block;
+                font-size: 17px;
+                margin-bottom: 4px;
+            }
+
+            .key-rule p {
+                margin: 0;
+                color: #b9cfdf;
+                font-size: 13px;
+                line-height: 1.65;
+            }
+
+        .clinical-note {
+            margin-top: 12px;
+            border: 1px solid #8b6b28;
+            background: rgba(101,71,16,.25);
+            border-radius: 14px;
+            padding: 13px 15px;
+            color: #f7e3a8;
+            font-size: 12px;
+            line-height: 1.65;
+        }
+
+        .refract-layout {
+            display: grid;
+            grid-template-columns: minmax(0,1.35fr) minmax(320px,.65fr);
+            gap: 14px;
+        }
+
+        .optics-card {
+            padding: 16px
+        }
+
+        .optics-stage {
+            position: relative;
+            min-height: 420px;
+            border: 1px solid #123f65;
+            border-radius: 16px;
+            overflow: hidden;
+            background: radial-gradient(circle at 54% 46%,#0e3559,#06172c 68%,#04111f);
+        }
+
+            .optics-stage svg {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+        .state-group {
+            display: none
+        }
+
+            .state-group.active {
+                display: block
+            }
+
+        .ray {
+            fill: none;
+            stroke: var(--yellow);
+            stroke-width: 3.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 0 4px rgba(255,210,74,.45));
+        }
+
+            .ray.secondary {
+                stroke: #68dfff;
+                stroke-width: 2.6;
+            }
+
+            .ray.extension {
+                stroke-dasharray: 8 7;
+                opacity: .6;
+            }
+
+        .focus-dot {
+            fill: #fff6b9;
+            stroke: var(--yellow);
+            stroke-width: 3;
+        }
+
+        .retina-line {
+            fill: none;
+            stroke: #ff7180;
+            stroke-width: 12;
+            stroke-linecap: round;
+        }
+
+        .signal-line {
+            fill: none;
+            stroke: #9b8cff;
+            stroke-width: 7;
+            stroke-linecap: round;
+        }
+
+        .optic-label {
+            font-size: 14px;
+            font-weight: 850;
+            fill: #d9eafa;
+        }
+
+        .optic-small {
+            font-size: 11px;
+            font-weight: 750;
+            fill: #96b3c8;
+        }
+
+        .state-info {
+            padding: 17px;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .state-name {
+            font-size: 25px;
+            font-weight: 950;
+            letter-spacing: -.03em;
+        }
+
+        .state-en {
+            margin-top: -8px;
+            color: #9db8cd;
+            font-size: 13px;
+        }
+
+        .state-tag {
+            display: inline-flex;
+            align-self: flex-start;
+            border: 1px solid #31658e;
+            background: #08213b;
+            border-radius: 999px;
+            padding: 6px 9px;
+            color: #bee7ff;
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .info-block {
+            border: 1px solid #244e72;
+            background: rgba(3,17,36,.58);
+            border-radius: 13px;
+            padding: 11px 12px;
+        }
+
+            .info-block b {
+                display: block;
+                color: var(--yellow);
+                font-size: 12px;
+                margin-bottom: 5px;
+            }
+
+            .info-block p {
+                margin: 0;
+                color: #d7e5ef;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+        .correction-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+        }
+
+        .correction {
+            border: 1px solid #38549a;
+            background: #111d4c;
+            border-radius: 13px;
+            padding: 11px;
+        }
+
+            .correction span {
+                display: block;
+                color: #bcb4ff;
+                font-size: 11px;
+                font-weight: 900;
+                margin-bottom: 4px;
+            }
+
+            .correction strong {
+                font-size: 14px
+            }
+
+        .relation-strip {
+            margin-top: 14px;
+            padding: 15px 17px;
+        }
+
+            .relation-strip h3 {
+                margin: 0 0 11px;
+                font-size: 16px;
+            }
+
+        .relation-grid {
+            display: grid;
+            grid-template-columns: repeat(5,1fr);
+            gap: 8px;
+        }
+
+        .relation-item {
+            border: 1px solid #1f537a;
+            border-radius: 12px;
+            background: #061b32;
+            padding: 10px;
+        }
+
+            .relation-item b {
+                display: block;
+                font-size: 13px;
+                margin-bottom: 4px;
+            }
+
+            .relation-item span {
+                display: block;
+                color: #a9c0d1;
+                font-size: 11px;
+                line-height: 1.5;
+            }
+
+            .relation-item.separate {
+                border-color: #6a58a4;
+                background: #141a47;
+            }
+
+        .acuity-top {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 12px;
+        }
+
+        .concept {
+            padding: 16px
+        }
+
+            .concept .icon {
+                width: 38px;
+                height: 38px;
+                border-radius: 12px;
+                display: grid;
+                place-items: center;
+                background: #0c4c77;
+                color: var(--cyan);
+                font-size: 20px;
+                font-weight: 950;
+                margin-bottom: 10px;
+            }
+
+            .concept h3 {
+                margin: 0 0 7px;
+                font-size: 17px;
+            }
+
+            .concept p {
+                margin: 0;
+                color: #bcd0df;
+                font-size: 13px;
+                line-height: 1.65;
+            }
+
+        .acuity-grid {
+            display: grid;
+            grid-template-columns: minmax(0,1.1fr) minmax(320px,.9fr);
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        .table-card,
+        .amblyopia-card {
+            padding: 16px;
+            overflow: hidden;
+        }
+
+            .table-card h3,
+            .amblyopia-card h3 {
+                margin: 0 0 5px;
+                font-size: 18px;
+            }
+
+        .subcopy {
+            margin: 0 0 12px;
+            color: #a9c0d1;
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .acuity-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+            .acuity-table th,
+            .acuity-table td {
+                padding: 10px;
+                border-top: 1px solid #153f61;
+                text-align: center;
+            }
+
+            .acuity-table th {
+                color: #8fb3cb;
+                font-size: 11px;
+                text-transform: uppercase;
+                letter-spacing: .05em;
+            }
+
+            .acuity-table td:first-child {
+                text-align: left;
+                font-weight: 850;
+            }
+
+            .acuity-table tr.active-row {
+                background: rgba(82,214,255,.07);
+            }
+
+        .formula {
+            margin-top: 11px;
+            padding: 10px 12px;
+            border-radius: 11px;
+            background: #071d35;
+            color: #bcd4e4;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .amblyopia-hero {
+            display: grid;
+            grid-template-columns: 70px 1fr;
+            gap: 12px;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid #6456a2;
+            background: #151a47;
+            border-radius: 14px;
+            margin: 12px 0;
+        }
+
+        .brain-icon {
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #2a276a;
+            color: #d9d3ff;
+            font-size: 30px;
+        }
+
+        .amblyopia-hero b {
+            display: block;
+            color: #d8d0ff;
+            margin-bottom: 4px;
+        }
+
+        .amblyopia-hero p {
+            margin: 0;
+            color: #c9d3e3;
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .cause-list {
+            display: grid;
+            gap: 8px;
+        }
+
+        .cause {
+            border: 1px solid #284f72;
+            border-radius: 11px;
+            padding: 9px 10px;
+            background: #061a31;
+        }
+
+            .cause b {
+                display: block;
+                color: #73dcff;
+                font-size: 12px;
+                margin-bottom: 3px;
+            }
+
+            .cause span {
+                color: #bdd0df;
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+        .exam-note {
+            margin-top: 14px;
+            padding: 15px 17px;
+            border-color: #236b69;
+            background: linear-gradient(180deg,rgba(8,59,60,.8),rgba(4,35,43,.9));
+        }
+
+            .exam-note h3 {
+                margin: 0 0 7px;
+                color: #80edcf;
+                font-size: 16px;
+            }
+
+            .exam-note p {
+                margin: 0;
+                color: #cce4de;
+                font-size: 13px;
+                line-height: 1.65;
+            }
+
+        .sources {
+            padding: 16px 18px;
+            margin-top: 18px;
+        }
+
+            .sources h2 {
+                margin: 0 0 9px;
+                font-size: 16px;
+            }
+
+            .sources p {
+                margin: 0 0 8px;
+                color: #9fb8ca;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+
+        .source-links {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+            .source-links a {
+                border: 1px solid #1b527c;
+                background: #071b32;
+                border-radius: 999px;
+                padding: 7px 10px;
+                text-decoration: none;
+                color: #c7e2f4;
+                font-size: 11px;
+                font-weight: 800;
+            }
+
+                .source-links a:hover,
+                .source-links a:focus-visible {
+                    border-color: var(--cyan);
+                    outline: none;
+                }
+
+        .footer {
+            padding: 18px 4px 7px;
+            color: #7895aa;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        @media(max-width:1050px) {
+            .field-grid,
+            .refract-layout,
+            .acuity-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .visual-stage {
+                min-height: 330px
+            }
+
+            .state-info {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+                .state-info .state-name,
+                .state-info .state-en,
+                .state-info .state-tag {
+                    grid-column: 1/-1;
+                }
+
+            .relation-grid {
+                grid-template-columns: repeat(3,1fr);
+            }
+        }
+
+        @media(max-width:720px) {
+            .app {
+                padding: 9px
+            }
+
+            .topbar {
+                grid-template-columns: 1fr;
+            }
+
+            .headline h1 small {
+                display: block;
+                margin: 6px 0 0;
+            }
+
+            .home {
+                justify-self: start
+            }
+
+            .section-nav {
+                top: 0;
+                border-radius: 13px;
+            }
+
+                .section-nav .legend {
+                    display: none
+                }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .field-controls,
+            .refract-controls {
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+
+            .choice {
+                white-space: nowrap
+            }
+
+            .visual-stage {
+                min-height: 260px
+            }
+
+            .retina-readout,
+            .correction-row,
+            .acuity-top {
+                grid-template-columns: 1fr;
+            }
+
+            .state-info {
+                display: flex
+            }
+
+            .relation-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .key-rule {
+                grid-template-columns: 1fr;
+            }
+
+            .acuity-table {
+                font-size: 12px
+            }
+
+                .acuity-table th,
+                .acuity-table td {
+                    padding: 8px 5px;
+                }
+        }
+
+        @media(max-width:430px) {
+            .relation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-nav a {
+                padding: 8px 10px;
+            }
+
+            .lesson-card,
+            .optics-card,
+            .state-info,
+            .concept,
+            .table-card,
+            .amblyopia-card {
+                padding: 12px;
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            .choice {
+                transition: none
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="page">
-  <div class="top"><div><h1>시야 ↔ 망막 상하좌우 대응</h1><p>환자가 느끼는 가림 방향과 망막에서 대응되는 위치를 4방향으로 확인합니다.</p></div><a class="home" href="../">← 메인으로</a></div>
-  <div class="controls">
-    <button class="dir active" data-dir="top">↑ 위쪽 시야</button><button class="dir" data-dir="bottom">↓ 아래쪽 시야</button><button class="dir" data-dir="left">← 왼쪽 시야</button><button class="dir" data-dir="right">→ 오른쪽 시야</button>
-    <div class="eye-toggle"><button class="eye active" data-eye="OD">OD 우안</button><button class="eye" data-eye="OS">OS 좌안</button></div>
-  </div>
-  <div class="grid">
-    <section class="card panel"><h2>① 환자가 느끼는 시야</h2><div class="stage"><div class="field cross"><div id="curtain" class="curtain top"></div><div class="fix"></div><span class="field-label t">위</span><span class="field-label b">아래</span><span class="field-label l">왼쪽</span><span class="field-label r">오른쪽</span></div></div><div class="result"><strong id="fieldTitle">위쪽 시야가 가려짐</strong><p id="fieldText">환자가 “위쪽에 커튼이 보인다”, “위에서 가려진다”고 표현하는 상황을 단순화한 예시입니다.</p></div></section>
-    <section class="card panel"><h2>② 망막에서 대응되는 위치</h2><div class="stage"><div class="eye-diagram"><div class="globe"></div><div class="retina-ring"></div><div id="retinaHighlight" class="retina-highlight bottom"></div><div class="cornea"></div><div class="lens"></div><div class="nerve"></div><div class="retina-center"></div><span class="anatomy-label t">위쪽 망막</span><span class="anatomy-label b">아래쪽 망막</span><span class="anatomy-label l">앞쪽</span><span class="anatomy-label r">뒤쪽</span></div></div><div class="result"><strong id="retinaTitle">→ 아래쪽 망막과 대응</strong><p id="retinaText">눈의 광학계에서 상하가 뒤집혀 망막에 맺히므로, 위쪽 시야는 아래쪽 망막과 대응합니다.</p></div></section>
-  </div>
-  <section class="card rule"><b>암기: 시야에서 느끼는 방향 ↔ 망막 위치는 상·하·좌·우 모두 반대</b><p>위 시야↔아래 망막 · 아래 시야↔위 망막 · 왼쪽 시야↔오른쪽 망막 · 오른쪽 시야↔왼쪽 망막</p><div class="warn">망막박리 환자의 표현은 박리 범위·진행 방향·중심부 침범 등에 따라 다양할 수 있으므로, 시야 방향만으로 열공이나 박리의 정확한 위치를 확정하지 않습니다. 갑작스러운 커튼 모양 시야가림은 위치와 관계없이 긴급 안과 평가가 필요한 증상입니다.</div></section>
-  <section class="card rule" style="text-align:left"><b style="font-size:16px">좌우 방향을 OD/OS 용어로 바꾸면</b><table class="map-table"><thead><tr><th>환자 시야</th><th>망막 방향</th><th>OD 우안</th><th>OS 좌안</th></tr></thead><tbody><tr><td>왼쪽 시야</td><td>오른쪽 망막</td><td class="highlight-cell">Temporal retina</td><td class="highlight-cell">Nasal retina</td></tr><tr><td>오른쪽 시야</td><td>왼쪽 망막</td><td class="highlight-cell">Nasal retina</td><td class="highlight-cell">Temporal retina</td></tr><tr><td>위쪽 시야</td><td>아래쪽 망막</td><td>Inferior retina</td><td>Inferior retina</td></tr><tr><td>아래쪽 시야</td><td>위쪽 망막</td><td>Superior retina</td><td>Superior retina</td></tr></tbody></table></section>
-</div>
-<script>
-let direction='top', eye='OD';
-const map={
- top:{field:'위쪽 시야가 가려짐',fieldText:'환자가 “위쪽에 커튼이 보인다”, “위에서 가려진다”고 표현하는 상황을 단순화한 예시입니다.',retina:'bottom',title:'→ 아래쪽 망막과 대응',base:'눈의 광학계에서 상하가 뒤집혀 망막에 맺히므로, 위쪽 시야는 아래쪽 망막과 대응합니다.'},
- bottom:{field:'아래쪽 시야가 가려짐',fieldText:'환자가 “아래쪽이 가려진다”, “아래에서 커튼이 올라온다”고 표현하는 상황을 단순화한 예시입니다.',retina:'top',title:'→ 위쪽 망막과 대응',base:'아래쪽 시야는 위쪽 망막과 대응합니다.'},
- left:{field:'왼쪽 시야가 가려짐',fieldText:'환자가 한쪽 눈에서 “왼쪽이 가려진다”고 느끼는 상황을 단순화한 예시입니다.',retina:'right',title:'→ 오른쪽 망막과 대응',base:'좌우도 반전되어 왼쪽 시야는 망막의 오른쪽 절반과 대응합니다.'},
- right:{field:'오른쪽 시야가 가려짐',fieldText:'환자가 한쪽 눈에서 “오른쪽이 가려진다”고 느끼는 상황을 단순화한 예시입니다.',retina:'left',title:'→ 왼쪽 망막과 대응',base:'좌우도 반전되어 오른쪽 시야는 망막의 왼쪽 절반과 대응합니다.'}
+    <div class="app">
+
+        <header class="topbar">
+            <div class="headline">
+                <h1>
+                    시야 · 굴절 · 시력
+                    <small>Visual Field, Refraction &amp; Visual Acuity</small>
+                </h1>
+                <p>
+                    양안의 시야–망막 대응, 눈의 굴절 상태,
+                    시력과 약시를 하나의 흐름으로 학습합니다.
+                </p>
+            </div>
+
+            <a class="home"
+               href="../"
+               aria-label="Ophthalmology Visual Reference 메인으로">← 메인으로</a>
+        </header>
+
+        <nav class="section-nav" aria-label="페이지 학습 영역">
+            <a href="#visual-field">01 시야 ↔ 망막</a>
+            <a href="#refraction">02 굴절 상태</a>
+            <a href="#visual-acuity">03 시력 · 약시</a>
+            <span class="legend">교육용 시각화 · 진단 도구 아님</span>
+        </nav>
+
+        <main>
+
+            <!-- =====================================================
+                 01. 시야와 망막
+            ====================================================== -->
+
+            <section class="section" id="visual-field">
+
+                <div class="section-heading">
+                    <div>
+                        <div class="eyebrow">Visual field → Retina → Brain</div>
+                        <h2>양안 시야와 망막의 대응</h2>
+                        <p>
+                            OD·OS를 따로 전환하지 않고, 한 방향의 시야가
+                            두 눈의 어느 반망막에 맺히는지 동시에 봅니다.
+                        </p>
+                    </div>
+
+                    <span class="badge">양안 동시 표시</span>
+                </div>
+
+                <div class="card field-controls"
+                     role="group"
+                     aria-label="시야 방향 선택">
+                    <button class="choice field-choice active"
+                            type="button"
+                            data-direction="top"
+                            aria-pressed="true">
+                        ↑ 위쪽 시야
+                    </button>
+
+                    <button class="choice field-choice"
+                            type="button"
+                            data-direction="bottom"
+                            aria-pressed="false">
+                        ↓ 아래쪽 시야
+                    </button>
+
+                    <button class="choice field-choice"
+                            type="button"
+                            data-direction="left"
+                            aria-pressed="false">
+                        ← 왼쪽 시야
+                    </button>
+
+                    <button class="choice field-choice"
+                            type="button"
+                            data-direction="right"
+                            aria-pressed="false">
+                        → 오른쪽 시야
+                    </button>
+                </div>
+
+                <div class="field-grid">
+
+                    <article class="card lesson-card">
+                        <div class="card-title">
+                            <span class="step">1</span>
+                            환자가 지각하는 양안 시야
+                        </div>
+
+                        <div class="visual-stage">
+                            <svg viewBox="0 0 680 390"
+                                 role="img"
+                                 aria-labelledby="fieldSvgTitle fieldSvgDesc">
+                                <title id="fieldSvgTitle">
+                                    선택한 양안 시야 방향
+                                </title>
+
+                                <desc id="fieldSvgDesc">
+                                    겹쳐진 두 눈의 시야 중 선택한 방향을 색으로 표시합니다.
+                                </desc>
+
+                                <defs>
+                                    <clipPath id="fieldUnion">
+                                        <ellipse cx="255"
+                                                 cy="190"
+                                                 rx="205"
+                                                 ry="145"></ellipse>
+
+                                        <ellipse cx="425"
+                                                 cy="190"
+                                                 rx="205"
+                                                 ry="145"></ellipse>
+                                    </clipPath>
+
+                                    <radialGradient id="fieldGlow">
+                                        <stop offset="0"
+                                              stop-color="#153f67"></stop>
+
+                                        <stop offset="1"
+                                              stop-color="#071a31"></stop>
+                                    </radialGradient>
+
+                                    <pattern id="gridPattern"
+                                             width="28"
+                                             height="28"
+                                             patternUnits="userSpaceOnUse">
+                                        <path d="M28 0H0V28"
+                                              fill="none"
+                                              stroke="#72b8df"
+                                              stroke-opacity=".11"
+                                              stroke-width="1"></path>
+                                    </pattern>
+                                </defs>
+
+                                <ellipse cx="255"
+                                         cy="190"
+                                         rx="205"
+                                         ry="145"
+                                         fill="url(#fieldGlow)"
+                                         stroke="#4b7697"
+                                         stroke-width="3"></ellipse>
+
+                                <ellipse cx="425"
+                                         cy="190"
+                                         rx="205"
+                                         ry="145"
+                                         fill="url(#fieldGlow)"
+                                         stroke="#4b7697"
+                                         stroke-width="3"></ellipse>
+
+                                <rect x="45"
+                                      y="40"
+                                      width="590"
+                                      height="300"
+                                      fill="url(#gridPattern)"
+                                      clip-path="url(#fieldUnion)"></rect>
+
+                                <g clip-path="url(#fieldUnion)">
+                                    <rect id="fieldShade"
+                                          x="45"
+                                          y="40"
+                                          width="590"
+                                          height="150"
+                                          fill="#ff7180"
+                                          opacity=".72"></rect>
+                                </g>
+
+                                <line x1="340"
+                                      y1="55"
+                                      x2="340"
+                                      y2="325"
+                                      stroke="#a8c3d6"
+                                      stroke-opacity=".45"
+                                      stroke-dasharray="6 7"></line>
+
+                                <line x1="75"
+                                      y1="190"
+                                      x2="605"
+                                      y2="190"
+                                      stroke="#a8c3d6"
+                                      stroke-opacity=".45"
+                                      stroke-dasharray="6 7"></line>
+
+                                <circle cx="340"
+                                        cy="190"
+                                        r="8"
+                                        fill="#fff"
+                                        stroke="#0a253f"
+                                        stroke-width="4"></circle>
+
+                                <text x="340"
+                                      y="25"
+                                      text-anchor="middle"
+                                      fill="#cfe5f3"
+                                      font-size="15"
+                                      font-weight="800">위쪽 시야</text>
+
+                                <text x="340"
+                                      y="370"
+                                      text-anchor="middle"
+                                      fill="#cfe5f3"
+                                      font-size="15"
+                                      font-weight="800">아래쪽 시야</text>
+
+                                <text x="18"
+                                      y="195"
+                                      fill="#cfe5f3"
+                                      font-size="15"
+                                      font-weight="800">왼쪽</text>
+
+                                <text x="617"
+                                      y="195"
+                                      fill="#cfe5f3"
+                                      font-size="15"
+                                      font-weight="800">오른쪽</text>
+
+                                <text x="194"
+                                      y="355"
+                                      text-anchor="middle"
+                                      fill="#7fa5bf"
+                                      font-size="12"
+                                      font-weight="800">OS 시야</text>
+
+                                <text x="486"
+                                      y="355"
+                                      text-anchor="middle"
+                                      fill="#7fa5bf"
+                                      font-size="12"
+                                      font-weight="800">OD 시야</text>
+                            </svg>
+                        </div>
+
+                        <div class="field-result">
+                            <strong id="fieldTitle">위쪽 시야</strong>
+
+                            <p id="fieldText">
+                                고정점을 바라볼 때 위쪽에 위치한 공간 정보입니다.
+                                그림의 색 영역은 질환이나 실제 결손 모양이 아니라
+                                방향 대응을 학습하기 위한 표시입니다.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="card lesson-card">
+                        <div class="card-title">
+                            <span class="step">2</span>
+                            두 눈의 반망막과 시각 경로
+                        </div>
+
+                        <div class="visual-stage">
+                            <svg viewBox="0 0 760 390"
+                                 role="img"
+                                 aria-labelledby="retinaSvgTitle retinaSvgDesc">
+                                <title id="retinaSvgTitle">
+                                    우안과 좌안의 선택된 반망막
+                                </title>
+
+                                <desc id="retinaSvgDesc">
+                                    선택한 시야 방향에 대응하는 우안과 좌안의
+                                    망막 절반을 동시에 표시합니다.
+                                </desc>
+
+                                <defs>
+                                    <radialGradient id="retinaBase">
+                                        <stop offset="0"
+                                              stop-color="#9a3b31"></stop>
+
+                                        <stop offset=".65"
+                                              stop-color="#6e2929"></stop>
+
+                                        <stop offset="1"
+                                              stop-color="#2c1720"></stop>
+                                    </radialGradient>
+
+                                    <clipPath id="odClip">
+                                        <circle cx="215"
+                                                cy="178"
+                                                r="117"></circle>
+                                    </clipPath>
+
+                                    <clipPath id="osClip">
+                                        <circle cx="545"
+                                                cy="178"
+                                                r="117"></circle>
+                                    </clipPath>
+                                </defs>
+
+                                <text x="215"
+                                      y="30"
+                                      text-anchor="middle"
+                                      fill="#fff"
+                                      font-size="19"
+                                      font-weight="950">OD · 우안</text>
+
+                                <text x="545"
+                                      y="30"
+                                      text-anchor="middle"
+                                      fill="#fff"
+                                      font-size="19"
+                                      font-weight="950">OS · 좌안</text>
+
+                                <circle cx="215"
+                                        cy="178"
+                                        r="117"
+                                        fill="url(#retinaBase)"
+                                        stroke="#d4dde5"
+                                        stroke-width="10"></circle>
+
+                                <circle cx="545"
+                                        cy="178"
+                                        r="117"
+                                        fill="url(#retinaBase)"
+                                        stroke="#d4dde5"
+                                        stroke-width="10"></circle>
+
+                                <g clip-path="url(#odClip)">
+                                    <rect id="odShade"
+                                          x="98"
+                                          y="178"
+                                          width="234"
+                                          height="117"
+                                          fill="#ffcc4f"
+                                          opacity=".86"></rect>
+                                </g>
+
+                                <g clip-path="url(#osClip)">
+                                    <rect id="osShade"
+                                          x="428"
+                                          y="178"
+                                          width="234"
+                                          height="117"
+                                          fill="#ffcc4f"
+                                          opacity=".86"></rect>
+                                </g>
+
+                                <line x1="98"
+                                      y1="178"
+                                      x2="332"
+                                      y2="178"
+                                      stroke="#f4e7df"
+                                      stroke-opacity=".65"></line>
+
+                                <line x1="215"
+                                      y1="61"
+                                      x2="215"
+                                      y2="295"
+                                      stroke="#f4e7df"
+                                      stroke-opacity=".65"></line>
+
+                                <line x1="428"
+                                      y1="178"
+                                      x2="662"
+                                      y2="178"
+                                      stroke="#f4e7df"
+                                      stroke-opacity=".65"></line>
+
+                                <line x1="545"
+                                      y1="61"
+                                      x2="545"
+                                      y2="295"
+                                      stroke="#f4e7df"
+                                      stroke-opacity=".65"></line>
+
+                                <circle cx="236"
+                                        cy="178"
+                                        r="11"
+                                        fill="#4e1820"
+                                        stroke="#ffc0a8"
+                                        stroke-width="3"></circle>
+
+                                <circle cx="524"
+                                        cy="178"
+                                        r="11"
+                                        fill="#4e1820"
+                                        stroke="#ffc0a8"
+                                        stroke-width="3"></circle>
+
+                                <circle cx="190"
+                                        cy="178"
+                                        r="7"
+                                        fill="#ffdc70"></circle>
+
+                                <circle cx="570"
+                                        cy="178"
+                                        r="7"
+                                        fill="#ffdc70"></circle>
+
+                                <text x="215"
+                                      y="50"
+                                      text-anchor="middle"
+                                      fill="#a9c5d8"
+                                      font-size="12"
+                                      font-weight="800">위망막</text>
+
+                                <text x="215"
+                                      y="319"
+                                      text-anchor="middle"
+                                      fill="#a9c5d8"
+                                      font-size="12"
+                                      font-weight="800">아래망막</text>
+
+                                <text x="545"
+                                      y="50"
+                                      text-anchor="middle"
+                                      fill="#a9c5d8"
+                                      font-size="12"
+                                      font-weight="800">위망막</text>
+
+                                <text x="545"
+                                      y="319"
+                                      text-anchor="middle"
+                                      fill="#a9c5d8"
+                                      font-size="12"
+                                      font-weight="800">아래망막</text>
+
+                                <text x="80"
+                                      y="182"
+                                      text-anchor="middle"
+                                      fill="#9dc4dc"
+                                      font-size="12"
+                                      font-weight="900">비측 N</text>
+
+                                <text x="350"
+                                      y="182"
+                                      text-anchor="middle"
+                                      fill="#9dc4dc"
+                                      font-size="12"
+                                      font-weight="900">이측 T</text>
+
+                                <text x="410"
+                                      y="182"
+                                      text-anchor="middle"
+                                      fill="#9dc4dc"
+                                      font-size="12"
+                                      font-weight="900">이측 T</text>
+
+                                <text x="680"
+                                      y="182"
+                                      text-anchor="middle"
+                                      fill="#9dc4dc"
+                                      font-size="12"
+                                      font-weight="900">비측 N</text>
+
+                                <path d="M215 305 C260 345 320 348 365 338"
+                                      fill="none"
+                                      stroke="#9b8cff"
+                                      stroke-width="7"
+                                      stroke-linecap="round"></path>
+
+                                <path d="M545 305 C500 345 440 348 395 338"
+                                      fill="none"
+                                      stroke="#9b8cff"
+                                      stroke-width="7"
+                                      stroke-linecap="round"></path>
+
+                                <circle cx="380"
+                                        cy="338"
+                                        r="17"
+                                        fill="#272460"
+                                        stroke="#c9c2ff"
+                                        stroke-width="3"></circle>
+
+                                <text x="380"
+                                      y="374"
+                                      text-anchor="middle"
+                                      fill="#bcb5ec"
+                                      font-size="11"
+                                      font-weight="800">시교차 · optic chiasm</text>
+                            </svg>
+                        </div>
+
+                        <div class="retina-readout">
+                            <div class="eye-readout">
+                                <b>OD · 우안</b>
+                                <span id="odTerm">
+                                    아래쪽 망막 (inferior retina)
+                                </span>
+                            </div>
+
+                            <div class="eye-readout">
+                                <b>OS · 좌안</b>
+                                <span id="osTerm">
+                                    아래쪽 망막 (inferior retina)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="hemisphere" id="hemisphereText">
+                            위쪽 시야 정보는 양안의 아래쪽 망막에 맺힙니다.
+                            수직 방향 대응에서는 비측·이측 구분이 바뀌지 않습니다.
+                        </div>
+                    </article>
+                </div>
+
+                <div class="card key-rule">
+                    <div class="symbol">↕</div>
+
+                    <div>
+                        <b>핵심 원리: 망막상은 상하·좌우가 반전됩니다.</b>
+
+                        <p>
+                            다만 좌우 시야를 해부학 용어로 말할 때는
+                            두 눈의 비측·이측 망막이 서로 다릅니다.
+                            비측 망막 축삭은 시교차에서 반대편으로 교차하고,
+                            이측 망막 축삭은 같은 쪽으로 진행하여
+                            한쪽 시야 정보가 반대쪽 대뇌반구에 모입니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="clinical-note">
+                    <strong>임상 안전 메모:</strong>
+                    갑작스러운 커튼 모양 시야가림, 번쩍임과 비문 증가,
+                    급격한 시야 결손은 방향과 관계없이 긴급 안과 평가가 필요합니다.
+                    환자가 말한 커튼 방향만으로 망막 열공·박리의 정확한 위치를
+                    단정하지 않습니다.
+                </div>
+            </section>
+
+            <!-- =====================================================
+                 02. 굴절
+            ====================================================== -->
+
+            <section class="section" id="refraction">
+
+                <div class="section-heading">
+                    <div>
+                        <div class="eyebrow">Optical focus &amp; correction</div>
+                        <h2>굴절 상태와 빛의 초점</h2>
+
+                        <p>
+                            조절을 배제한 원거리 평행광을 기준으로,
+                            초점이 망막과 어떤 관계를 갖는지 비교합니다.
+                        </p>
+                    </div>
+
+                    <span class="badge">광학 개념도</span>
+                </div>
+
+                <div class="card refract-controls"
+                     role="group"
+                     aria-label="굴절 상태 선택">
+                    <button class="choice refract-choice active"
+                            type="button"
+                            data-state="emmetropia"
+                            aria-pressed="true">
+                        정시
+                    </button>
+
+                    <button class="choice refract-choice"
+                            type="button"
+                            data-state="myopia"
+                            aria-pressed="false">
+                        근시
+                    </button>
+
+                    <button class="choice refract-choice"
+                            type="button"
+                            data-state="hyperopia"
+                            aria-pressed="false">
+                        원시
+                    </button>
+
+                    <button class="choice refract-choice"
+                            type="button"
+                            data-state="astigmatism"
+                            aria-pressed="false">
+                        난시
+                    </button>
+
+                    <button class="choice refract-choice"
+                            type="button"
+                            data-state="amblyopia"
+                            aria-pressed="false">
+                        약시
+                    </button>
+                </div>
+
+                <div class="refract-layout">
+
+                    <article class="card optics-card">
+                        <div class="card-title">
+                            <span class="step">1</span>
+                            광선과 망막의 관계
+                        </div>
+
+                        <div class="optics-stage">
+                            <svg viewBox="0 0 820 430"
+                                 role="img"
+                                 aria-labelledby="opticsTitle opticsDesc">
+                                <title id="opticsTitle">
+                                    선택한 굴절 상태의 광선도
+                                </title>
+
+                                <desc id="opticsDesc">
+                                    각막과 수정체를 지난 빛이 망막 앞, 망막면,
+                                    망막 뒤 또는 서로 다른 두 위치에 초점을 이루는 개념도입니다.
+                                </desc>
+
+                                <defs>
+                                    <linearGradient id="corneaFill" x1="0" x2="1">
+                                        <stop offset="0"
+                                              stop-color="#72ddec"
+                                              stop-opacity=".18"></stop>
+
+                                        <stop offset="1"
+                                              stop-color="#72ddec"
+                                              stop-opacity=".5"></stop>
+                                    </linearGradient>
+
+                                    <radialGradient id="lensFill">
+                                        <stop offset="0"
+                                              stop-color="#fff4b0"
+                                              stop-opacity=".8"></stop>
+
+                                        <stop offset="1"
+                                              stop-color="#e1b95d"
+                                              stop-opacity=".35"></stop>
+                                    </radialGradient>
+                                </defs>
+
+                                <!-- 안구 -->
+                                <path d="M280 54
+                   C425 15 602 56 671 181
+                   C726 280 652 382 515 398
+                   C396 411 293 353 266 264
+                   C240 177 242 97 280 54Z"
+                                      fill="#0d2946"
+                                      stroke="#d4e2ea"
+                                      stroke-width="9"></path>
+
+                                <!-- 각막 -->
+                                <path d="M282 82
+                   C245 104 222 151 222 215
+                   C222 279 245 326 282 348
+                   C315 318 331 272 331 215
+                   C331 158 315 112 282 82Z"
+                                      fill="url(#corneaFill)"
+                                      stroke="#69d6ea"
+                                      stroke-width="5"></path>
+
+                                <!-- 수정체 -->
+                                <path d="M356 111
+                   C324 136 312 174 312 215
+                   C312 256 324 294 356 319
+                   C388 294 400 256 400 215
+                   C400 174 388 136 356 111Z"
+                                      fill="url(#lensFill)"
+                                      stroke="#eac568"
+                                      stroke-width="4"></path>
+
+                                <!-- 망막 -->
+                                <path class="retina-line"
+                                      d="M614 92 C688 145 707 267 628 343"></path>
+
+                                <path d="M629 102 C683 151 697 259 639 332"
+                                      fill="none"
+                                      stroke="#7e2540"
+                                      stroke-width="3"></path>
+
+                                <!-- 시신경 -->
+                                <path d="M675 176
+                   C720 187 764 199 811 218
+                   C762 236 718 248 674 258"
+                                      fill="#d4aa50"
+                                      opacity=".85"></path>
+
+                                <circle cx="692"
+                                        cy="216"
+                                        r="16"
+                                        fill="#ddb552"
+                                        stroke="#ffe080"
+                                        stroke-width="3"></circle>
+
+                                <text x="262"
+                                      y="382"
+                                      text-anchor="middle"
+                                      class="optic-label">각막</text>
+
+                                <text x="356"
+                                      y="382"
+                                      text-anchor="middle"
+                                      class="optic-label">수정체</text>
+
+                                <text x="629"
+                                      y="382"
+                                      text-anchor="middle"
+                                      class="optic-label">망막</text>
+
+                                <text x="737"
+                                      y="382"
+                                      text-anchor="middle"
+                                      class="optic-label">시신경</text>
+
+                                <text x="42"
+                                      y="52"
+                                      class="optic-small">원거리 평행광 · 조절 이완 가정</text>
+
+                                <!-- 정시 -->
+                                <g class="state-group active"
+                                   data-optics="emmetropia">
+                                    <path class="ray"
+                                          d="M34 137
+                     L250 137
+                     Q286 137 356 161
+                     Q510 190 682 216"></path>
+
+                                    <path class="ray"
+                                          d="M34 215
+                     L250 215
+                     L356 215
+                     L682 216"></path>
+
+                                    <path class="ray"
+                                          d="M34 293
+                     L250 293
+                     Q286 293 356 269
+                     Q510 241 682 216"></path>
+
+                                    <circle class="focus-dot"
+                                            cx="682"
+                                            cy="216"
+                                            r="8"></circle>
+
+                                    <text x="596"
+                                          y="191"
+                                          class="optic-label"
+                                          fill="#ffe98c">망막면에 초점</text>
+                                </g>
+
+                                <!-- 근시 -->
+                                <g class="state-group"
+                                   data-optics="myopia">
+                                    <path class="ray"
+                                          d="M34 137
+                     L250 137
+                     Q286 137 356 161
+                     L535 216
+                     L682 261"></path>
+
+                                    <path class="ray"
+                                          d="M34 215
+                     L250 215
+                     L356 215
+                     L535 216
+                     L682 216"></path>
+
+                                    <path class="ray"
+                                          d="M34 293
+                     L250 293
+                     Q286 293 356 269
+                     L535 216
+                     L682 171"></path>
+
+                                    <circle class="focus-dot"
+                                            cx="535"
+                                            cy="216"
+                                            r="8"></circle>
+
+                                    <text x="484"
+                                          y="195"
+                                          class="optic-label"
+                                          fill="#ffe98c">망막 앞 초점</text>
+                                </g>
+
+                                <!-- 원시 -->
+                                <g class="state-group"
+                                   data-optics="hyperopia">
+                                    <path class="ray"
+                                          d="M34 137
+                     L250 137
+                     Q286 137 356 161
+                     L682 204"></path>
+
+                                    <path class="ray"
+                                          d="M34 215
+                     L250 215
+                     L356 215
+                     L682 215"></path>
+
+                                    <path class="ray"
+                                          d="M34 293
+                     L250 293
+                     Q286 293 356 269
+                     L682 226"></path>
+
+                                    <path class="ray extension"
+                                          d="M682 204 L760 216
+                     M682 215 L760 216
+                     M682 226 L760 216"></path>
+
+                                    <circle class="focus-dot"
+                                            cx="760"
+                                            cy="216"
+                                            r="8"></circle>
+
+                                    <text x="691"
+                                          y="187"
+                                          class="optic-label"
+                                          fill="#ffe98c">망막 뒤 가상 초점</text>
+                                </g>
+
+                                <!-- 난시 -->
+                                <g class="state-group"
+                                   data-optics="astigmatism">
+                                    <path class="ray"
+                                          d="M34 137
+                     L250 137
+                     Q286 137 356 161
+                     L535 216
+                     L682 262"></path>
+
+                                    <path class="ray"
+                                          d="M34 293
+                     L250 293
+                     Q286 293 356 269
+                     L535 216
+                     L682 170"></path>
+
+                                    <path class="ray secondary"
+                                          d="M34 168
+                     L250 168
+                     Q300 168 356 184
+                     L682 211
+                     L760 216"></path>
+
+                                    <path class="ray secondary"
+                                          d="M34 262
+                     L250 262
+                     Q300 262 356 246
+                     L682 221
+                     L760 216"></path>
+
+                                    <circle class="focus-dot"
+                                            cx="535"
+                                            cy="216"
+                                            r="7"></circle>
+
+                                    <circle cx="760"
+                                            cy="216"
+                                            r="7"
+                                            fill="#baf4ff"
+                                            stroke="#68dfff"
+                                            stroke-width="3"></circle>
+
+                                    <text x="484"
+                                          y="194"
+                                          class="optic-small">주경선 1</text>
+
+                                    <text x="705"
+                                          y="188"
+                                          class="optic-small">주경선 2</text>
+
+                                    <text x="484"
+                                          y="340"
+                                          class="optic-small">개념 예시 · 실제 초선 위치는 난시 유형과 도수에 따라 달라짐</text>
+                                </g>
+
+                                <!-- 약시 -->
+                                <g class="state-group"
+                                   data-optics="amblyopia">
+                                    <path class="ray"
+                                          d="M34 137
+                     L250 137
+                     Q286 137 356 161
+                     Q510 190 682 216"
+                                          opacity=".55"></path>
+
+                                    <path class="ray"
+                                          d="M34 215
+                     L250 215
+                     L356 215
+                     L682 216"
+                                          opacity=".55"></path>
+
+                                    <path class="ray"
+                                          d="M34 293
+                     L250 293
+                     Q286 293 356 269
+                     Q510 241 682 216"
+                                          opacity=".55"></path>
+
+                                    <circle class="focus-dot"
+                                            cx="682"
+                                            cy="216"
+                                            r="8"></circle>
+
+                                    <path class="signal-line"
+                                          d="M690 216 C738 190 770 196 802 216"
+                                          stroke-dasharray="9 8"></path>
+
+                                    <text x="690"
+                                          y="160"
+                                          text-anchor="middle"
+                                          class="optic-label"
+                                          fill="#c8c1ff">초점 위치만으로 설명되지 않음</text>
+
+                                    <text x="690"
+                                          y="178"
+                                          text-anchor="middle"
+                                          class="optic-small">눈–뇌 시각발달 문제</text>
+                                </g>
+                            </svg>
+                        </div>
+                    </article>
+
+                    <aside class="card state-info" aria-live="polite">
+                        <div class="state-name" id="stateName">정시</div>
+                        <div class="state-en" id="stateEn">Emmetropia</div>
+
+                        <div class="state-tag" id="stateTag">
+                            기준 굴절 상태
+                        </div>
+
+                        <div class="info-block">
+                            <b>광학적 정의</b>
+
+                            <p id="stateDefinition">
+                                조절이 이완된 눈에서 원거리 평행광이
+                                망막면에 초점을 이룹니다.
+                            </p>
+                        </div>
+
+                        <div class="info-block">
+                            <b>주요 원리</b>
+
+                            <p id="stateMechanism">
+                                안구 길이와 각막·수정체의 굴절력이 균형을 이룹니다.
+                            </p>
+                        </div>
+
+                        <div class="info-block">
+                            <b>보이는 양상</b>
+
+                            <p id="stateVision">
+                                별도의 굴절오차가 없다면 원거리 상이
+                                망막에 선명하게 맺힙니다.
+                            </p>
+                        </div>
+
+                        <div class="correction-row">
+                            <div class="correction">
+                                <span>일반적 광학 교정</span>
+                                <strong id="stateCorrection">필요 없음</strong>
+                            </div>
+
+                            <div class="correction">
+                                <span>처방 표기 핵심</span>
+                                <strong id="stateNotation">Plano / 0.00 D</strong>
+                            </div>
+                        </div>
+
+                        <div class="clinical-note" id="stateCaveat">
+                            정시라도 조절, 안질환, 망막·시신경 상태에 따라
+                            실제 시력은 달라질 수 있습니다.
+                        </div>
+                    </aside>
+                </div>
+
+                <div class="card relation-strip">
+                    <h3>다섯 항목을 같은 종류로 묶으면 안 되는 이유</h3>
+
+                    <div class="relation-grid">
+                        <div class="relation-item">
+                            <b>정시</b>
+                            <span>기준 굴절 상태</span>
+                        </div>
+
+                        <div class="relation-item">
+                            <b>근시</b>
+                            <span>구면 굴절오차 · −렌즈</span>
+                        </div>
+
+                        <div class="relation-item">
+                            <b>원시</b>
+                            <span>구면 굴절오차 · +렌즈</span>
+                        </div>
+
+                        <div class="relation-item">
+                            <b>난시</b>
+                            <span>경선별 굴절력 차이 · 원주렌즈</span>
+                        </div>
+
+                        <div class="relation-item separate">
+                            <b>약시</b>
+                            <span>굴절 상태가 아닌 시각발달 이상</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =====================================================
+                 03. 시력과 약시
+            ====================================================== -->
+
+            <section class="section" id="visual-acuity">
+
+                <div class="section-heading">
+                    <div>
+                        <div class="eyebrow">Acuity is not field</div>
+                        <h2>시력, 시야, 굴절을 구분하기</h2>
+
+                        <p>
+                            서로 관련되지만 같은 검사값은 아닙니다.
+                            각각 무엇을 측정하는지 구분해야 합니다.
+                        </p>
+                    </div>
+
+                    <span class="badge">검사 개념 정리</span>
+                </div>
+
+                <div class="acuity-top">
+
+                    <article class="card concept">
+                        <div class="icon">A</div>
+                        <h3>시력 · Visual acuity</h3>
+
+                        <p>
+                            고정점을 볼 때 세부를 분해하는 공간해상도입니다.
+                            보통 고대비 시표로 중심시력을 평가하며,
+                            시야 전체의 정상 여부를 뜻하지 않습니다.
+                        </p>
+                    </article>
+
+                    <article class="card concept">
+                        <div class="icon">⊙</div>
+                        <h3>시야 · Visual field</h3>
+
+                        <p>
+                            한 점을 주시할 때 동시에 볼 수 있는 공간의 범위와
+                            위치별 감도를 말합니다. 중심시력이 좋아도
+                            주변 시야 결손이 있을 수 있습니다.
+                        </p>
+                    </article>
+
+                    <article class="card concept">
+                        <div class="icon">±</div>
+                        <h3>굴절 · Refraction</h3>
+
+                        <p>
+                            눈의 광학계가 빛을 어디에 초점 맺는지 나타냅니다.
+                            적절한 렌즈로 교정되는 흐림인지 확인하는 과정과 연결됩니다.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="acuity-grid">
+
+                    <article class="card table-card">
+                        <h3>대표 시력 표기의 대응</h3>
+
+                        <p class="subcopy">
+                            아래 값은 표기법 간의 수학적 대응입니다.
+                            검사거리, 차트 설계, 조명과 채점법이 다르면
+                            실제 결과 비교에 주의가 필요합니다.
+                        </p>
+
+                        <table class="acuity-table">
+                            <thead>
+                                <tr>
+                                    <th>의미</th>
+                                    <th>Snellen</th>
+                                    <th>Decimal</th>
+                                    <th>logMAR</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr class="active-row">
+                                    <td>기준 시력</td>
+                                    <td>20/20 · 6/6</td>
+                                    <td>1.0</td>
+                                    <td>0.0</td>
+                                </tr>
+
+                                <tr>
+                                    <td>시각 해상도 감소</td>
+                                    <td>20/40 · 6/12</td>
+                                    <td>0.5</td>
+                                    <td>0.3</td>
+                                </tr>
+
+                                <tr>
+                                    <td>더 큰 시표 필요</td>
+                                    <td>20/100 · 6/30</td>
+                                    <td>0.2</td>
+                                    <td>0.7</td>
+                                </tr>
+
+                                <tr>
+                                    <td>현저한 감소</td>
+                                    <td>20/200 · 6/60</td>
+                                    <td>0.1</td>
+                                    <td>1.0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="formula">
+                            <strong>관계식:</strong>
+                            decimal acuity = Snellen 분자 ÷ 분모,
+                            logMAR = log<sub>10</sub>(MAR)
+                            = −log<sub>10</sub>(decimal acuity).
+                            logMAR은 값이 커질수록 시력이 낮고,
+                            0.0은 20/20에 해당합니다.
+                        </div>
+
+                        <div class="info-block" style="margin-top:10px">
+                            <b>임상 기록에서 구분</b>
+
+                            <p>
+                                <strong>나안시력(UCVA)</strong>은 교정 없이,
+                                <strong>현성시력(PVA)</strong>은 현재 사용 중인
+                                안경·렌즈 상태로,
+                                <strong>최대교정시력(BCVA)</strong>은
+                                최적 굴절교정 후 측정합니다.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="card amblyopia-card">
+                        <h3>약시는 왜 별도 항목인가?</h3>
+
+                        <p class="subcopy">
+                            Amblyopia는 “초점이 망막 앞이나 뒤에 맺히는 상태”가 아니라
+                            발달기의 비정상적 시각 경험으로 생기는 시력 저하입니다.
+                        </p>
+
+                        <div class="amblyopia-hero">
+                            <div class="brain-icon" aria-hidden="true">◉</div>
+
+                            <div>
+                                <b>
+                                    적절한 굴절교정 후에도 시력이 충분히 발달하지 않은 상태
+                                </b>
+
+                                <p>
+                                    한 눈이 흔하지만 양안에 생길 수도 있으며,
+                                    안구가 겉으로 정상처럼 보여도 존재할 수 있습니다.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="cause-list">
+
+                            <div class="cause">
+                                <b>굴절성 약시</b>
+
+                                <span>
+                                    큰 굴절이상 또는 양안 굴절차가 발달기에 교정되지 않아
+                                    선명한 상이 충분히 제공되지 않은 경우
+                                </span>
+                            </div>
+
+                            <div class="cause">
+                                <b>사시성 약시</b>
+
+                                <span>
+                                    눈 정렬 이상으로 뇌가 한 눈의 상을
+                                    지속적으로 억제한 경우
+                                </span>
+                            </div>
+
+                            <div class="cause">
+                                <b>시자극결핍성 약시</b>
+
+                                <span>
+                                    선천백내장, 심한 안검하수, 각막혼탁 등으로
+                                    시각 자극이 차단된 경우
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="clinical-note">
+                            <strong>치료 원칙:</strong>
+                            먼저 정확한 굴절교정과 원인 치료를 시행하고,
+                            필요하면 안과 전문의 지시에 따라
+                            가림치료·아트로핀 처벌치료 등을 사용합니다.
+                            안경만으로 좋아지는 경우도 있지만
+                            모든 약시가 안경만으로 정상화되는 것은 아닙니다.
+                        </div>
+                    </article>
+                </div>
+
+                <div class="card exam-note">
+                    <h3>
+                        핀홀 시력은 “광학적 흐림 가능성”을 보는 단서입니다.
+                    </h3>
+
+                    <p>
+                        핀홀로 시력이 좋아지면 굴절오차나 광학적 흐림의 기여를
+                        시사하지만 확정 진단은 아닙니다.
+                        좋아지지 않는다고 해서 특정 망막·시신경 질환이나
+                        약시로 곧바로 단정할 수도 없습니다.
+                        최종 평가는 굴절검사, 안구 정렬, 전안부·안저검사와
+                        필요한 추가검사를 함께 해석합니다.
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <section class="card sources" aria-labelledby="sourcesTitle">
+            <h2 id="sourcesTitle">의학적 검토 기준</h2>
+
+            <p>
+                본 페이지는 정상 광학과 해부학적 대응을 학습하기 위한 자료이며
+                개인의 시야검사, 굴절검사 또는 진료를 대체하지 않습니다.
+            </p>
+
+            <div class="source-links">
+                <a href="https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/refractive-errors"
+                   target="_blank"
+                   rel="noopener noreferrer">NEI · Refractive Errors</a>
+
+                <a href="https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/amblyopia-lazy-eye"
+                   target="_blank"
+                   rel="noopener noreferrer">NEI · Amblyopia</a>
+
+                <a href="https://aapos.org/glossary/amblyopia"
+                   target="_blank"
+                   rel="noopener noreferrer">AAPOS · Amblyopia</a>
+
+                <a href="https://www.ncbi.nlm.nih.gov/books/NBK560716/"
+                   target="_blank"
+                   rel="noopener noreferrer">NCBI Bookshelf · Hyperopia</a>
+
+                <a href="https://webeye.ophth.uiowa.edu/eyeforum/tutorials/VF-testing/"
+                   target="_blank"
+                   rel="noopener noreferrer">University of Iowa · Visual Field Testing</a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            Ophthalmology Visual Reference ·
+            Visual Field / Refraction / Visual Acuity
+        </footer>
+
+    </div>
+
+    <script>
+"use strict";
+
+const FIELD_MAP={
+          top:{
+            title:"위쪽 시야",
+
+            text:
+              "고정점을 바라볼 때 위쪽에 위치한 공간 정보입니다. " +
+              "그림의 색 영역은 질환이나 실제 결손 모양이 아니라 " +
+              "방향 대응을 학습하기 위한 표시입니다.",
+
+            field:{
+              x:45,
+              y:40,
+              width:590,
+              height:150
+            },
+
+            od:{
+              x:98,
+              y:178,
+              width:234,
+              height:117
+            },
+
+            os:{
+              x:428,
+              y:178,
+              width:234,
+              height:117
+            },
+
+            odTerm:"아래쪽 망막 (inferior retina)",
+            osTerm:"아래쪽 망막 (inferior retina)",
+
+            pathway:
+              "위쪽 시야 정보는 양안의 아래쪽 망막에 맺힙니다. " +
+              "수직 방향 대응에서는 비측·이측 구분이 바뀌지 않습니다."
+          },
+
+          bottom:{
+            title:"아래쪽 시야",
+
+            text:
+              "고정점을 바라볼 때 아래쪽에 위치한 공간 정보입니다. " +
+              "광학적 상하 반전으로 양안의 위쪽 망막과 대응합니다.",
+
+            field:{
+              x:45,
+              y:190,
+              width:590,
+              height:150
+            },
+
+            od:{
+              x:98,
+              y:61,
+              width:234,
+              height:117
+            },
+
+            os:{
+              x:428,
+              y:61,
+              width:234,
+              height:117
+            },
+
+            odTerm:"위쪽 망막 (superior retina)",
+            osTerm:"위쪽 망막 (superior retina)",
+
+            pathway:
+              "아래쪽 시야 정보는 양안의 위쪽 망막에 맺힙니다. " +
+              "수직 방향 대응에서는 비측·이측 구분이 바뀌지 않습니다."
+          },
+
+          left:{
+            title:"왼쪽 시야",
+
+            text:
+              "두 눈이 함께 보는 공간의 왼쪽 반시야입니다. " +
+              "좌우 반전으로 각 눈의 오른쪽 반망막에 상이 맺힙니다.",
+
+            field:{
+              x:45,
+              y:40,
+              width:295,
+              height:300
+            },
+
+            od:{
+              x:215,
+              y:61,
+              width:117,
+              height:234
+            },
+
+            os:{
+              x:545,
+              y:61,
+              width:117,
+              height:234
+            },
+
+            odTerm:"이측 망막 (temporal hemiretina)",
+            osTerm:"비측 망막 (nasal hemiretina)",
+
+            pathway:
+              "왼쪽 시야 → OD 이측 망막(비교차) + " +
+              "OS 비측 망막(시교차에서 교차) → " +
+              "오른쪽 시삭과 오른쪽 대뇌 시각피질로 전달됩니다."
+          },
+
+          right:{
+            title:"오른쪽 시야",
+
+            text:
+              "두 눈이 함께 보는 공간의 오른쪽 반시야입니다. " +
+              "좌우 반전으로 각 눈의 왼쪽 반망막에 상이 맺힙니다.",
+
+            field:{
+              x:340,
+              y:40,
+              width:295,
+              height:300
+            },
+
+            od:{
+              x:98,
+              y:61,
+              width:117,
+              height:234
+            },
+
+            os:{
+              x:428,
+              y:61,
+              width:117,
+              height:234
+            },
+
+            odTerm:"비측 망막 (nasal hemiretina)",
+            osTerm:"이측 망막 (temporal hemiretina)",
+
+            pathway:
+              "오른쪽 시야 → OD 비측 망막(시교차에서 교차) + " +
+              "OS 이측 망막(비교차) → " +
+              "왼쪽 시삭과 왼쪽 대뇌 시각피질로 전달됩니다."
+          }
 };
-function sideTerm(){if(direction==='left') return eye==='OD'?'우안에서는 Temporal retina(귀쪽 망막)입니다.':'좌안에서는 Nasal retina(코쪽 망막)입니다.';if(direction==='right') return eye==='OD'?'우안에서는 Nasal retina(코쪽 망막)입니다.':'좌안에서는 Temporal retina(귀쪽 망막)입니다.';return direction==='top'?'양안 모두 Inferior retina(아래쪽 망막)입니다.':'양안 모두 Superior retina(위쪽 망막)입니다.'}
-function render(){const d=map[direction];document.querySelectorAll('.dir').forEach(b=>b.classList.toggle('active',b.dataset.dir===direction));document.querySelectorAll('.eye').forEach(b=>b.classList.toggle('active',b.dataset.eye===eye));const c=document.getElementById('curtain');c.className='curtain '+direction;const r=document.getElementById('retinaHighlight');r.className='retina-highlight '+d.retina;document.getElementById('fieldTitle').textContent=d.field;document.getElementById('fieldText').textContent=d.fieldText;document.getElementById('retinaTitle').textContent=d.title;document.getElementById('retinaText').textContent=d.base+' '+sideTerm();}
-document.querySelectorAll('.dir').forEach(b=>b.onclick=()=>{direction=b.dataset.dir;render()});document.querySelectorAll('.eye').forEach(b=>b.onclick=()=>{eye=b.dataset.eye;render()});render();
-</script>
-</body></html>
+
+const REFRACTION={
+          emmetropia:{
+            n:"정시",
+            e:"Emmetropia",
+            tag:"기준 굴절 상태",
+
+            definition:
+              "조절이 이완된 눈에서 원거리 평행광이 " +
+              "망막면에 초점을 이룹니다.",
+
+            mechanism:
+              "안구 길이와 각막·수정체의 굴절력이 균형을 이룹니다.",
+
+            vision:
+              "별도의 굴절오차가 없다면 원거리 상이 " +
+              "망막에 선명하게 맺힙니다.",
+
+            correction:"필요 없음",
+            notation:"Plano / 0.00 D",
+
+            caveat:
+              "정시라도 조절, 안질환, 망막·시신경 상태에 따라 " +
+              "실제 시력은 달라질 수 있습니다."
+          },
+
+          myopia:{
+            n:"근시",
+            e:"Myopia",
+            tag:"구면 굴절오차",
+
+            definition:
+              "조절이 이완된 눈에서 원거리 평행광이 " +
+              "망막 앞에 초점을 이룹니다.",
+
+            mechanism:
+              "안축장이 상대적으로 길거나 눈의 굴절력이 " +
+              "상대적으로 강할 때 생깁니다.",
+
+            vision:
+              "교정하지 않으면 일반적으로 먼 곳이 흐리고, " +
+              "가까운 곳은 근시 정도와 작업거리에 따라 " +
+              "비교적 선명할 수 있습니다.",
+
+            correction:"오목렌즈 · 마이너스 렌즈",
+            notation:"− Sphere (D)",
+
+            caveat:
+              "고도근시는 단순 굴절오차를 넘어 망막·맥락막·시신경 관련 " +
+              "위험과 연관될 수 있으므로 정기 안과검진이 중요합니다."
+          },
+
+          hyperopia:{
+            n:"원시",
+            e:"Hyperopia",
+            tag:"구면 굴절오차",
+
+            definition:
+              "조절이 이완된 눈에서 원거리 평행광이 " +
+              "망막 뒤에 초점을 이루려는 굴절 상태입니다.",
+
+            mechanism:
+              "안축장이 상대적으로 짧거나 눈의 굴절력이 " +
+              "상대적으로 약할 때 생깁니다.",
+
+            vision:
+              "젊은 사람은 조절로 일부 또는 전부 보상해 " +
+              "원거리 시력이 좋아 보일 수 있지만, " +
+              "눈피로·두통 또는 근거리 불편이 나타날 수 있습니다.",
+
+            correction:"볼록렌즈 · 플러스 렌즈",
+            notation:"+ Sphere (D)",
+
+            caveat:
+              "특히 소아에서는 조절이 원시를 숨길 수 있어 " +
+              "필요한 경우 조절마비 굴절검사로 전체 원시량을 평가합니다."
+          },
+
+          astigmatism:{
+            n:"난시",
+            e:"Astigmatism",
+            tag:"경선별 굴절오차",
+
+            definition:
+              "서로 직교하는 주경선의 굴절력이 달라 " +
+              "한 점광원이 하나의 점초점이 아니라 " +
+              "서로 다른 위치의 초선과 Sturm 간격을 형성합니다.",
+
+            mechanism:
+              "주로 각막, 때로는 수정체의 곡률·굴절력 차이 때문에 " +
+              "발생합니다.",
+
+            vision:
+              "원거리와 근거리 모두에서 방향성 흐림, 번짐, " +
+              "겹쳐 보임이 나타날 수 있으며 축과 도수에 따라 " +
+              "양상이 달라집니다.",
+
+            correction:"원주렌즈 · 토릭 렌즈",
+            notation:"Cylinder (D) + Axis (°)",
+
+            caveat:
+              "난시는 단순히 ‘초점이 망막 앞 또는 뒤’인 " +
+              "하나의 점으로 그리면 부정확합니다. " +
+              "두 주경선의 굴절력을 함께 기술해야 합니다."
+          },
+
+          amblyopia:{
+            n:"약시",
+            e:"Amblyopia",
+            tag:"굴절 상태 아님 · 시각발달 이상",
+
+            definition:
+              "발달기의 비정상적 시각 경험으로 한 눈 또는 드물게 양안의 " +
+              "시력이 충분히 발달하지 않은 상태입니다.",
+
+            mechanism:
+              "굴절이상·부등시, 사시, 시자극 차단 등이 원인이 될 수 있으며 " +
+              "눈–뇌 연결의 정상 발달이 방해됩니다.",
+
+            vision:
+              "적절한 굴절교정 후에도 기대되는 시력에 도달하지 못할 수 있습니다. " +
+              "겉으로 눈이 정상처럼 보여도 존재할 수 있습니다.",
+
+            correction:"원인교정 + 약시치료",
+            notation:"BCVA와 원인으로 평가",
+
+            caveat:
+              "약시는 고정된 초점 위치로 정의하지 않습니다. " +
+              "조기 발견과 원인 치료, 정확한 굴절교정 및 필요 시 " +
+              "가림·처벌치료가 핵심입니다."
+          }
+};
+
+function setRect(element,rect){
+          Object.entries(rect).forEach(([key,value])=>{
+            element.setAttribute(key,String(value));
+          });
+}
+
+function renderField(direction){
+          const data=FIELD_MAP[direction];
+
+          if(!data)return;
+
+          document.querySelectorAll(".field-choice").forEach(button=>{
+            const active=button.dataset.direction===direction;
+
+            button.classList.toggle("active",active);
+            button.setAttribute("aria-pressed",String(active));
+          });
+
+          setRect(
+            document.getElementById("fieldShade"),
+            data.field
+          );
+
+          setRect(
+            document.getElementById("odShade"),
+            data.od
+          );
+
+          setRect(
+            document.getElementById("osShade"),
+            data.os
+          );
+
+          document.getElementById("fieldTitle").textContent=
+            data.title;
+
+          document.getElementById("fieldText").textContent=
+            data.text;
+
+          document.getElementById("odTerm").textContent=
+            data.odTerm;
+
+          document.getElementById("osTerm").textContent=
+            data.osTerm;
+
+          document.getElementById("hemisphereText").textContent=
+            data.pathway;
+}
+
+function renderRefraction(state){
+          const data=REFRACTION[state];
+
+          if(!data)return;
+
+          document.querySelectorAll(".refract-choice").forEach(button=>{
+            const active=button.dataset.state===state;
+
+            button.classList.toggle("active",active);
+            button.setAttribute("aria-pressed",String(active));
+          });
+
+          document.querySelectorAll(".state-group").forEach(group=>{
+            group.classList.toggle(
+              "active",
+              group.dataset.optics===state
+            );
+          });
+
+          document.getElementById("stateName").textContent=
+            data.n;
+
+          document.getElementById("stateEn").textContent=
+            data.e;
+
+          document.getElementById("stateTag").textContent=
+            data.tag;
+
+          document.getElementById("stateDefinition").textContent=
+            data.definition;
+
+          document.getElementById("stateMechanism").textContent=
+            data.mechanism;
+
+          document.getElementById("stateVision").textContent=
+            data.vision;
+
+          document.getElementById("stateCorrection").textContent=
+            data.correction;
+
+          document.getElementById("stateNotation").textContent=
+            data.notation;
+
+          document.getElementById("stateCaveat").textContent=
+            data.caveat;
+}
+
+document.querySelectorAll(".field-choice").forEach(button=>{
+          button.addEventListener("click",()=>{
+            renderField(button.dataset.direction);
+          });
+});
+
+document.querySelectorAll(".refract-choice").forEach(button=>{
+          button.addEventListener("click",()=>{
+            renderRefraction(button.dataset.state);
+          });
+});
+
+renderField("top");
+renderRefraction("emmetropia");
+    </script>
+</body>
+</html>
